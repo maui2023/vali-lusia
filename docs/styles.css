@@ -1018,126 +1018,454 @@ body {
 }
 
 /* ==========================================================================
-   PDF Reader Modal & In-Modal Viewer Styles
+   Soalan Validasi 3 Kategori & Kad Skor Ergonomik Mudah Alih
    ========================================================================== */
-.modal-dialog-pdf {
-  max-width: 960px;
-  width: 95%;
-  height: 88vh;
-  max-height: 850px;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+.validation-questions-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed var(--border-color);
 }
 
-.pdf-modal-header {
-  padding: 0.85rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border-color);
-  background: white;
-  gap: 1rem;
-}
-
-.pdf-modal-title-group {
+.section-headline {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
 }
 
-.pdf-modal-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.btn-sm {
-  padding: 0.45rem 0.85rem;
-  font-size: 0.8rem;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-}
-
-.pdf-btn-close {
-  background: #f1f5f9;
-  border: 1px solid var(--border-color);
+.section-headline h3 {
   font-size: 1.1rem;
+  color: var(--secondary);
   font-weight: 700;
-  color: var(--text-muted);
-  cursor: pointer;
-  width: 34px;
-  height: 34px;
+}
+
+.section-headline .section-badge {
+  background: var(--gold-light);
+  color: var(--gold-hover);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid #fde68a;
+}
+
+.question-category-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.question-category-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-sm);
+}
+
+.question-category-card.answered {
+  border-color: var(--primary-border);
+  background: #fafdfb;
+}
+
+.question-category-card.has-error {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.cat-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.cat-num-badge {
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
-.pdf-btn-close:hover {
-  background: var(--danger-bg);
-  color: var(--danger);
-  border-color: #fecaca;
-}
-
-.pdf-viewer-container {
+.cat-title-text {
   flex: 1;
-  width: 100%;
-  min-height: 350px;
-  background: #334155;
-  position: relative;
-  overflow: hidden;
 }
 
-.pdf-viewer-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: white;
+.cat-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--secondary);
+  line-height: 1.35;
+}
+
+.cat-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+/* Skala Pilihan 3 Butang Kad (0, 1, 2) */
+.score-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.score-option-label {
   display: block;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  margin: 0;
 }
 
-.pdf-modal-footer {
-  padding: 0.75rem 1.25rem;
+.score-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.score-btn-tile {
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
   background: #f8fafc;
-  border-top: 1px solid var(--border-color);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+}
+
+.score-option-label:hover .score-btn-tile {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+}
+
+.score-num-pill {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.score-text-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.score-pts-tag {
+  font-size: 0.68rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* Keadaan Terpilih (Active/Checked) */
+/* Pilihan 2: Terbaik (Emerald Green) */
+.score-radio-input[value="2"]:checked + .score-btn-tile {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  box-shadow: 0 0 0 2px var(--primary-border);
+}
+.score-radio-input[value="2"]:checked + .score-btn-tile .score-num-pill {
+  color: var(--primary-dark);
+}
+.score-radio-input[value="2"]:checked + .score-btn-tile .score-text-label {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+.score-radio-input[value="2"]:checked + .score-btn-tile .score-pts-tag {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Pilihan 1: Memuaskan (Gold/Amber) */
+.score-radio-input[value="1"]:checked + .score-btn-tile {
+  border-color: var(--gold);
+  background: var(--gold-light);
+  color: #78350f;
+  box-shadow: 0 0 0 2px #fde68a;
+}
+.score-radio-input[value="1"]:checked + .score-btn-tile .score-num-pill {
+  color: #b45309;
+}
+.score-radio-input[value="1"]:checked + .score-btn-tile .score-text-label {
+  color: #78350f;
+  font-weight: 700;
+}
+.score-radio-input[value="1"]:checked + .score-btn-tile .score-pts-tag {
+  color: #b45309;
+  font-weight: 600;
+}
+
+/* Pilihan 0: Tidak Puas Hati (Red/Rose) */
+.score-radio-input[value="0"]:checked + .score-btn-tile {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+  color: #991b1b;
+  box-shadow: 0 0 0 2px #fecaca;
+}
+.score-radio-input[value="0"]:checked + .score-btn-tile .score-num-pill {
+  color: var(--danger);
+}
+.score-radio-input[value="0"]:checked + .score-btn-tile .score-text-label {
+  color: #991b1b;
+  font-weight: 700;
+}
+.score-radio-input[value="0"]:checked + .score-btn-tile .score-pts-tag {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Komponen Graf Keputusan Validasi (Result Graph Engine)
+   ========================================================================== */
+.result-graph-card {
+  background: white;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin: 1.25rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.graph-top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.graph-applicant-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-applicant-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.graph-applicant-phone {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.graph-code-pill {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+}
+
+/* Paparan Metrik Skor Keseluruhan */
+.score-overview-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.score-main-value-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-big-num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--secondary);
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.score-big-num span.max-denom {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.score-percentage-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 0.3rem;
+}
+
+.rating-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.rating-excellent {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1.5px solid #6ee7b7;
+}
+
+.rating-good {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1.5px solid #fcd34d;
+}
+
+.rating-action {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1.5px solid #fca5a5;
+}
+
+/* Carta Palang Mengufuk 3 Kategori */
+.chart-bars-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 1rem;
+}
+
+.chart-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.chart-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  font-size: 0.85rem;
 }
 
-.modal-footer-smart {
+.chart-item-title {
+  font-weight: 700;
+  color: var(--secondary);
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-@media (max-width: 640px) {
-  .modal-dialog-pdf {
-    width: 98%;
-    height: 94vh;
-    max-height: none;
+.chart-item-score {
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.chart-item-score.score-2 {
+  color: var(--primary);
+}
+.chart-item-score.score-1 {
+  color: var(--gold);
+}
+.chart-item-score.score-0 {
+  color: var(--danger);
+}
+
+.chart-track {
+  width: 100%;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.chart-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.chart-fill.fill-emerald {
+  background: linear-gradient(90deg, #10b981 0%, #047857 100%);
+}
+
+.chart-fill.fill-gold {
+  background: linear-gradient(90deg, #fbbf24 0%, #d97706 100%);
+}
+
+.chart-fill.fill-danger {
+  background: linear-gradient(90deg, #f87171 0%, #ef4444 100%);
+}
+
+.graph-insight-box {
+  background: #f8fafc;
+  border-left: 4px solid var(--primary);
+  padding: 0.85rem 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-top: 1.25rem;
+  font-size: 0.825rem;
+  color: var(--secondary);
+  line-height: 1.45;
+}
+
+@media (max-width: 540px) {
+  .score-options-grid {
+    gap: 0.4rem;
   }
-  .pdf-modal-header {
+  .score-btn-tile {
+    padding: 0.6rem 0.25rem;
+    min-height: 66px;
+  }
+  .score-num-pill {
+    font-size: 0.95rem;
+  }
+  .score-text-label {
+    font-size: 0.7rem;
+  }
+  .score-overview-box {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0.75rem 1rem;
+    padding: 1rem;
   }
-  .pdf-modal-actions {
-    width: 100%;
-    justify-content: flex-end;
-  }
-  .modal-footer-smart .btn {
-    width: 100%;
+  .score-big-num {
+    font-size: 2.15rem;
   }
 }
+
 
 

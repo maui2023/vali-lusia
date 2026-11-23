@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Semakan Pegawai Operasi | Andalusia Travel</title>
+  <title>Portal Semakan Pegawai Operasi & Analisis Skor | Andalusia Travel</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     .stats-grid {
@@ -43,6 +43,15 @@
       margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
+    .mini-score-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -68,7 +77,7 @@
   <main class="main-wrapper">
     <div class="page-intro">
       <h2>Papan Pemuka Semakan & Panggilan Jemaah</h2>
-      <p>Senarai pendaftaran nama dan nombor telefon jemaah untuk tindakan semakan, pengesahan, dan panggilan pegawai operasi.</p>
+      <p>Senarai pendaftaran jemaah berserta skor graf validasi 3 kategori untuk tindakan semakan, panggilan WhatsApp, dan pengesahan pegawai.</p>
     </div>
 
     <!-- Kad Statistik -->
@@ -78,7 +87,7 @@
         <div class="stat-value" id="statTotal">128</div>
       </div>
       <div class="stat-card" style="border-left: 4px solid var(--warning);">
-        <div class="stat-label">Menunggu Hubungan / Semakan</div>
+        <div class="stat-label">Menunggu Semakan</div>
         <div class="stat-value" style="color:var(--warning);" id="statPending">14</div>
       </div>
       <div class="stat-card" style="border-left: 4px solid var(--success);">
@@ -101,7 +110,7 @@
           <option value="ACTION_REQUIRED">Perlu Tindakan</option>
         </select>
       </div>
-      <button type="button" class="btn btn-secondary" onclick="alert('Eksport senarai jemaah ke fail CSV berjaya dimuat turun.')">
+      <button type="button" class="btn btn-secondary" onclick="alert('Eksport senarai rekod ke fail CSV berjaya dijana.')">
         📥 Eksport CSV
       </button>
     </div>
@@ -109,7 +118,7 @@
     <!-- Jadual Senarai Permohonan -->
     <div class="form-card">
       <div class="card-header-bar">
-        <h3>Senarai Jemaah Masuk</h3>
+        <h3>Senarai Jemaah & Skor Validasi</h3>
         <span class="step-badge" style="background:var(--secondary);">Sistem Live Sync</span>
       </div>
 
@@ -120,43 +129,50 @@
               <th>Kod Rujukan</th>
               <th>Nama Jemaah</th>
               <th>No. Telefon (WhatsApp)</th>
+              <th>Skor Validasi (3 Kategori)</th>
               <th>Tarikh Pendaftaran</th>
               <th>Status</th>
               <th>Tindakan Pegawai</th>
             </tr>
           </thead>
           <tbody id="tableBody">
-            <!-- Data dynamically populated by JS -->
+            <!-- Data populated dynamically -->
           </tbody>
         </table>
       </div>
     </div>
   </main>
 
-  <!-- Modal Semakan & Pengesahan -->
+  <!-- Modal Semakan & Graf Pegawai -->
   <div class="modal-overlay" id="reviewModal">
-    <div class="modal-dialog" style="max-width:580px;">
+    <div class="modal-dialog" style="max-width:620px;">
       <div class="modal-header" style="text-align:left; display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <h3 id="rev_title">Semakan Maklumat Jemaah</h3>
+          <h3 id="rev_title">Semakan Maklumat & Graf Skor</h3>
           <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;" id="rev_subtitle">Kod Validasi: VAL-882194</p>
         </div>
         <button type="button" class="btn-remove-file" style="font-size:1.5rem; background:none; border:none; cursor:pointer;" onclick="closeReviewModal()">✕</button>
       </div>
 
       <div class="modal-body" style="padding:1.5rem;">
+        
+        <!-- Butiran Jemaah -->
         <div class="summary-section">
-          <div class="summary-grid" style="grid-template-columns:1fr; gap:0.85rem;">
+          <div class="summary-grid" style="grid-template-columns:1fr 1fr; gap:0.85rem;">
             <div class="summary-item">
               <span class="summary-item-label">Nama Penuh Jemaah:</span>
-              <span class="summary-item-value" id="rev_name" style="font-weight:700; color:var(--secondary); font-size:1.05rem;">AHMAD DANIAL BIN ABDUL AZIZ</span>
+              <span class="summary-item-value" id="rev_name" style="font-weight:700; color:var(--secondary); font-size:1rem;">AHMAD DANIAL BIN ABDUL AZIZ</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">Status Terkini:</span>
+              <span class="summary-item-value" id="rev_status_display"><span class="admin-badge badge-pending">MENUNGGU SEMAKAN</span></span>
             </div>
             <div class="summary-item">
               <span class="summary-item-label">Nombor Telefon:</span>
               <div style="display:flex; align-items:center; gap:0.75rem; margin-top:0.25rem;">
-                <span class="summary-item-value" id="rev_phone" style="font-weight:700; color:var(--primary); font-size:1.1rem;">012-3456789</span>
-                <a href="#" id="rev_wa_btn" target="_blank" class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.8rem;">
-                  💬 Buka WhatsApp
+                <span class="summary-item-value" id="rev_phone" style="font-weight:700; color:var(--primary); font-size:1rem;">012-3456789</span>
+                <a href="#" id="rev_wa_btn" target="_blank" class="btn btn-secondary" style="padding:0.25rem 0.65rem; font-size:0.75rem;">
+                  💬 WhatsApp
                 </a>
               </div>
             </div>
@@ -164,9 +180,49 @@
               <span class="summary-item-label">Tarikh & Masa Hantar:</span>
               <span class="summary-item-value" id="rev_date">24/11/2026, 03:50 PM</span>
             </div>
-            <div class="summary-item">
-              <span class="summary-item-label">Status Terkini:</span>
-              <span class="summary-item-value" id="rev_status_display"><span class="admin-badge badge-pending">MENUNGGU SEMAKAN</span></span>
+          </div>
+        </div>
+
+        <!-- Pecahan Skor & Graf Mini Validasi -->
+        <div class="result-graph-card" style="margin-top:1.25rem; padding:1.15rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <span style="font-size:0.85rem; font-weight:700; color:var(--secondary);">PECAHAN SKOR VALIDASI JEMAAH</span>
+            <span class="rating-badge-pill rating-excellent" id="rev_ratingBadge" style="font-size:0.75rem; padding:0.25rem 0.65rem;">
+              ⭐ 6 / 6 (CEMERLANG)
+            </span>
+          </div>
+
+          <!-- Carta Palang Mini -->
+          <div class="chart-bars-wrap" style="gap:0.75rem; margin-top:0.5rem;">
+            <!-- Kategori 1 -->
+            <div class="chart-bar-item">
+              <div class="chart-item-header" style="font-size:0.78rem;">
+                <span class="chart-item-title">1. Layanan & Khidmat Pegawai</span>
+                <span class="chart-item-score" id="rev_barScore1">2 / 2</span>
+              </div>
+              <div class="chart-track" style="height:8px;">
+                <div class="chart-fill fill-emerald" id="rev_barFill1" style="width: 100%;"></div>
+              </div>
+            </div>
+            <!-- Kategori 2 -->
+            <div class="chart-bar-item">
+              <div class="chart-item-header" style="font-size:0.78rem;">
+                <span class="chart-item-title">2. Ketepatan Maklumat & Pakej</span>
+                <span class="chart-item-score" id="rev_barScore2">2 / 2</span>
+              </div>
+              <div class="chart-track" style="height:8px;">
+                <div class="chart-fill fill-emerald" id="rev_barFill2" style="width: 100%;"></div>
+              </div>
+            </div>
+            <!-- Kategori 3 -->
+            <div class="chart-bar-item">
+              <div class="chart-item-header" style="font-size:0.78rem;">
+                <span class="chart-item-title">3. Kemudahan & Kelancaran Proses</span>
+                <span class="chart-item-score" id="rev_barScore3">2 / 2</span>
+              </div>
+              <div class="chart-track" style="height:8px;">
+                <div class="chart-fill fill-emerald" id="rev_barFill3" style="width: 100%;"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -179,12 +235,7 @@
       </div>
 
       <div class="modal-footer" style="justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
-        <div style="display:flex; gap:0.5rem;">
-          <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Tutup</button>
-          <button type="button" class="btn btn-gold" id="btnAdminViewPdf" style="font-weight:700;">
-            📄 Baca / Jana PDF
-          </button>
-        </div>
+        <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Tutup</button>
         <div style="display:flex; gap:0.5rem;">
           <button type="button" class="btn btn-secondary" style="border-color:var(--warning); color:var(--warning);" onclick="updateRecordStatus('ACTION_REQUIRED')">
             ⚠️ Perlu Tindakan
@@ -193,50 +244,6 @@
             ✓ Sahkan & Selesai
           </button>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Pembaca Dokumen PDF Rasmi (In-Modal PDF Reader) -->
-  <div class="modal-overlay" id="pdfReaderModal">
-    <div class="modal-dialog modal-dialog-pdf">
-      <div class="pdf-modal-header">
-        <div class="pdf-modal-title-group">
-          <span style="font-size:1.35rem;">📄</span>
-          <div>
-            <h4 id="pdfReaderTitle" style="margin:0; font-size:1rem; color:var(--secondary); font-weight:700;">
-              Pembaca Borang Validasi Jemaah
-            </h4>
-            <span id="pdfReaderCode" style="font-size:0.75rem; color:var(--primary); font-weight:700; font-family:monospace;">
-              VAL-882194
-            </span>
-          </div>
-        </div>
-        <div class="pdf-modal-actions">
-          <button type="button" class="btn btn-outline btn-sm" id="pdfReaderOpenTabBtn" title="Buka dalam Tab Baharu">
-            ↗ Tab Baharu
-          </button>
-          <button type="button" class="btn btn-secondary btn-sm" id="pdfReaderPrintBtn" title="Cetak Dokumen">
-            🖨️ Cetak
-          </button>
-          <button type="button" class="btn btn-gold btn-sm" id="pdfReaderDownloadBtn" title="Muat Turun Fail PDF">
-            📥 Muat Turun
-          </button>
-          <button type="button" class="pdf-btn-close" onclick="PdfService.closeModal()" title="Tutup Paparan">
-            ✕
-          </button>
-        </div>
-      </div>
-      <div class="pdf-viewer-container">
-        <iframe id="pdfReaderIframe" class="pdf-viewer-iframe" title="Pratonton Borang Validasi PDF"></iframe>
-      </div>
-      <div class="pdf-modal-footer">
-        <span style="font-size:0.75rem; color:var(--text-muted);">
-          💡 Petua: Anda boleh membaca dokumen di atas, mencetak terus, atau memuat turun fail PDF ke storan telefon anda.
-        </span>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="PdfService.closeModal()">
-          Tutup Paparan
-        </button>
       </div>
     </div>
   </div>
@@ -254,21 +261,19 @@
     </div>
   </footer>
 
-  <!-- Enjin Penjanaan PDF Ringan (Luar Talian + Sandaran CDN) -->
-  <script src="vendor/jspdf.umd.min.js"></script>
-  <script>
-    if (!window.jspdf) {
-      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>');
-    }
-  </script>
-  <script src="pdf-service.js"></script>
-
   <script>
     const seedRecords = [
       {
         code: 'VAL-882194',
         fullName: 'MUHAMMAD AMIN BIN ABDULLAH',
         phone: '012-3456789',
+        cat1: 2,
+        cat2: 2,
+        cat3: 2,
+        totalScore: 6,
+        maxScore: 6,
+        percentage: 100,
+        rating: 'CEMERLANG',
         submittedAt: '24/11/2026, 03:50 PM',
         status: 'VERIFIED',
         notes: 'Jemaah telah dihubungi dan mengesahkan kehadiran taklimat pelepasan.'
@@ -277,6 +282,13 @@
         code: 'VAL-991205',
         fullName: 'SITI AISHAH BINTI ZAINAL',
         phone: '019-8765432',
+        cat1: 2,
+        cat2: 1,
+        cat3: 2,
+        totalScore: 5,
+        maxScore: 6,
+        percentage: 83,
+        rating: 'CEMERLANG',
         submittedAt: '24/11/2026, 04:00 PM',
         status: 'PENDING_REVIEW',
         notes: ''
@@ -285,9 +297,16 @@
         code: 'VAL-773412',
         fullName: 'KHAIRUL ANUAR BIN MD NOR',
         phone: '017-6543210',
+        cat1: 1,
+        cat2: 0,
+        cat3: 1,
+        totalScore: 2,
+        maxScore: 6,
+        percentage: 33,
+        rating: 'PERLU TINDAKAN',
         submittedAt: '24/11/2026, 04:02 PM',
-        status: 'PENDING_REVIEW',
-        notes: ''
+        status: 'ACTION_REQUIRED',
+        notes: 'Jemaah mengalami kekeliruan tentang pakej promosi.'
       }
     ];
 
@@ -295,7 +314,6 @@
 
     function getCombinedRecords() {
       const local = JSON.parse(localStorage.getItem('vali_lusia_submissions') || '[]');
-      // Merge, giving priority to local submissions
       const localCodes = new Set(local.map(r => r.code));
       const filteredSeed = seedRecords.filter(r => !localCodes.has(r.code));
       return [...local, ...filteredSeed];
@@ -317,13 +335,11 @@
         if (record.status === 'VERIFIED') verifiedCount++;
         else pendingCount++;
 
-        // Filter text
         const matchesText = 
           record.fullName.toLowerCase().includes(filterText) ||
           record.phone.includes(filterText) ||
           record.code.toLowerCase().includes(filterText);
 
-        // Filter status
         const matchesStatus = (statusFilter === 'ALL') || (record.status === statusFilter);
 
         if (matchesText && matchesStatus) {
@@ -331,12 +347,24 @@
           const cleanPhone = record.phone.replace(/\D/g, '');
           const waPhone = cleanPhone.startsWith('60') ? cleanPhone : (cleanPhone.startsWith('0') ? '60' + cleanPhone.substring(1) : cleanPhone);
 
+          const total = (record.totalScore !== undefined) ? record.totalScore : (record.cat1 || 2) + (record.cat2 || 2) + (record.cat3 || 2);
+          const percent = (record.percentage !== undefined) ? record.percentage : Math.round((total / 6) * 100);
+
+          let pillClass = 'rating-excellent';
+          if (total <= 2) pillClass = 'rating-action';
+          else if (total <= 4) pillClass = 'rating-good';
+
           tr.innerHTML = `
             <td><strong style="color:var(--primary); font-family:monospace;">${record.code}</strong></td>
             <td><strong>${record.fullName}</strong></td>
             <td>
               <span style="font-weight:600;">${record.phone}</span>
               <a href="https://wa.me/${waPhone}" target="_blank" style="margin-left:0.5rem; text-decoration:none;" title="WhatsApp Jemaah">💬</a>
+            </td>
+            <td>
+              <span class="mini-score-pill ${pillClass}">
+                📊 ${total} / 6 (${percent}%)
+              </span>
             </td>
             <td><span style="font-size:0.8rem; color:var(--text-muted);">${record.submittedAt || '-'}</span></td>
             <td>
@@ -357,6 +385,35 @@
       document.getElementById('statTotal').textContent = totalCount;
       document.getElementById('statPending').textContent = pendingCount;
       document.getElementById('statVerified').textContent = verifiedCount;
+    }
+
+    function updateMiniBar(index, score) {
+      const s = (score === undefined || score === null) ? 2 : parseInt(score, 10);
+      const scoreEl = document.getElementById(`rev_barScore${index}`);
+      const fillEl = document.getElementById(`rev_barFill${index}`);
+      if (!scoreEl || !fillEl) return;
+
+      let fillClass = 'fill-emerald';
+      let width = '100%';
+      let text = `${s} / 2 (Terbaik)`;
+
+      if (s === 2) {
+        text = '2 / 2 (Terbaik)';
+        fillClass = 'fill-emerald';
+        width = '100%';
+      } else if (s === 1) {
+        text = '1 / 2 (Memuaskan)';
+        fillClass = 'fill-gold';
+        width = '50%';
+      } else {
+        text = '0 / 2 (Tidak Puas Hati)';
+        fillClass = 'fill-danger';
+        width = '8%';
+      }
+
+      scoreEl.textContent = text;
+      fillEl.className = `chart-fill ${fillClass}`;
+      fillEl.style.width = width;
     }
 
     function openReviewModal(code) {
@@ -384,6 +441,26 @@
       } else {
         statusBadge.innerHTML = `<span class="admin-badge badge-pending">MENUNGGU SEMAKAN</span>`;
       }
+
+      // Graf Mini Modal
+      const total = (record.totalScore !== undefined) ? record.totalScore : (record.cat1 || 2) + (record.cat2 || 2) + (record.cat3 || 2);
+      const rating = record.rating || (total >= 5 ? 'CEMERLANG' : (total <= 2 ? 'PERLU TINDAKAN' : 'MEMUASKAN'));
+      const badgeEl = document.getElementById('rev_ratingBadge');
+
+      if (total >= 5) {
+        badgeEl.className = 'rating-badge-pill rating-excellent';
+        badgeEl.textContent = `⭐ ${total} / 6 (${rating})`;
+      } else if (total <= 2) {
+        badgeEl.className = 'rating-badge-pill rating-action';
+        badgeEl.textContent = `⚠️ ${total} / 6 (${rating})`;
+      } else {
+        badgeEl.className = 'rating-badge-pill rating-good';
+        badgeEl.textContent = `⭐ ${total} / 6 (${rating})`;
+      }
+
+      updateMiniBar(1, record.cat1);
+      updateMiniBar(2, record.cat2);
+      updateMiniBar(3, record.cat3);
 
       document.getElementById('reviewModal').classList.add('active');
     }
@@ -418,20 +495,6 @@
 
     document.getElementById('filterInput').addEventListener('input', renderTable);
     document.getElementById('statusFilter').addEventListener('change', renderTable);
-
-    const btnAdminViewPdf = document.getElementById('btnAdminViewPdf');
-    if (btnAdminViewPdf) {
-      btnAdminViewPdf.addEventListener('click', () => {
-        if (!currentActiveCode) return;
-        const allRecords = getCombinedRecords();
-        const record = allRecords.find(r => r.code === currentActiveCode);
-        if (record) {
-          PdfService.openModal(record);
-        } else {
-          alert('Maklumat rekod tidak dijumpai.');
-        }
-      });
-    }
 
     // Initial render
     renderTable();

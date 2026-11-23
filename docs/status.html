@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semakan Status Permohonan | Andalusia Travel & Tours</title>
+  <title>Semakan Status Permohonan & Graf Validasi | Andalusia Travel & Tours</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     .status-search-card {
@@ -110,8 +110,8 @@
   <!-- Kandungan Utama -->
   <main class="main-wrapper">
     <div class="page-intro">
-      <h2>Semakan Status Pendaftaran Maklumat</h2>
-      <p>Masukkan nombor telefon bimbit atau kod rujukan validasi anda untuk menyemak status permohonan terkini.</p>
+      <h2>Semakan Status & Graf Validasi Jemaah</h2>
+      <p>Masukkan nombor telefon bimbit atau kod rujukan validasi anda untuk menyemak status permohonan dan melihat graf keputusan validasi terkini.</p>
     </div>
 
     <!-- Kotak Carian -->
@@ -133,18 +133,18 @@
           <span class="help-text">Masukkan sama ada no. telefon berdaftar atau kod validasi anda.</span>
         </div>
         <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
-          <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem;">
+          <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem; font-weight:700;">
             🔍 Semak Status Sekarang
           </button>
         </div>
       </form>
     </div>
 
-    <!-- Hasil Semakan Status -->
+    <!-- Hasil Semakan Status & Graf Validasi -->
     <div class="form-card" id="statusResultCard" style="max-width:700px; margin: 0 auto;">
       <div class="card-header-bar">
         <div>
-          <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Status Terkini:</span>
+          <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Status Semakan Terkini:</span>
           <h3 id="res_status_title" style="margin-top:2px;">Telah Disahkan (Verified) ✓</h3>
         </div>
         <span class="admin-badge badge-verified" id="res_status_badge">DISAHKAN</span>
@@ -198,6 +198,79 @@
           </div>
         </div>
 
+        <!-- SEKSYEN GRAF KEPUTUSAN VALIDASI JEMAAH -->
+        <div class="result-graph-card" style="margin-top:1.5rem; border-color:var(--primary-border);">
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:1.25rem;">📊</span>
+              <h4 style="margin:0; font-size:1rem; font-weight:800; color:var(--secondary);">Graf Keputusan Validasi Jemaah</h4>
+            </div>
+            <span class="rating-badge-pill rating-excellent" id="statusRatingBadge">⭐ CEMERLANG</span>
+          </div>
+
+          <!-- Tolok Skor Ringkas -->
+          <div class="score-overview-box" style="padding:1rem;">
+            <div class="score-main-value-wrap">
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">JUMLAH MARKAH</span>
+              <div class="score-big-num">
+                <span id="statusTotalScore">6</span>
+                <span class="max-denom">/ 6</span>
+              </div>
+              <span class="score-percentage-tag" id="statusPercentageTag">100% Skor Validasi</span>
+            </div>
+            <div style="text-align:left; max-width:320px;">
+              <span style="font-size:0.85rem; font-weight:700; color:var(--secondary);" id="statusRatingTitle">Tahap Kepuasan Sangat Tinggi</span>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.25rem;" id="statusRatingDesc">
+                Jemaah memberikan penilaian penuh bagi semua aspek layanan, maklumat, dan proses pendaftaran.
+              </p>
+            </div>
+          </div>
+
+          <!-- Carta Palang 3 Kategori -->
+          <div class="chart-bars-wrap" style="margin-top:1rem;">
+            <!-- Kategori 1 -->
+            <div class="chart-bar-item">
+              <div class="chart-item-header">
+                <span class="chart-item-title">
+                  <span style="color:var(--primary); font-weight:800;">1.</span> Layanan & Khidmat Pegawai
+                </span>
+                <span class="chart-item-score" id="statusBarScoreCat1">2 / 2 (Terbaik)</span>
+              </div>
+              <div class="chart-track">
+                <div class="chart-fill fill-emerald" id="statusBarFillCat1" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Kategori 2 -->
+            <div class="chart-bar-item">
+              <div class="chart-item-header">
+                <span class="chart-item-title">
+                  <span style="color:var(--gold); font-weight:800;">2.</span> Ketepatan Maklumat & Pakej
+                </span>
+                <span class="chart-item-score" id="statusBarScoreCat2">2 / 2 (Terbaik)</span>
+              </div>
+              <div class="chart-track">
+                <div class="chart-fill fill-emerald" id="statusBarFillCat2" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Kategori 3 -->
+            <div class="chart-bar-item">
+              <div class="chart-item-header">
+                <span class="chart-item-title">
+                  <span style="color:var(--primary); font-weight:800;">3.</span> Kemudahan & Kelancaran Proses
+                </span>
+                <span class="chart-item-score" id="statusBarScoreCat3">2 / 2 (Terbaik)</span>
+              </div>
+              <div class="chart-track">
+                <div class="chart-fill fill-emerald" id="statusBarFillCat3" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         <!-- Ulasan Pegawai -->
         <div class="alert-box alert-info" style="margin-top:1.5rem;">
           <span class="alert-icon">👨‍💼</span>
@@ -211,62 +284,12 @@
 
       <div class="card-footer-bar" style="flex-wrap: wrap; gap: 0.65rem;">
         <a href="index.html" class="btn btn-secondary">← Borang Pendaftaran Baharu</a>
-        <button type="button" class="btn btn-gold" id="btnStatusViewPdf" style="font-weight:700;">
-          👁️ Baca Borang PDF
-        </button>
-        <button type="button" class="btn btn-outline" id="btnStatusDownloadPdf">
-          📥 Muat Turun PDF
-        </button>
-        <button type="button" class="btn btn-secondary" onclick="window.print()">
-          🖨️ Cetak Slip Rujukan
+        <button type="button" class="btn btn-primary" onclick="window.print()" style="font-weight:700;">
+          🖨️ Cetak Slip Rekod & Graf
         </button>
       </div>
     </div>
   </main>
-
-  <!-- Modal Pembaca Dokumen PDF Rasmi (In-Modal PDF Reader) -->
-  <div class="modal-overlay" id="pdfReaderModal">
-    <div class="modal-dialog modal-dialog-pdf">
-      <div class="pdf-modal-header">
-        <div class="pdf-modal-title-group">
-          <span style="font-size:1.35rem;">📄</span>
-          <div>
-            <h4 id="pdfReaderTitle" style="margin:0; font-size:1rem; color:var(--secondary); font-weight:700;">
-              Pembaca Borang Validasi Jemaah
-            </h4>
-            <span id="pdfReaderCode" style="font-size:0.75rem; color:var(--primary); font-weight:700; font-family:monospace;">
-              VAL-882194
-            </span>
-          </div>
-        </div>
-        <div class="pdf-modal-actions">
-          <button type="button" class="btn btn-outline btn-sm" id="pdfReaderOpenTabBtn" title="Buka dalam Tab Baharu">
-            ↗ Tab Baharu
-          </button>
-          <button type="button" class="btn btn-secondary btn-sm" id="pdfReaderPrintBtn" title="Cetak Dokumen">
-            🖨️ Cetak
-          </button>
-          <button type="button" class="btn btn-gold btn-sm" id="pdfReaderDownloadBtn" title="Muat Turun Fail PDF">
-            📥 Muat Turun
-          </button>
-          <button type="button" class="pdf-btn-close" onclick="PdfService.closeModal()" title="Tutup Paparan">
-            ✕
-          </button>
-        </div>
-      </div>
-      <div class="pdf-viewer-container">
-        <iframe id="pdfReaderIframe" class="pdf-viewer-iframe" title="Pratonton Borang Validasi PDF"></iframe>
-      </div>
-      <div class="pdf-modal-footer">
-        <span style="font-size:0.75rem; color:var(--text-muted);">
-          💡 Petua: Anda boleh membaca dokumen di atas, mencetak terus, atau memuat turun fail PDF ke storan telefon anda.
-        </span>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="PdfService.closeModal()">
-          Tutup Paparan
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -281,22 +304,20 @@
     </div>
   </footer>
 
-  <!-- Enjin Penjanaan PDF Ringan (Luar Talian + Sandaran CDN) -->
-  <script src="vendor/jspdf.umd.min.js"></script>
   <script>
-    if (!window.jspdf) {
-      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>');
-    }
-  </script>
-  <script src="pdf-service.js"></script>
-
-  <script>
-    // Data Contoh Asal
+    // Rekod Contoh Lalai Bersama Skor 3 Kategori
     const defaultRecords = [
       {
         code: 'VAL-882194',
         fullName: 'MUHAMMAD AMIN BIN ABDULLAH',
         phone: '012-3456789',
+        cat1: 2,
+        cat2: 2,
+        cat3: 2,
+        totalScore: 6,
+        maxScore: 6,
+        percentage: 100,
+        rating: 'CEMERLANG',
         status: 'VERIFIED',
         submittedAt: '24/11/2026, 03:50 PM',
         notes: 'Maklumat jemaah telah diterima dengan jayanya. Pegawai kami telah menghubungi anda melalui WhatsApp untuk pengesahan lanjut.'
@@ -305,43 +326,130 @@
         code: 'VAL-991205',
         fullName: 'SITI AISHAH BINTI ZAINAL',
         phone: '019-8765432',
+        cat1: 2,
+        cat2: 1,
+        cat3: 2,
+        totalScore: 5,
+        maxScore: 6,
+        percentage: 83,
+        rating: 'CEMERLANG',
         status: 'PENDING_REVIEW',
         submittedAt: '24/11/2026, 04:00 PM',
         notes: 'Permohonan sedang menunggu semakan dan giliran panggilan pegawai khidmat pelanggan Andalusia.'
       }
     ];
 
-    let currentFoundRecord = defaultRecords[0];
+    function updateCategoryBar(catIndex, score) {
+      const scoreEl = document.getElementById(`statusBarScoreCat${catIndex}`);
+      const fillEl = document.getElementById(`statusBarFillCat${catIndex}`);
+      if (!scoreEl || !fillEl) return;
 
-    // Butang PDF Action Listeners
-    const btnViewPdf = document.getElementById('btnStatusViewPdf');
-    const btnDownloadPdf = document.getElementById('btnStatusDownloadPdf');
+      const s = (score === undefined || score === null) ? 2 : parseInt(score, 10);
+      let text = '2 / 2 (Terbaik)';
+      let fillClass = 'fill-emerald';
+      let width = '100%';
 
-    if (btnViewPdf) {
-      btnViewPdf.addEventListener('click', () => {
-        if (!currentFoundRecord) {
-          alert("Sila buat carian permohonan terlebih dahulu.");
-          return;
-        }
-        PdfService.openModal(currentFoundRecord);
-      });
+      if (s === 2) {
+        text = '2 / 2 (Terbaik)';
+        fillClass = 'fill-emerald';
+        width = '100%';
+      } else if (s === 1) {
+        text = '1 / 2 (Memuaskan)';
+        fillClass = 'fill-gold';
+        width = '50%';
+      } else {
+        text = '0 / 2 (Tidak Puas Hati)';
+        fillClass = 'fill-danger';
+        width = '6%';
+      }
+
+      scoreEl.textContent = text;
+      scoreEl.className = `chart-item-score score-${s}`;
+      fillEl.className = `chart-fill ${fillClass}`;
+      fillEl.style.width = width;
     }
 
-    if (btnDownloadPdf) {
-      btnDownloadPdf.addEventListener('click', () => {
-        if (!currentFoundRecord) {
-          alert("Sila buat carian permohonan terlebih dahulu.");
-          return;
-        }
-        PdfService.downloadPdf(currentFoundRecord);
-      });
+    function displayRecord(found) {
+      document.getElementById('res_code').textContent = found.code;
+      document.getElementById('res_fullName').textContent = found.fullName;
+      document.getElementById('res_phone').textContent = found.phone;
+      document.getElementById('res_date').textContent = found.submittedAt || 'Baru sahaja';
+
+      const badge = document.getElementById('res_status_badge');
+      const title = document.getElementById('res_status_title');
+      const fill = document.getElementById('timelineFill');
+      const nodeReview = document.getElementById('nodeReview');
+      const nodeComplete = document.getElementById('nodeComplete');
+      const statusText = document.getElementById('res_status_text');
+      const notes = document.getElementById('res_notes');
+
+      if (found.status === 'VERIFIED') {
+        badge.className = 'admin-badge badge-verified';
+        badge.textContent = 'DISAHKAN';
+        title.textContent = 'Telah Disahkan (Verified) ✓';
+        fill.style.width = '100%';
+        nodeReview.className = 'timeline-node done';
+        nodeComplete.className = 'timeline-node done';
+        statusText.textContent = 'Selesai disahkan & telah dihubungi';
+        notes.textContent = found.notes || 'Maklumat telah disahkan oleh pegawai operasi.';
+      } else if (found.status === 'ACTION_REQUIRED') {
+        badge.className = 'admin-badge badge-action';
+        badge.textContent = 'PERLU TINDAKAN';
+        title.textContent = 'Perhatian Pegawai Diperlukan ⚠️';
+        fill.style.width = '50%';
+        nodeReview.className = 'timeline-node current';
+        nodeComplete.className = 'timeline-node';
+        statusText.textContent = 'Pegawai sedang menguruskan maklum balas';
+        notes.textContent = found.notes || 'Permohonan memerlukan tindakan perunding umrah.';
+      } else {
+        badge.className = 'admin-badge badge-pending';
+        badge.textContent = 'MENUNGGU SEMAKAN';
+        title.textContent = 'Sedang Disemak Oleh Pegawai ⏳';
+        fill.style.width = '50%';
+        nodeReview.className = 'timeline-node current';
+        nodeComplete.className = 'timeline-node';
+        statusText.textContent = 'Sedang diproses oleh pegawai';
+        notes.textContent = found.notes || 'Permohonan baru diterima dan akan dihubungi oleh pegawai dalam masa 1-2 hari bekerja.';
+      }
+
+      // Paparan Graf Keputusan
+      const totalScore = (found.totalScore !== undefined) ? found.totalScore : (found.cat1 || 2) + (found.cat2 || 2) + (found.cat3 || 2);
+      const percentage = (found.percentage !== undefined) ? found.percentage : Math.round((totalScore / 6) * 100);
+      const rating = found.rating || (totalScore >= 5 ? 'CEMERLANG' : (totalScore <= 2 ? 'PERLU TINDAKAN' : 'MEMUASKAN'));
+
+      document.getElementById('statusTotalScore').textContent = totalScore;
+      document.getElementById('statusPercentageTag').textContent = `${percentage}% Skor Validasi`;
+
+      const ratingBadge = document.getElementById('statusRatingBadge');
+      const ratingTitle = document.getElementById('statusRatingTitle');
+      const ratingDesc = document.getElementById('statusRatingDesc');
+
+      if (totalScore >= 5) {
+        ratingBadge.className = 'rating-badge-pill rating-excellent';
+        ratingBadge.textContent = `⭐ ${rating}`;
+        ratingTitle.textContent = 'Tahap Kepuasan Sangat Tinggi';
+        ratingDesc.textContent = 'Jemaah memberikan penilaian positif terhadap aspek layanan, kejelasan maklumat, dan sistem pendaftaran.';
+      } else if (totalScore <= 2) {
+        ratingBadge.className = 'rating-badge-pill rating-action';
+        ratingBadge.textContent = `⚠️ ${rating}`;
+        ratingTitle.textContent = 'Perlu Tindakan & Penambahbaikan';
+        ratingDesc.textContent = 'Penilaian rendah dikesan. Pasukan pengurusan Andalusia telah dimaklumkan untuk bantuan segera.';
+      } else {
+        ratingBadge.className = 'rating-badge-pill rating-good';
+        ratingBadge.textContent = `⭐ ${rating}`;
+        ratingTitle.textContent = 'Tahap Kepuasan Sederhana (Baik)';
+        ratingDesc.textContent = 'Penilaian berada pada tahap yang memuaskan dan proses pendaftaran berjalan dengan baik.';
+      }
+
+      updateCategoryBar('1', found.cat1);
+      updateCategoryBar('2', found.cat2);
+      updateCategoryBar('3', found.cat3);
     }
 
-    document.getElementById('searchStatusForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const query = document.getElementById('searchQuery').value.trim();
+    function searchRecord(query) {
+      if (!query) return;
       const cleanDigits = query.replace(/\D/g, '');
-      const upperQuery = query.toUpperCase();
+      const upperQuery = query.toUpperCase().trim();
 
       const userSubmissions = JSON.parse(localStorage.getItem('vali_lusia_submissions') || '[]');
       const allRecords = [...userSubmissions, ...defaultRecords];
@@ -353,45 +461,27 @@
       });
 
       if (found) {
-        currentFoundRecord = found;
-
-        document.getElementById('res_code').textContent = found.code;
-        document.getElementById('res_fullName').textContent = found.fullName;
-        document.getElementById('res_phone').textContent = found.phone;
-        document.getElementById('res_date').textContent = found.submittedAt || 'Baru sahaja';
-
-        const badge = document.getElementById('res_status_badge');
-        const title = document.getElementById('res_status_title');
-        const fill = document.getElementById('timelineFill');
-        const nodeReview = document.getElementById('nodeReview');
-        const nodeComplete = document.getElementById('nodeComplete');
-        const statusText = document.getElementById('res_status_text');
-        const notes = document.getElementById('res_notes');
-
-        if (found.status === 'VERIFIED') {
-          badge.className = 'admin-badge badge-verified';
-          badge.textContent = 'DISAHKAN';
-          title.textContent = 'Telah Disahkan (Verified) ✓';
-          fill.style.width = '100%';
-          nodeReview.className = 'timeline-node done';
-          nodeComplete.className = 'timeline-node done';
-          statusText.textContent = 'Selesai disahkan & telah dihubungi';
-          notes.textContent = found.notes || 'Maklumat telah disahkan oleh pegawai operasi.';
-        } else {
-          badge.className = 'admin-badge badge-pending';
-          badge.textContent = 'MENUNGGU SEMAKAN';
-          title.textContent = 'Sedang Disemak Oleh Pegawai ⏳';
-          fill.style.width = '50%';
-          nodeReview.className = 'timeline-node current';
-          nodeComplete.className = 'timeline-node';
-          statusText.textContent = 'Sedang diproses oleh pegawai';
-          notes.textContent = found.notes || 'Permohonan baru diterima dan akan dihubungi oleh pegawai dalam masa 1-2 hari bekerja.';
-        }
-
-        // Tunjukkan notifikasi ringkas
-        console.log(`Rekod dimuatkan: ${found.fullName} (${found.code})`);
+        displayRecord(found);
       } else {
         alert("Rekod tidak ditemui bagi nombor telefon atau kod tersebut. Sila pastikan maklumat dimasukkan dengan tepat.");
+      }
+    }
+
+    document.getElementById('searchStatusForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = document.getElementById('searchQuery').value.trim();
+      searchRecord(query);
+    });
+
+    // Semak parameter URL (contoh: status.html?query=VAL-123456)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = urlParams.get('query');
+      if (queryParam) {
+        document.getElementById('searchQuery').value = queryParam;
+        searchRecord(queryParam);
+      } else {
+        displayRecord(defaultRecords[0]);
       }
     });
   </script>

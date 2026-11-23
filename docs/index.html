@@ -30,636 +30,355 @@
   <main class="main-wrapper">
     
     <div class="page-intro">
-      <h2>Pendaftaran & Validasi Dokumen Jemaah</h2>
-      <p>Sila lengkapkan maklumat asas anda, kemudian teruskan ke soalan validasi pasport dan pakej umrah untuk urusan permohonan visa perjalanan.</p>
+      <h2>Pendaftaran & Validasi Jemaah</h2>
+      <p>Sila lengkapkan maklumat asas anda dan jawab 3 soalan validasi di bawah untuk menjana graf keputusan skor anda secara automatik.</p>
     </div>
 
-    <!-- Multi-Step Progress Stepper -->
-    <div class="stepper-container">
-      <div class="stepper-progress-bar" id="stepperProgressBar"></div>
-      <ul class="stepper-list">
-        <li class="step-item active" data-step="1">
-          <div class="step-circle">1</div>
-          <span class="step-label">Asas</span>
-        </li>
-        <li class="step-item" data-step="2">
-          <div class="step-circle">2</div>
-          <span class="step-label">Validasi</span>
-        </li>
-        <li class="step-item" data-step="3">
-          <div class="step-circle">3</div>
-          <span class="step-label">Pakej</span>
-        </li>
-        <li class="step-item" data-step="4">
-          <div class="step-circle">4</div>
-          <span class="step-label">Pasport</span>
-        </li>
-        <li class="step-item" data-step="5">
-          <div class="step-circle">5</div>
-          <span class="step-label">Semakan</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Form Container -->
+    <!-- Form Container (Single Page Minimalist + Validation Questions) -->
     <div class="form-card" style="max-width: 680px; margin: 0 auto;">
       <div class="card-header-bar">
-        <h3 id="stepHeaderTitle">Langkah 1: Maklumat Asas Jemaah</h3>
-        <span class="step-badge" id="stepBadge" style="background:var(--primary);">Langkah 1 / 5</span>
+        <h3>Borang Pendaftaran & Validasi Skor</h3>
+        <span class="step-badge" style="background:var(--primary);">Sistem Validasi Pintar</span>
       </div>
 
       <form id="validationForm" novalidate>
         <div class="form-body">
 
-          <!-- ============================================================
-               LANGKAH 1: MAKLUMAT ASAS (NAMA & NO TELEFON)
-               ============================================================ -->
-          <div class="step-content active" data-step="1">
-            <div class="alert-box alert-info">
-              <span class="alert-icon">ℹ️</span>
-              <div>
-                <strong>Peringatan:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat dan aktif untuk dihubungi melalui WhatsApp atau panggilan.
-              </div>
-            </div>
-
-            <div class="form-grid" style="grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1rem;">
-              
-              <!-- Nama Penuh -->
-              <div class="form-group">
-                <label for="fullName">
-                  Nama Penuh <span style="color:var(--danger)">*</span>
-                  <span class="label-hint">Huruf besar automatik</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">👤</span>
-                  <input 
-                    type="text" 
-                    id="fullName" 
-                    class="form-control" 
-                    placeholder="CONTOH: AHMAD DANIAL BIN ABDUL AZIZ" 
-                    required 
-                    style="text-transform:uppercase;"
-                    autocomplete="name"
-                  >
-                </div>
-                <span class="help-text">Nama penuh seperti dalam kad pengenalan atau pasport.</span>
-                <span class="error-text" id="nameError">Sila masukkan nama penuh anda (sekurang-kurangnya 3 huruf).</span>
-              </div>
-
-              <!-- No Telefon -->
-              <div class="form-group">
-                <label for="phoneNumber">
-                  No. Telefon (WhatsApp) <span style="color:var(--danger)">*</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">📱</span>
-                  <input 
-                    type="tel" 
-                    id="phoneNumber" 
-                    class="form-control" 
-                    placeholder="Contoh: 012-3456789" 
-                    required
-                    autocomplete="tel"
-                  >
-                </div>
-                <span class="help-text">Nombor telefon bimbit aktif untuk tujuan panggilan dan WhatsApp.</span>
-                <span class="error-text" id="phoneError">Sila masukkan nombor telefon yang sah (contoh: 012-3456789).</span>
-              </div>
-
-              <div class="alert-box" style="background:#f0fdf4; border:1px solid #bbf7d0; margin-top:0.5rem;">
-                <span class="alert-icon">💡</span>
-                <div style="font-size:0.85rem; color:#166534;">
-                  <strong>Langkah Seterusnya:</strong> Klik butang <strong>"Selanjutnya (Ke Soalan Validasi) →"</strong> di bawah untuk memasukkan nombor MyKad, pasport antarabangsa, dan pilihan pakej umrah anda.
-                </div>
-              </div>
-
+          <!-- Alert Peringatan Mesra Jemaah -->
+          <div class="alert-box alert-info">
+            <span class="alert-icon">ℹ️</span>
+            <div>
+              <strong>Peringatan:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat dan aktif untuk dihubungi melalui WhatsApp atau panggilan.
             </div>
           </div>
 
-          <!-- ============================================================
-               LANGKAH 2: SOALAN VALIDASI JEMAAH & MYKAD
-               ============================================================ -->
-          <div class="step-content" data-step="2">
-            <div class="alert-box alert-info">
-              <span class="alert-icon">🪪</span>
-              <div>
-                <strong>Validasi Identiti Jemaah:</strong> Masukkan 12-digit nombor MyKad anda. Sistem pintar akan mengesahkan format dan mengira tarikh lahir serta jantina secara automatik.
-              </div>
-            </div>
-
-            <div class="form-grid" style="margin-top:1rem;">
-              <!-- No Kad Pengenalan -->
-              <div class="form-group grid-full">
-                <label for="icNumber">
-                  No. Kad Pengenalan (MyKad) <span style="color:var(--danger)">*</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🪪</span>
-                  <input 
-                    type="text" 
-                    id="icNumber" 
-                    class="form-control" 
-                    placeholder="920815-10-6188" 
-                    maxlength="14" 
-                    required
-                  >
-                </div>
-                <span class="help-text" id="icHint">Format 12 digit (cth: 920815-10-6188).</span>
-                <span class="error-text" id="icError">Sila masukkan nombor MyKad 12-digit yang sah.</span>
-              </div>
-
-              <!-- Jantina -->
-              <div class="form-group">
-                <label>Jantina <span style="color:var(--danger)">*</span></label>
-                <div style="display:flex; gap:1.5rem; padding:0.6rem 0;">
-                  <label style="font-weight:500; cursor:pointer; display:flex; align-items:center; gap:0.4rem;">
-                    <input type="radio" name="gender" value="LELAKI" checked> Lelaki
-                  </label>
-                  <label style="font-weight:500; cursor:pointer; display:flex; align-items:center; gap:0.4rem;">
-                    <input type="radio" name="gender" value="PEREMPUAN"> Perempuan
-                  </label>
-                </div>
-              </div>
-
-              <!-- Tarikh Lahir -->
-              <div class="form-group">
-                <label for="birthDate">Tarikh Lahir <span style="color:var(--danger)">*</span></label>
-                <div class="input-container">
-                  <span class="input-icon">📅</span>
-                  <input type="date" id="birthDate" class="form-control" required>
-                </div>
-                <span class="error-text" id="birthDateError">Sila nyatakan tarikh lahir anda.</span>
-              </div>
-
-              <!-- Alamat Emel -->
-              <div class="form-group grid-full">
-                <label for="email">Alamat Emel <span style="color:var(--danger)">*</span></label>
-                <div class="input-container">
-                  <span class="input-icon">✉️</span>
-                  <input type="email" id="email" class="form-control" placeholder="nama@emel.com" required autocomplete="email">
-                </div>
-                <span class="help-text">Salinan pengesahan dan notifikasi status visa akan dihantar ke emel ini.</span>
-                <span class="error-text" id="emailError">Sila masukkan alamat emel yang sah.</span>
-              </div>
-
-              <!-- Waris Kecemasan -->
-              <div class="grid-full" style="margin-top:0.75rem; border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-                <h4 style="font-size:0.95rem; color:var(--secondary); margin-bottom:0.5rem;">Maklumat Waris / Kecemasan</h4>
-              </div>
-
-              <div class="form-group">
-                <label for="emergencyName">Nama Waris Terdekat <span style="color:var(--danger)">*</span></label>
-                <input type="text" id="emergencyName" class="form-control" placeholder="Nama pasangan/ibu/bapa/anak" required>
-                <span class="error-text" id="emergencyNameError">Sila nyatakan nama waris.</span>
-              </div>
-
-              <div class="form-group">
-                <label for="emergencyPhone">No. Telefon Waris <span style="color:var(--danger)">*</span></label>
-                <input type="tel" id="emergencyPhone" class="form-control" placeholder="019-8765432" required>
-                <span class="error-text" id="emergencyPhoneError">Sila masukkan no. telefon waris.</span>
-              </div>
-
-              <div class="form-group grid-full">
-                <label for="emergencyRel">Hubungan Waris <span style="color:var(--danger)">*</span></label>
-                <select id="emergencyRel" class="form-control" required>
-                  <option value="">-- Pilih Hubungan --</option>
-                  <option value="Pasangan (Suami/Isteri)">Pasangan (Suami / Isteri)</option>
-                  <option value="Ibu / Bapa">Ibu / Bapa</option>
-                  <option value="Anak">Anak</option>
-                  <option value="Adik-Beradik">Adik-Beradik</option>
-                  <option value="Waris Lain">Waris Lain</option>
-                </select>
-                <span class="error-text" id="emergencyRelError">Sila pilih hubungan waris.</span>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- ============================================================
-               LANGKAH 3: PAKEJ & PERJALANAN
-               ============================================================ -->
-          <div class="step-content" data-step="3">
-            <div class="form-grid">
-              
-              <!-- No Rujukan Tempahan -->
-              <div class="form-group">
-                <label for="bookingRef">
-                  No. Rujukan Tempahan (Booking ID) <span style="color:var(--danger)">*</span>
-                  <span class="label-hint">Resit deposit</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🔖</span>
-                  <input type="text" id="bookingRef" class="form-control" value="AND-2026-8801" required>
-                </div>
-                <span class="help-text">Cth: AND-2026-8801</span>
-                <span class="error-text" id="bookingRefError">Sila nyatakan no. rujukan tempahan.</span>
-              </div>
-
-              <!-- Pilihan Cawangan Andalusia -->
-              <div class="form-group">
-                <label for="branchSelect">Cawangan Pendaftaran <span style="color:var(--danger)">*</span></label>
-                <select id="branchSelect" class="form-control" required>
-                  <option value="BR-HQ">Ibu Pejabat Desa Pandan, KL</option>
-                  <option value="BR-SA">Cawangan Shah Alam Seksyen 9</option>
-                  <option value="BR-BG">Cawangan Bandar Baru Bangi</option>
-                  <option value="BR-JB">Cawangan Johor Bahru</option>
-                  <option value="BR-PG">Cawangan Bayan Baru, Pulau Pinang</option>
-                  <option value="BR-KB">Cawangan Kota Bharu, Kelantan</option>
-                </select>
-              </div>
-
-              <!-- Pilihan Pakej Umrah -->
-              <div class="form-group grid-full">
-                <label for="packageSelect">Pilihan Pakej Andalusia <span style="color:var(--danger)">*</span></label>
-                <select id="packageSelect" class="form-control" required>
-                  <option value="1" data-name="Pakej Umrah Cuti Sekolah Disember 2026 (12H 10M)">
-                    Pakej Umrah Cuti Sekolah Disember 2026 (12H 10M) - RM 8,890
-                  </option>
-                  <option value="2" data-name="Pakej Umrah Awal Ramadhan 1448H (14H 12M)">
-                    Pakej Umrah Awal Ramadhan 1448H (14H 12M) - RM 10,490
-                  </option>
-                  <option value="3" data-name="Pakej VIP Ziarah Madinah & Taif (12H 10M)">
-                    Pakej VIP Ziarah Madinah & Taif (Hotel Depan Masjid) - RM 12,890
-                  </option>
-                  <option value="4" data-name="Pakej Umrah Ekonomi Mesra Keluarga (10H 8M)">
-                    Pakej Umrah Ekonomi Mesra Keluarga (10H 8M) - RM 6,990
-                  </option>
-                </select>
-              </div>
-
-              <!-- Tarikh Cadangan Pelepasan -->
-              <div class="form-group">
-                <label for="departureDate">
-                  Tarikh Pelepasan <span style="color:var(--danger)">*</span>
-                  <span class="label-hint">Penting untuk visa</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🛫</span>
-                  <input type="date" id="departureDate" class="form-control" value="2026-12-18" required>
-                </div>
-                <span class="help-text">Rujuk tarikh cadangan pakej umrah anda.</span>
-                <span class="error-text" id="departureDateError">Sila nyatakan tarikh pelepasan.</span>
-              </div>
-
-              <!-- Jenis Bilik Penginapan -->
-              <div class="form-group">
-                <label for="roomSelect">Pilihan Jenis Bilik <span style="color:var(--danger)">*</span></label>
-                <select id="roomSelect" class="form-control" required>
-                  <option value="QUAD">Bilik Berempat (Quad)</option>
-                  <option value="TRIPLE">Bilik Bertiga (Triple)</option>
-                  <option value="DOUBLE">Bilik Berdua (Double)</option>
-                </select>
-              </div>
-
-              <!-- Keperluan Khas -->
-              <div class="form-group grid-full">
-                <label for="specialNeeds">Keperluan Khas / Kesihatan (Pilihan)</label>
-                <input type="text" id="specialNeeds" class="form-control" placeholder="Cth: Kerusi roda semasa tawaf/sa'i, diet diabetes">
-              </div>
-
-            </div>
-          </div>
-
-          <!-- ============================================================
-               LANGKAH 4: VALIDASI PASPORT & DOKUMEN SOKONGAN
-               ============================================================ -->
-          <div class="step-content" data-step="4">
+          <!-- BAHAGIAN 1: MAKLUMAT ASAS JEMAAH -->
+          <div class="form-grid" style="grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1rem;">
             
-            <!-- Live Passport Validity Alert -->
-            <div id="passportAlert" class="alert-box alert-warning" style="display:none; margin-bottom:1.25rem;">
-              <span class="alert-icon">⚠️</span>
-              <div id="passportAlertText"></div>
+            <!-- Nama Penuh -->
+            <div class="form-group">
+              <label for="fullName">
+                Nama Penuh <span style="color:var(--danger)">*</span>
+                <span class="label-hint">Huruf besar automatik</span>
+              </label>
+              <div class="input-container">
+                <span class="input-icon">👤</span>
+                <input 
+                  type="text" 
+                  id="fullName" 
+                  name="fullName"
+                  class="form-control" 
+                  placeholder="CONTOH: AHMAD DANIAL BIN ABDUL AZIZ" 
+                  required 
+                  style="text-transform:uppercase;"
+                  autocomplete="name"
+                >
+              </div>
+              <span class="help-text">Nama penuh seperti dalam kad pengenalan atau pasport.</span>
+              <span class="error-text" id="nameError">Sila masukkan nama penuh anda (sekurang-kurangnya 3 huruf).</span>
             </div>
 
-            <div class="form-grid">
-              
-              <!-- No Pasport -->
-              <div class="form-group">
-                <label for="passportNumber">
-                  Nombor Pasport Antarabangsa <span style="color:var(--danger)">*</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🛂</span>
-                  <input 
-                    type="text" 
-                    id="passportNumber" 
-                    class="form-control" 
-                    placeholder="CONTOH: A52918234" 
-                    required 
-                    style="text-transform:uppercase;"
-                  >
-                </div>
-                <span class="help-text">1 huruf diikuti 8 digit nombor pasport.</span>
-                <span class="error-text" id="passportNumberError">Sila masukkan nombor pasport yang sah.</span>
+            <!-- No Telefon WhatsApp -->
+            <div class="form-group">
+              <label for="phoneNumber">
+                No. Telefon (WhatsApp) <span style="color:var(--danger)">*</span>
+              </label>
+              <div class="input-container">
+                <span class="input-icon">📱</span>
+                <input 
+                  type="tel" 
+                  id="phoneNumber" 
+                  name="phoneNumber"
+                  class="form-control" 
+                  placeholder="Contoh: 012-3456789" 
+                  required
+                  autocomplete="tel"
+                >
               </div>
+              <span class="help-text">Nombor telefon bimbit aktif untuk tujuan panggilan dan WhatsApp.</span>
+              <span class="error-text" id="phoneError">Sila masukkan nombor telefon yang sah (contoh: 012-3456789).</span>
+            </div>
 
-              <!-- Tarikh Luput Pasport -->
-              <div class="form-group">
-                <label for="passportExpiry">
-                  Tarikh Luput Pasport <span style="color:var(--danger)">*</span>
-                  <span class="label-hint">Syarat &gt;6 bulan</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">⏳</span>
-                  <input type="date" id="passportExpiry" class="form-control" value="2027-08-30" required>
-                </div>
-                <span class="help-text">Mestilah sah sekurang-kurangnya 6 bulan sebelum pelepasan.</span>
-                <span class="error-text" id="passportExpiryError">Sila masukkan tarikh tamat pasport.</span>
-              </div>
+          </div>
 
-              <!-- Section: Muat Naik Fail Dokumen -->
-              <div class="grid-full" style="margin-top:0.75rem; border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-                <h4 style="font-size:0.95rem; color:var(--secondary); margin-bottom:0.25rem;">Muat Naik Dokumen Sokongan</h4>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">
-                  Format dibenarkan: JPG, JPEG, PNG, PDF (Maksimum 5MB setiap fail).
+          <!-- BAHAGIAN 2: SOALAN VALIDASI 3 KATEGORI -->
+          <div class="validation-questions-section">
+            <div class="section-headline">
+              <span style="font-size:1.35rem;">📊</span>
+              <div>
+                <h3>Soalan Validasi & Penilaian (3 Kategori)</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
+                  Pilih skala penilaian bagi setiap kategori: <strong>Terbaik (2 Markah)</strong>, <strong>Memuaskan (1 Markah)</strong>, atau <strong>Tidak Puas Hati (0 Markah)</strong>.
                 </p>
               </div>
+            </div>
 
-              <!-- 1. Salinan Pasport -->
-              <div class="form-group grid-full">
-                <label>Salinan Muka Surat Maklumat Pasport <span style="color:var(--danger)">*</span></label>
-                <div class="upload-dropzone" id="dropzonePassport">
-                  <div class="upload-icon">📄</div>
-                  <div class="upload-title">Klik atau seret fail pasport ke sini</div>
-                  <div class="upload-subtitle">Pastikan gambar jelas, tiada silauan, dan kod pasport boleh dibaca</div>
-                  <input type="file" id="file_passport" accept="image/png,image/jpeg,application/pdf" style="display:none;" required>
+            <!-- KATEGORI 1: Layanan & Khidmat Pegawai -->
+            <div class="question-category-card" id="cardCat1">
+              <div class="cat-header">
+                <div class="cat-num-badge">1</div>
+                <div class="cat-title-text">
+                  <div class="cat-title">Layanan & Khidmat Pegawai Operasi <span style="color:var(--danger)">*</span></div>
+                  <div class="cat-desc">Bagaimanakah tahap layanan, kesopanan, dan kepantasan respon pegawai perunding Andalusia dalam membantu anda?</div>
                 </div>
-                <div class="file-preview-card" id="previewPassport">
-                  <div class="file-preview-info">
-                    <span class="file-icon">🛂</span>
-                    <div class="file-details">
-                      <div class="file-name" id="namePassport">-</div>
-                      <div class="file-size" id="sizePassport">-</div>
-                    </div>
+              </div>
+
+              <div class="score-options-grid">
+                <!-- 2 Markah: Terbaik -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat1" value="2" class="score-radio-input" required>
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⭐⭐ 2</div>
+                    <div class="score-text-label">Terbaik</div>
+                    <div class="score-pts-tag">2 Markah</div>
                   </div>
-                  <button type="button" class="btn-remove-file" id="removePassport" title="Padam fail">✕</button>
-                </div>
-                <span class="error-text" id="passportFileError">Sila muat naik salinan muka surat pasport anda.</span>
-              </div>
-
-              <!-- 2. Salinan Kad Pengenalan (MyKad) -->
-              <div class="form-group">
-                <label>Salinan Kad Pengenalan (Pilihan)</label>
-                <div class="upload-dropzone" id="dropzoneMykad">
-                  <div class="upload-icon" style="font-size:1.8rem; margin-bottom:0.25rem;">🪪</div>
-                  <div class="upload-title" style="font-size:0.85rem;">Pilih fail MyKad</div>
-                  <input type="file" id="file_mykad" accept="image/png,image/jpeg,application/pdf" style="display:none;">
-                </div>
-                <div class="file-preview-card" id="previewMykad">
-                  <div class="file-preview-info">
-                    <span class="file-icon">🪪</span>
-                    <div class="file-details">
-                      <div class="file-name" id="nameMykad">-</div>
-                      <div class="file-size" id="sizeMykad">-</div>
-                    </div>
+                </label>
+                <!-- 1 Markah: Memuaskan -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat1" value="1" class="score-radio-input">
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⭐ 1</div>
+                    <div class="score-text-label">Memuaskan</div>
+                    <div class="score-pts-tag">1 Markah</div>
                   </div>
-                  <button type="button" class="btn-remove-file" id="removeMykad">✕</button>
-                </div>
-              </div>
-
-              <!-- 3. Salinan Resit Pembayaran / Deposit -->
-              <div class="form-group">
-                <label>Resit Bayaran Deposit (Pilihan)</label>
-                <div class="upload-dropzone" id="dropzoneReceipt">
-                  <div class="upload-icon" style="font-size:1.8rem; margin-bottom:0.25rem;">🧾</div>
-                  <div class="upload-title" style="font-size:0.85rem;">Pilih fail resit bayaran</div>
-                  <input type="file" id="file_receipt" accept="image/png,image/jpeg,application/pdf" style="display:none;">
-                </div>
-                <div class="file-preview-card" id="previewReceipt">
-                  <div class="file-preview-info">
-                    <span class="file-icon">🧾</span>
-                    <div class="file-details">
-                      <div class="file-name" id="nameReceipt">-</div>
-                      <div class="file-size" id="sizeReceipt">-</div>
-                    </div>
+                </label>
+                <!-- 0 Markah: Tidak Puas Hati -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat1" value="0" class="score-radio-input">
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⚠️ 0</div>
+                    <div class="score-text-label">Tidak Puas Hati</div>
+                    <div class="score-pts-tag">0 Markah</div>
                   </div>
-                  <button type="button" class="btn-remove-file" id="removeReceipt">✕</button>
-                </div>
+                </label>
               </div>
-
-            </div>
-          </div>
-
-          <!-- ============================================================
-               LANGKAH 5: SEMAKAN RINGKASAN & PERAKUAN
-               ============================================================ -->
-          <div class="step-content" data-step="5">
-            
-            <!-- Ringkasan Jemaah -->
-            <div class="summary-section">
-              <div class="summary-title-bar">
-                <span>1. MAKLUMAT JEMAAH</span>
-                <span style="font-size:0.75rem; color:var(--primary); font-weight:700;">DIESAHKAN ✓</span>
-              </div>
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <span class="summary-item-label">Nama Penuh:</span>
-                  <span class="summary-item-value" id="sum_fullName">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">No. Kad Pengenalan:</span>
-                  <span class="summary-item-value" id="sum_icNumber">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Jantina & Tarikh Lahir:</span>
-                  <span class="summary-item-value"><span id="sum_gender">-</span> • <span id="sum_birthDate">-</span></span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">No. Telefon & WhatsApp:</span>
-                  <span class="summary-item-value" id="sum_phone">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Emel Rasmi:</span>
-                  <span class="summary-item-value" id="sum_email">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Waris Kecemasan:</span>
-                  <span class="summary-item-value"><span id="sum_emergencyName">-</span> (<span id="sum_emergencyRel">-</span>)</span>
-                </div>
-              </div>
+              <span class="error-text" id="cat1Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 1.</span>
             </div>
 
-            <!-- Ringkasan Pakej -->
-            <div class="summary-section" style="margin-top:1rem;">
-              <div class="summary-title-bar">
-                <span>2. PAKEJ & PELEPASAN</span>
-                <span style="font-size:0.75rem; color:var(--gold); font-weight:700;">TERTUTUP</span>
-              </div>
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <span class="summary-item-label">Pakej Terpilih:</span>
-                  <span class="summary-item-value" id="sum_package" style="font-weight:700; color:var(--secondary);">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Tarikh Pelepasan:</span>
-                  <span class="summary-item-value" id="sum_departureDate">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Cawangan Pendaftaran:</span>
-                  <span class="summary-item-value" id="sum_branch">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Pilihan Bilik Hotel:</span>
-                  <span class="summary-item-value" id="sum_room">-</span>
+            <!-- KATEGORI 2: Ketepatan Maklumat & Panduan Pakej -->
+            <div class="question-category-card" id="cardCat2">
+              <div class="cat-header">
+                <div class="cat-num-badge">2</div>
+                <div class="cat-title-text">
+                  <div class="cat-title">Ketepatan Maklumat & Panduan Pakej <span style="color:var(--danger)">*</span></div>
+                  <div class="cat-desc">Bagaimanakah kejelasan maklumat pakej, jadual penerbangan, hotel Madinah/Makkah, serta syarat visa perjalanan?</div>
                 </div>
               </div>
+
+              <div class="score-options-grid">
+                <!-- 2 Markah: Terbaik -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat2" value="2" class="score-radio-input" required>
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⭐⭐ 2</div>
+                    <div class="score-text-label">Terbaik</div>
+                    <div class="score-pts-tag">2 Markah</div>
+                  </div>
+                </label>
+                <!-- 1 Markah: Memuaskan -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat2" value="1" class="score-radio-input">
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⭐ 1</div>
+                    <div class="score-text-label">Memuaskan</div>
+                    <div class="score-pts-tag">1 Markah</div>
+                  </div>
+                </label>
+                <!-- 0 Markah: Tidak Puas Hati -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat2" value="0" class="score-radio-input">
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⚠️ 0</div>
+                    <div class="score-text-label">Tidak Puas Hati</div>
+                    <div class="score-pts-tag">0 Markah</div>
+                  </div>
+                </label>
+              </div>
+              <span class="error-text" id="cat2Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 2.</span>
             </div>
 
-            <!-- Ringkasan Pasport & Dokumen -->
-            <div class="summary-section" style="margin-top:1rem;">
-              <div class="summary-title-bar">
-                <span>3. PASPORT & DOKUMEN</span>
-                <span style="font-size:0.75rem; color:var(--primary); font-weight:700;" id="sum_passportStatusBadge">STATUS 6 BULAN</span>
-              </div>
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <span class="summary-item-label">Nombor Pasport:</span>
-                  <span class="summary-item-value" id="sum_passportNumber">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Tarikh Tamat Pasport:</span>
-                  <span class="summary-item-value" id="sum_passportExpiry">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Salinan Pasport:</span>
-                  <span class="summary-item-value" id="sum_docPassport">✗ Tiada fail</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Resit / Dokumen Tambahan:</span>
-                  <span class="summary-item-value" id="sum_docReceipt">✗ Tiada fail</span>
+            <!-- KATEGORI 3: Kemudahan & Kelancaran Proses Pendaftaran -->
+            <div class="question-category-card" id="cardCat3">
+              <div class="cat-header">
+                <div class="cat-num-badge">3</div>
+                <div class="cat-title-text">
+                  <div class="cat-title">Kemudahan & Kelancaran Pendaftaran <span style="color:var(--danger)">*</span></div>
+                  <div class="cat-desc">Bagaimanakah tahap kepuasan anda terhadap kemudahan, kepantasan, dan kelancaran proses validasi ini?</div>
                 </div>
               </div>
-            </div>
 
-            <!-- Perakuan & Persetujuan PDPA -->
-            <div style="margin-top:1.25rem; background:#f8fafc; border:1.5px solid var(--border-color); border-radius:var(--radius-md); padding:1rem;">
-              <label style="display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer;">
-                <input type="checkbox" id="declarationCheck" required style="margin-top:0.25rem; width:18px; height:18px; accent-color:var(--primary);">
-                <span style="font-size:0.825rem; color:var(--secondary); line-height:1.45;">
-                  <strong>Perakuan & Kebenaran Pemprosesan Data:</strong> Saya memperakui bahawa semua maklumat yang diberikan dan dokumen yang dimuat naik adalah benar, sah, dan tepat. Saya memberi kebenaran kepada Andalusia Travel & Tours Sdn Bhd untuk memproses data peribadi saya bagi tujuan permohonan visa perjalanan dan tiket penerbangan mengikut Akta Perlindungan Data Peribadi (PDPA 2010).
-                </span>
-              </label>
-              <span class="error-text" id="declarationError" style="margin-left:26px;">Sila tandakan kotak perakuan ini sebelum menghantar borang validasi.</span>
+              <div class="score-options-grid">
+                <!-- 2 Markah: Terbaik -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat3" value="2" class="score-radio-input" required>
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⭐⭐ 2</div>
+                    <div class="score-text-label">Terbaik</div>
+                    <div class="score-pts-tag">2 Markah</div>
+                  </div>
+                </label>
+                <!-- 1 Markah: Memuaskan -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat3" value="1" class="score-radio-input">
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⭐ 1</div>
+                    <div class="score-text-label">Memuaskan</div>
+                    <div class="score-pts-tag">1 Markah</div>
+                  </div>
+                </label>
+                <!-- 0 Markah: Tidak Puas Hati -->
+                <label class="score-option-label">
+                  <input type="radio" name="cat3" value="0" class="score-radio-input">
+                  <div class="score-btn-tile">
+                    <div class="score-num-pill">⚠️ 0</div>
+                    <div class="score-text-label">Tidak Puas Hati</div>
+                    <div class="score-pts-tag">0 Markah</div>
+                  </div>
+                </label>
+              </div>
+              <span class="error-text" id="cat3Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 3.</span>
             </div>
 
           </div>
 
         </div>
 
-        <!-- ============================================================
-             BUTANG NAVIGASI FOOTER (SENTIASA JELAS & RESPONSIF)
-             ============================================================ -->
-        <div class="card-footer-bar">
-          
-          <!-- Butang Kembali (Langkah 2-5) -->
-          <button type="button" class="btn btn-secondary" id="btnPrev" style="display:none;">
-            ← Kembali
+        <!-- FOOTER BAR: BUTANG HANTAR & KIRA GRAF -->
+        <div class="card-footer-bar" style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.8rem; color:var(--text-muted);">
+            Jumlah Markah Maksimum: <strong>6 Markah (100%)</strong>
+          </span>
+          <button type="submit" class="btn btn-primary" id="btnSubmitForm" style="font-weight:700; padding:0.8rem 1.75rem; font-size:1rem;">
+            📊 Hantar & Kira Keputusan Graf ✓
           </button>
-
-          <!-- Butang Hantar Pantas (Hanya Muncul di Langkah 1 sebagai pilihan ekspres) -->
-          <button type="button" class="btn btn-outline" id="btnQuickSubmit">
-            Hantar Maklumat Pantas Sahaja ✓
-          </button>
-
-          <!-- Butang Seterusnya / Selanjutnya (Langkah 1-4) -->
-          <button type="button" class="btn btn-primary" id="btnNext" style="font-weight:700;">
-            Selanjutnya (Ke Soalan Validasi) →
-          </button>
-
-          <!-- Butang Hantar Lengkap (Hanya Langkah 5) -->
-          <button type="submit" class="btn btn-gold" id="btnSubmit" style="display:none; font-weight:700;">
-            Hantar Borang Validasi Lengkap ✓
-          </button>
-
         </div>
       </form>
     </div>
 
   </main>
 
-  <!-- Modal Kejayaan Penyerahan -->
-  <div class="modal-overlay" id="successModal">
-    <div class="modal-dialog">
+  <!-- MODAL KEPUTUSAN GRAF VALIDASI (RESULT GRAPH MODAL) -->
+  <div class="modal-overlay" id="resultGraphModal">
+    <div class="modal-dialog" style="max-width: 640px;">
+      
       <div class="modal-header">
-        <div class="modal-success-icon">✓</div>
-        <h3 id="modalTitle">Borang Berjaya Dihantar!</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.25rem;" id="modalSubtitle">
-          Maklumat dan dokumen anda telah selamat diterima ke dalam sistem pangkalan data Andalusia.
+        <div class="modal-success-icon" style="background:#d1fae5; color:var(--primary); font-size:1.75rem;">📊</div>
+        <h3 id="graphModalTitle">Keputusan Graf Validasi Jemaah</h3>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.25rem;">
+          Pendaftaran anda telah selesai direkodkan dan skor validasi telah dikira secara automatik.
         </p>
       </div>
-      <div class="modal-body">
-        <p style="font-size:0.875rem; text-align:center; color:var(--text-muted);">
-          Sila simpan Kod Rujukan / Validasi berikut untuk semakan status dan rekod anda:
-        </p>
-        <div class="slip-box">
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Kod Rujukan Validasi</div>
-          <div class="slip-code" id="modalSlipCode">VAL-882194</div>
-          <div style="font-size:1.05rem; font-weight:700; color:var(--secondary); margin-top:0.5rem;" id="modalApplicantName">AHMAD DANIAL BIN ABDUL AZIZ</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;" id="modalApplicantPhone">012-3456789</div>
-          <div style="font-size:0.8rem; font-weight:600; color:var(--primary); margin-top:0.35rem;" id="modalTypeBadge">PENDAFTARAN VALIDASI DOKUMEN</div>
-        </div>
-        <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.4; text-align:center;" id="modalNotesDesc">
-          Pegawai operasi cawangan akan menyemak dokumen dan pasport anda dalam tempoh 1-2 hari bekerja. Anda boleh menyemak status permohonan pada bila-bila masa melalui portal semakan.
-        </p>
-      </div>
-      <div class="modal-footer modal-footer-smart">
-        <button type="button" class="btn btn-gold" id="btnViewPdfModal" style="font-weight:700;">
-          👁️ Baca Borang PDF
-        </button>
-        <button type="button" class="btn btn-outline" id="btnDownloadPdf">
-          📥 Muat Turun PDF
-        </button>
-        <button type="button" class="btn btn-secondary" id="btnPrintSlip">
-          🖨️ Cetak Slip
-        </button>
-        <button type="button" class="btn btn-primary" id="btnCloseModal">
-          Semak Status Permohonan →
-        </button>
-      </div>
-    </div>
-  </div>
 
-  <!-- Modal Pembaca Dokumen PDF Rasmi (In-Modal PDF Reader) -->
-  <div class="modal-overlay" id="pdfReaderModal">
-    <div class="modal-dialog modal-dialog-pdf">
-      <div class="pdf-modal-header">
-        <div class="pdf-modal-title-group">
-          <span style="font-size:1.35rem;">📄</span>
-          <div>
-            <h4 id="pdfReaderTitle" style="margin:0; font-size:1rem; color:var(--secondary); font-weight:700;">
-              Pembaca Borang Validasi Jemaah
-            </h4>
-            <span id="pdfReaderCode" style="font-size:0.75rem; color:var(--primary); font-weight:700; font-family:monospace;">
-              VAL-882194
-            </span>
+      <div class="modal-body" style="padding: 1.25rem 1.5rem;">
+        
+        <!-- Kad Graf & Ringkasan Keputusan -->
+        <div class="result-graph-card">
+          
+          <!-- Banner Atas: Nama, Telefon & Kod Validasi -->
+          <div class="graph-top-banner">
+            <div class="graph-applicant-meta">
+              <span class="graph-applicant-name" id="resApplicantName">AHMAD DANIAL BIN ABDUL AZIZ</span>
+              <span class="graph-applicant-phone" id="resApplicantPhone">012-3456789</span>
+            </div>
+            <div>
+              <span class="graph-code-pill" id="resValidationCode">VAL-882194</span>
+            </div>
           </div>
+
+          <!-- Tolok Skor Keseluruhan -->
+          <div class="score-overview-box">
+            <div class="score-main-value-wrap">
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Jumlah Skor Terkumpul</span>
+              <div class="score-big-num">
+                <span id="resTotalScore">5</span>
+                <span class="max-denom">/ 6</span>
+              </div>
+              <span class="score-percentage-tag" id="resPercentageTag">83% Skor Validasi</span>
+            </div>
+            <div>
+              <span class="rating-badge-pill rating-excellent" id="resRatingBadge">
+                ⭐ CEMERLANG
+              </span>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.4rem;" id="resRatingSubtext">
+                Tahap Kepuasan Tinggi
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta Palang Mengufuk (3 Kategori Breakdown) -->
+          <div>
+            <div style="font-size:0.85rem; font-weight:700; color:var(--secondary); margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center;">
+              <span>PECAHAN SKOR MENGIKUT KATEGORI</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Maksimum 2 Markah Setiap Kategori</span>
+            </div>
+
+            <div class="chart-bars-wrap">
+              
+              <!-- Kategori 1 Bar -->
+              <div class="chart-bar-item">
+                <div class="chart-item-header">
+                  <span class="chart-item-title">
+                    <span style="color:var(--primary); font-weight:800;">1.</span> Layanan & Khidmat Pegawai
+                  </span>
+                  <span class="chart-item-score" id="barScoreCat1">2 / 2 (Terbaik)</span>
+                </div>
+                <div class="chart-track">
+                  <div class="chart-fill fill-emerald" id="barFillCat1" style="width: 100%;"></div>
+                </div>
+              </div>
+
+              <!-- Kategori 2 Bar -->
+              <div class="chart-bar-item">
+                <div class="chart-item-header">
+                  <span class="chart-item-title">
+                    <span style="color:var(--gold); font-weight:800;">2.</span> Ketepatan Maklumat & Pakej
+                  </span>
+                  <span class="chart-item-score" id="barScoreCat2">1 / 2 (Memuaskan)</span>
+                </div>
+                <div class="chart-track">
+                  <div class="chart-fill fill-gold" id="barFillCat2" style="width: 50%;"></div>
+                </div>
+              </div>
+
+              <!-- Kategori 3 Bar -->
+              <div class="chart-bar-item">
+                <div class="chart-item-header">
+                  <span class="chart-item-title">
+                    <span style="color:var(--primary); font-weight:800;">3.</span> Kemudahan & Kelancaran Proses
+                  </span>
+                  <span class="chart-item-score" id="barScoreCat3">2 / 2 (Terbaik)</span>
+                </div>
+                <div class="chart-track">
+                  <div class="chart-fill fill-emerald" id="barFillCat3" style="width: 100%;"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Kotak Ulasan / Analisis Graf -->
+          <div class="graph-insight-box" id="resInsightBox">
+            <strong>Analisis Sistem:</strong> Tahniah! Anda memberikan maklum balas positif yang sangat tinggi. Pegawai operasi kami telah menerima pendaftaran ini dan akan menghubungi anda untuk tindakan lanjut.
+          </div>
+
         </div>
-        <div class="pdf-modal-actions">
-          <button type="button" class="btn btn-outline btn-sm" id="pdfReaderOpenTabBtn" title="Buka dalam Tab Baharu">
-            ↗ Tab Baharu
-          </button>
-          <button type="button" class="btn btn-secondary btn-sm" id="pdfReaderPrintBtn" title="Cetak Dokumen">
-            🖨️ Cetak
-          </button>
-          <button type="button" class="btn btn-gold btn-sm" id="pdfReaderDownloadBtn" title="Muat Turun Fail PDF">
-            📥 Muat Turun
-          </button>
-          <button type="button" class="pdf-btn-close" onclick="PdfService.closeModal()" title="Tutup Paparan">
-            ✕
-          </button>
-        </div>
+
       </div>
-      <div class="pdf-viewer-container">
-        <iframe id="pdfReaderIframe" class="pdf-viewer-iframe" title="Pratonton Borang Validasi PDF"></iframe>
-      </div>
-      <div class="pdf-modal-footer">
-        <span style="font-size:0.75rem; color:var(--text-muted);">
-          💡 Petua: Anda boleh membaca dokumen di atas, mencetak terus, atau memuat turun fail PDF ke storan telefon anda.
-        </span>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="PdfService.closeModal()">
-          Tutup Paparan
+
+      <div class="modal-footer" style="flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
+        <button type="button" class="btn btn-secondary" id="btnPrintResult">
+          🖨️ Cetak Slip Keputusan
         </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-outline" id="btnGoToStatus">
+            🔍 Semak di Portal Status
+          </button>
+          <button type="button" class="btn btn-primary" id="btnCloseResultModal">
+            ✓ Selesai & Tutup
+          </button>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -676,14 +395,7 @@
     </div>
   </footer>
 
-  <!-- Enjin Penjanaan PDF Ringan (Luar Talian + Sandaran CDN) -->
-  <script src="vendor/jspdf.umd.min.js"></script>
-  <script>
-    if (!window.jspdf) {
-      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>');
-    }
-  </script>
-  <script src="pdf-service.js"></script>
+  <!-- Skrip Aplikasi -->
   <script src="app.js"></script>
 </body>
 </html>
