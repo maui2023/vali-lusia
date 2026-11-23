@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semakan Status Permohonan & Graf Validasi | Andalusia Travel & Tours</title>
+  <title>Semakan Rekod Maklum Balas Jemaah & Indeks Kepuasan | Andalusia Travel & Tours</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     .status-search-card {
@@ -96,12 +96,12 @@
         <div class="brand-logo-icon">🕋</div>
         <div class="brand-text">
           <h1>ANDALUSIA <span>TRAVEL & TOURS</span></h1>
-          <p>Sistem Pendaftaran Maklumat Jemaah (Vali-Lusia)</p>
+          <p>Sistem Maklum Balas & Kepuasan Jemaah (Vali-Lusia CSAT)</p>
         </div>
       </a>
       <nav class="header-nav">
-        <a href="index.html" class="nav-link">Borang Maklumat</a>
-        <a href="status.html" class="nav-link active">Semakan Status</a>
+        <a href="index.html" class="nav-link">Borang CSAT</a>
+        <a href="status.html" class="nav-link active">Semakan Rekod</a>
         <a href="admin_review.html" class="nav-link btn-gold">Portal Pegawai 🔒</a>
       </nav>
     </div>
@@ -110,8 +110,8 @@
   <!-- Kandungan Utama -->
   <main class="main-wrapper">
     <div class="page-intro">
-      <h2>Semakan Status & Graf Validasi Jemaah</h2>
-      <p>Masukkan nombor telefon bimbit atau kod rujukan validasi anda untuk menyemak status permohonan dan melihat graf keputusan validasi terkini.</p>
+      <h2>Semakan Rekod & Indeks Kepuasan Jemaah (CSAT)</h2>
+      <p>Masukkan nombor telefon bimbit atau kod rujukan maklum balas anda (format CSAT-###### atau VAL-######) untuk menyemak status tindakan dan melihat Indeks Kepuasan Pelanggan (CSAT) terkini.</p>
     </div>
 
     <!-- Kotak Carian -->
@@ -125,12 +125,12 @@
               type="text" 
               id="searchQuery" 
               class="form-control" 
-              placeholder="Contoh: 012-3456789 atau VAL-882194" 
-              value="VAL-882194" 
+              placeholder="Contoh: 012-3456789, CSAT-882194 atau VAL-882194" 
+              value="CSAT-882194" 
               required
             >
           </div>
-          <span class="help-text">Masukkan sama ada no. telefon berdaftar atau kod validasi anda.</span>
+          <span class="help-text">Masukkan sama ada no. telefon berdaftar atau kod rujukan maklum balas anda.</span>
         </div>
         <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
           <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem; font-weight:700;">
@@ -176,7 +176,7 @@
         <div class="summary-section" style="margin-top:1.5rem;">
           <div class="summary-title-bar">
             <span>MAKLUMAT PEMOHON</span>
-            <span id="res_code" style="font-family:monospace; color:var(--primary); font-weight:800;">VAL-882194</span>
+            <span id="res_code" style="font-family:monospace; color:var(--primary); font-weight:800;">CSAT-882194</span>
           </div>
           <div class="summary-grid" style="grid-template-columns: 1fr 1fr; gap:1.25rem;">
             <div class="summary-item">
@@ -186,6 +186,14 @@
             <div class="summary-item">
               <span class="summary-item-label">No. Telefon (WhatsApp):</span>
               <span class="summary-item-value" id="res_phone" style="font-weight:700; color:var(--primary);">012-3456789</span>
+            </div>
+            <div class="summary-item" id="item_package">
+              <span class="summary-item-label">Pakej Perjalanan:</span>
+              <span class="summary-item-value" id="res_package" style="font-weight:700; color:var(--secondary);">Pakej Umrah Ziarah Mesir</span>
+            </div>
+            <div class="summary-item" id="item_nps">
+              <span class="summary-item-label">Syor Rakan (NPS):</span>
+              <span class="summary-item-value" id="res_nps" style="font-weight:700; color:var(--primary);">Pasti Syorkan (Promoter)</span>
             </div>
             <div class="summary-item">
               <span class="summary-item-label">Tarikh Hantar:</span>
@@ -204,7 +212,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
             <div style="display:flex; align-items:center; gap:0.5rem;">
               <span style="font-size:1.25rem;">📊</span>
-              <h4 style="margin:0; font-size:1rem; font-weight:800; color:var(--secondary);">Graf Keputusan Validasi Jemaah</h4>
+              <h4 style="margin:0; font-size:1rem; font-weight:800; color:var(--secondary);">Indeks Kepuasan & Graf Jemaah (CSAT)</h4>
             </div>
             <span class="rating-badge-pill rating-excellent" id="statusRatingBadge">⭐ CEMERLANG</span>
           </div>
@@ -217,7 +225,7 @@
                 <span id="statusTotalScore">29</span>
                 <span class="max-denom" id="statusMaxDenom">/ 30</span>
               </div>
-              <span class="score-percentage-tag" id="statusPercentageTag">97% Skor Validasi</span>
+              <span class="score-percentage-tag" id="statusPercentageTag">97% Indeks Kepuasan CSAT</span>
             </div>
             <div style="text-align:left; max-width:320px;">
               <span style="font-size:0.85rem; font-weight:700; color:var(--secondary);" id="statusRatingTitle">Tahap Kepuasan Sangat Tinggi</span>
@@ -358,18 +366,21 @@
         <div style="font-size:0.8rem; margin-top:0.25rem;">No. 25, 27 & 29, Jalan 1/76, Desa Pandan, 55100 Kuala Lumpur. Talian Bantuan: 03-9284 8888</div>
       </div>
       <div style="font-size:0.8rem;">
-        &copy; 2026 Andalusia Travel. Sistem Maklumat Jemaah (Vali-Lusia).
+        &copy; 2026 Andalusia Travel. Sistem Maklum Balas & Kepuasan Jemaah (Vali-Lusia CSAT).
       </div>
     </div>
   </footer>
 
   <script>
-    // Rekod Contoh Lalai Bersama Skor Penuh & Maklum Balas Ziarah
+    // Rekod Contoh Lalai Bersama Skor Penuh, Pakej & Maklum Balas Ziarah
     const defaultRecords = [
       {
-        code: 'VAL-882194',
+        code: 'CSAT-882194',
         fullName: 'MUHAMMAD AMIN BIN ABDULLAH',
         phone: '012-3456789',
+        packageType: 'Pakej Umrah Ziarah Mesir',
+        mutawwifName: 'Ustaz Khairul Azhar',
+        npsRecommendation: 'Pasti Syorkan (Promoter)',
         cat1: 2,
         cat2: 2,
         cat3: 2,
@@ -404,6 +415,9 @@
         code: 'VAL-991205',
         fullName: 'SITI AISHAH BINTI ZAINAL',
         phone: '019-8765432',
+        packageType: 'Pakej Umrah Cuti Sekolah',
+        mutawwifName: 'Ustaz Ridzuan',
+        npsRecommendation: 'Pasti Syorkan (Promoter)',
         cat1: 2,
         cat2: 1,
         cat3: 2,
@@ -469,6 +483,30 @@
       document.getElementById('res_phone').textContent = found.phone;
       document.getElementById('res_date').textContent = found.submittedAt || 'Baru sahaja';
 
+      const itemPkg = document.getElementById('item_package');
+      const resPkg = document.getElementById('res_package');
+      if (itemPkg && resPkg) {
+        let pkgText = found.packageType || '';
+        if (found.mutawwifName) pkgText += ` (Mutawwif: ${found.mutawwifName})`;
+        if (pkgText) {
+          resPkg.textContent = pkgText;
+          itemPkg.style.display = 'block';
+        } else {
+          itemPkg.style.display = 'none';
+        }
+      }
+
+      const itemNps = document.getElementById('item_nps');
+      const resNps = document.getElementById('res_nps');
+      if (itemNps && resNps) {
+        if (found.npsRecommendation) {
+          resNps.textContent = found.npsRecommendation;
+          itemNps.style.display = 'block';
+        } else {
+          itemNps.style.display = 'none';
+        }
+      }
+
       const badge = document.getElementById('res_status_badge');
       const title = document.getElementById('res_status_title');
       const fill = document.getElementById('timelineFill');
@@ -514,7 +552,7 @@
 
       document.getElementById('statusTotalScore').textContent = totalScore;
       document.getElementById('statusMaxDenom').textContent = `/ ${maxScore}`;
-      document.getElementById('statusPercentageTag').textContent = `${percentage}% Skor Validasi`;
+      document.getElementById('statusPercentageTag').textContent = `${percentage}% Indeks Kepuasan CSAT`;
 
       const ratingBadge = document.getElementById('statusRatingBadge');
       const ratingTitle = document.getElementById('statusRatingTitle');
@@ -605,7 +643,10 @@
       const found = allRecords.find(item => {
         const itemDigits = (item.phone || '').replace(/\D/g, '');
         const itemCode = (item.code || '').toUpperCase();
-        return itemCode === upperQuery || (cleanDigits.length >= 6 && itemDigits.includes(cleanDigits));
+        return itemCode === upperQuery || 
+               itemCode === upperQuery.replace('VAL-', 'CSAT-') || 
+               itemCode === upperQuery.replace('CSAT-', 'VAL-') || 
+               (cleanDigits.length >= 6 && itemDigits.includes(cleanDigits));
       });
 
       if (found) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Borang Validasi & Pendaftaran Jemaah | Andalusia Travel & Tours</title>
+  <title>Borang Soal Selidik Kepuasan Jemaah (CSAT) | Andalusia Travel & Tours</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,12 +15,12 @@
         <div class="brand-logo-icon">🕋</div>
         <div class="brand-text">
           <h1>ANDALUSIA <span>TRAVEL & TOURS</span></h1>
-          <p>Sistem Validasi Maklumat Jemaah (Vali-Lusia)</p>
+          <p>Sistem Maklum Balas & Kepuasan Jemaah (Vali-Lusia CSAT)</p>
         </div>
       </a>
       <nav class="header-nav">
-        <a href="index.html" class="nav-link active">Borang Maklumat</a>
-        <a href="status.html" class="nav-link">Semakan Status</a>
+        <a href="index.html" class="nav-link active">Borang CSAT</a>
+        <a href="status.html" class="nav-link">Semakan Rekod</a>
         <a href="admin_review.html" class="nav-link btn-gold">Portal Pegawai 🔒</a>
       </nav>
     </div>
@@ -30,8 +30,9 @@
   <main class="main-wrapper">
     
     <div class="page-intro">
-      <h2>Pendaftaran & Validasi Jemaah</h2>
-      <p>Sila lengkapkan maklumat anda dan jawab soalan penilaian merentasi 3 halaman di bawah untuk menjana graf keputusan skor anda secara automatik.</p>
+      <h2>Tinjauan Kepuasan & Suara Jemaah Andalusia</h2>
+      <p>Sila lengkapkan maklumat anda dan berikan maklum balas pengalaman umrah & ziarah anda merentasi 3 halaman di bawah untuk menjana Indeks Kepuasan Pelanggan (CSAT) serta graf keputusan secara automatik.</p>
+      <div class="time-estimate-badge">⏱️ Anggaran Masa Pengisian: ~2 Minit Sahaja</div>
     </div>
 
     <!-- Stepper Navigasi Langkah (1 ➔ 2 ➔ 3) -->
@@ -47,7 +48,7 @@
         </li>
         <li class="step-item" id="stepperStep3">
           <div class="step-circle" id="circleStep3">3</div>
-          <span class="step-label" id="labelStep3">Ziarah & Ulasan</span>
+          <span class="step-label" id="labelStep3">Ziarah & Cadangan</span>
         </li>
       </ul>
       <div class="stepper-progress-bar" id="stepperProgressBar" style="width: 0%;"></div>
@@ -75,7 +76,7 @@
             <div class="alert-box alert-info">
               <span class="alert-icon">ℹ️</span>
               <div>
-                <strong>Peringatan:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat dan aktif untuk dihubungi melalui WhatsApp atau panggilan.
+                <strong>Peringatan Mesra:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat untuk memudahkan pegawai khidmat pelanggan Andalusia menyusul sebarang maklum balas anda.
               </div>
             </div>
 
@@ -128,6 +129,36 @@
 
             </div>
 
+            <!-- KONTEKS PERJALANAN JEMAAH (OPSYENAL) -->
+            <div class="trip-context-box">
+              <div class="trip-context-title">
+                <span>✈️</span> Konteks Perjalanan Umrah & Ziarah (Pilihan / Opsyenal)
+              </div>
+              <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="packageType" style="font-size:0.8rem;">Pakej / Musim Perjalanan</label>
+                  <div class="input-container">
+                    <span class="input-icon">🕋</span>
+                    <select id="packageType" name="packageType" class="form-control" style="font-size:0.85rem;">
+                      <option value="Pakej Umrah Ziarah Mesir">Pakej Umrah Ziarah Mesir</option>
+                      <option value="Pakej Umrah Cuti Sekolah">Pakej Umrah Cuti Sekolah</option>
+                      <option value="Pakej Umrah Ramadhan">Pakej Umrah Ramadhan</option>
+                      <option value="Pakej Ziarah Klasik">Pakej Ziarah Klasik</option>
+                      <option value="Pakej Umrah VVIP">Pakej Umrah VVIP</option>
+                      <option value="Lain-lain Pakej">Lain-lain Pakej Andalusia</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="mutawwifName" style="font-size:0.8rem;">Nama Mutawwif / Pembimbing</label>
+                  <div class="input-container">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="mutawwifName" name="mutawwifName" class="form-control" placeholder="Contoh: Ustaz Khairul (Opsyenal)" style="font-size:0.85rem;">
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- SOALAN VALIDASI KHIDMAT AM ANDALUSIA (3 KATEGORI) -->
             <div class="validation-questions-section" style="margin-top: 1.75rem;">
               <div class="section-headline">
@@ -135,7 +166,7 @@
                 <div>
                   <h3>Penilaian Khidmat & Pengurusan Andalusia</h3>
                   <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-                    Pilih skala penilaian: <strong>Terbaik (2 Markah)</strong>, <strong>Memuaskan (1 Markah)</strong>, atau <strong>Tidak Puas Hati (0 Markah)</strong>.
+                    Pilih skala penilaian: <strong>Cemerlang (2 Markah)</strong>, <strong>Memuaskan (1 Markah)</strong>, atau <strong>Kurang Memuaskan (0 Markah)</strong>.
                   </p>
                 </div>
               </div>
@@ -154,15 +185,15 @@
                   <label class="score-option-label">
                     <input type="radio" name="cat1" value="2" class="score-radio-input" required>
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐⭐ 2</div>
-                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-num-pill">😍 ⭐⭐ 2</div>
+                      <div class="score-text-label">Cemerlang</div>
                       <div class="score-pts-tag">2 Markah</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="cat1" value="1" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-num-pill">🙂 ⭐ 1</div>
                       <div class="score-text-label">Memuaskan</div>
                       <div class="score-pts-tag">1 Markah</div>
                     </div>
@@ -170,8 +201,8 @@
                   <label class="score-option-label">
                     <input type="radio" name="cat1" value="0" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⚠️ 0</div>
-                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-num-pill">🙁 ⚠️ 0</div>
+                      <div class="score-text-label">Kurang Memuaskan</div>
                       <div class="score-pts-tag">0 Markah</div>
                     </div>
                   </label>
@@ -193,15 +224,15 @@
                   <label class="score-option-label">
                     <input type="radio" name="cat2" value="2" class="score-radio-input" required>
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐⭐ 2</div>
-                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-num-pill">😍 ⭐⭐ 2</div>
+                      <div class="score-text-label">Cemerlang</div>
                       <div class="score-pts-tag">2 Markah</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="cat2" value="1" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-num-pill">🙂 ⭐ 1</div>
                       <div class="score-text-label">Memuaskan</div>
                       <div class="score-pts-tag">1 Markah</div>
                     </div>
@@ -209,8 +240,8 @@
                   <label class="score-option-label">
                     <input type="radio" name="cat2" value="0" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⚠️ 0</div>
-                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-num-pill">🙁 ⚠️ 0</div>
+                      <div class="score-text-label">Kurang Memuaskan</div>
                       <div class="score-pts-tag">0 Markah</div>
                     </div>
                   </label>
@@ -223,8 +254,8 @@
                 <div class="cat-header">
                   <div class="cat-num-badge">3</div>
                   <div class="cat-title-text">
-                    <div class="cat-title">Kemudahan & Kelancaran Pendaftaran <span style="color:var(--danger)">*</span></div>
-                    <div class="cat-desc">Bagaimanakah tahap kepuasan anda terhadap kemudahan, kepantasan, dan kelancaran proses validasi ini?</div>
+                    <div class="cat-title">Kemudahan & Kelancaran Maklum Balas <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Bagaimanakah tahap kepuasan anda terhadap kemudahan, kepantasan, dan kelancaran proses tinjauan ini?</div>
                   </div>
                 </div>
 
@@ -232,15 +263,15 @@
                   <label class="score-option-label">
                     <input type="radio" name="cat3" value="2" class="score-radio-input" required>
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐⭐ 2</div>
-                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-num-pill">😍 ⭐⭐ 2</div>
+                      <div class="score-text-label">Cemerlang</div>
                       <div class="score-pts-tag">2 Markah</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="cat3" value="1" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-num-pill">🙂 ⭐ 1</div>
                       <div class="score-text-label">Memuaskan</div>
                       <div class="score-pts-tag">1 Markah</div>
                     </div>
@@ -248,8 +279,8 @@
                   <label class="score-option-label">
                     <input type="radio" name="cat3" value="0" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⚠️ 0</div>
-                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-num-pill">🙁 ⚠️ 0</div>
+                      <div class="score-text-label">Kurang Memuaskan</div>
                       <div class="score-pts-tag">0 Markah</div>
                     </div>
                   </label>
@@ -677,22 +708,22 @@
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_egypt" value="2" class="score-radio-input" required>
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐⭐ 2</div>
-                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-num-pill">😍 ⭐⭐ 2</div>
+                      <div class="score-text-label">Cemerlang</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_egypt" value="1" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-num-pill">🙂 ⭐ 1</div>
                       <div class="score-text-label">Memuaskan</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_egypt" value="0" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⚠️ 0</div>
-                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-num-pill">🙁 ⚠️ 0</div>
+                      <div class="score-text-label">Kurang Memuaskan</div>
                     </div>
                   </label>
                 </div>
@@ -712,22 +743,22 @@
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_madinah" value="2" class="score-radio-input" required>
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐⭐ 2</div>
-                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-num-pill">😍 ⭐⭐ 2</div>
+                      <div class="score-text-label">Cemerlang</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_madinah" value="1" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-num-pill">🙂 ⭐ 1</div>
                       <div class="score-text-label">Memuaskan</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_madinah" value="0" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⚠️ 0</div>
-                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-num-pill">🙁 ⚠️ 0</div>
+                      <div class="score-text-label">Kurang Memuaskan</div>
                     </div>
                   </label>
                 </div>
@@ -747,28 +778,64 @@
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_mekah" value="2" class="score-radio-input" required>
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐⭐ 2</div>
-                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-num-pill">😍 ⭐⭐ 2</div>
+                      <div class="score-text-label">Cemerlang</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_mekah" value="1" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-num-pill">🙂 ⭐ 1</div>
                       <div class="score-text-label">Memuaskan</div>
                     </div>
                   </label>
                   <label class="score-option-label">
                     <input type="radio" name="ziarah_mekah" value="0" class="score-radio-input">
                     <div class="score-btn-tile">
-                      <div class="score-num-pill">⚠️ 0</div>
-                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-num-pill">🙁 ⚠️ 0</div>
+                      <div class="score-text-label">Kurang Memuaskan</div>
                     </div>
                   </label>
                 </div>
                 <span class="error-text" id="err_ziarah_mekah">Sila pilih penilaian bagi tempat ziarah di Mekah.</span>
               </div>
 
+            </div>
+
+            <!-- SOALAN NPS (NET PROMOTER SCORE) -->
+            <div class="nps-box">
+              <div class="nps-title">
+                <span>🤝</span> Adakah anda akan mengesyorkan Andalusia Travel kepada keluarga & kenalan?
+              </div>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">
+                Penilaian Net Promoter Score (NPS) membantu kami mengukur tahap kesetiaan dan keyakinan jemaah terhadap perkhidmatan Andalusia.
+              </p>
+              <div class="nps-options-grid">
+                <label class="nps-option-label">
+                  <input type="radio" name="npsRecommendation" value="Pasti Syorkan" class="nps-radio-input" checked>
+                  <div class="nps-btn-tile">
+                    <span class="nps-btn-emoji">🌟</span>
+                    <span class="nps-btn-text">Pasti Syorkan</span>
+                    <span style="font-size:0.68rem; color:var(--primary); font-weight:700;">Promoter</span>
+                  </div>
+                </label>
+                <label class="nps-option-label">
+                  <input type="radio" name="npsRecommendation" value="Mungkin Syorkan" class="nps-radio-input">
+                  <div class="nps-btn-tile">
+                    <span class="nps-btn-emoji">👍</span>
+                    <span class="nps-btn-text">Mungkin Syorkan</span>
+                    <span style="font-size:0.68rem; color:var(--gold); font-weight:700;">Passive</span>
+                  </div>
+                </label>
+                <label class="nps-option-label">
+                  <input type="radio" name="npsRecommendation" value="Kurang Pasti" class="nps-radio-input">
+                  <div class="nps-btn-tile">
+                    <span class="nps-btn-emoji">🤔</span>
+                    <span class="nps-btn-text">Kurang Pasti</span>
+                    <span style="font-size:0.68rem; color:var(--danger); font-weight:700;">Detractor</span>
+                  </div>
+                </label>
+              </div>
             </div>
 
             <!-- RUANGAN ULASAN TERBUKA (MAKSIMUM 500 HURUF) -->
@@ -804,7 +871,7 @@
             </button>
             <span class="step-indicator-tag">Langkah <strong>3 daripada 3</strong></span>
             <button type="submit" class="btn btn-primary" id="btnSubmitForm" style="font-weight:700; padding:0.8rem 1.75rem; font-size:1rem;">
-              📊 Hantar & Kira Keputusan Graf ✓
+              📊 Hantar & Kira Indeks Kepuasan CSAT ✓
             </button>
           </div>
         </div>
@@ -814,16 +881,16 @@
 
   </main>
 
-  <!-- MODAL KEPUTUSAN GRAF VALIDASI (RESULT GRAPH MODAL) -->
+  <!-- MODAL KEPUTUSAN GRAF CSAT (RESULT GRAPH MODAL) -->
   <div class="modal-overlay" id="resultGraphModal">
     <div class="modal-dialog" style="max-width: 680px;">
       
       <div class="modal-header">
         <button type="button" class="modal-close-btn" id="btnDismissModal" aria-label="Tutup Modal" title="Tutup Modal">✕</button>
         <div class="modal-success-icon" style="background:#d1fae5; color:var(--primary); font-size:1.75rem;">📊</div>
-        <h3 id="graphModalTitle">Keputusan Graf Validasi Jemaah</h3>
+        <h3 id="graphModalTitle">Keputusan Indeks Kepuasan Jemaah (CSAT)</h3>
         <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.25rem;">
-          Pendaftaran anda telah selesai direkodkan dan skor validasi telah dikira secara automatik.
+          Maklum balas anda telah selamat direkodkan dan Indeks CSAT serta graf keputusan telah dikira secara automatik.
         </p>
       </div>
 
@@ -832,26 +899,28 @@
         <!-- Kad Graf & Ringkasan Keputusan -->
         <div class="result-graph-card">
           
-          <!-- Banner Atas: Nama, Telefon & Kod Validasi -->
+          <!-- Banner Atas: Nama, Telefon & Kod Validasi / CSAT -->
           <div class="graph-top-banner">
             <div class="graph-applicant-meta">
               <span class="graph-applicant-name" id="resApplicantName">AHMAD DANIAL BIN ABDUL AZIZ</span>
               <span class="graph-applicant-phone" id="resApplicantPhone">012-3456789</span>
+              <span class="context-meta-pill" id="resTripContext" style="display:none;">Pakej Umrah Ziarah Mesir</span>
             </div>
-            <div>
-              <span class="graph-code-pill" id="resValidationCode">VAL-882194</span>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.35rem;">
+              <span class="graph-code-pill" id="resValidationCode">CSAT-882194</span>
+              <span class="context-meta-pill" id="resNpsBadge" style="display:none; font-size:0.7rem; background:#ecfdf5; color:var(--primary); border-color:var(--primary-border);">🤝 Rekomendasi: Pasti Syorkan</span>
             </div>
           </div>
 
           <!-- Tolok Skor Keseluruhan -->
           <div class="score-overview-box">
             <div class="score-main-value-wrap">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Jumlah Skor Terkumpul</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Indeks Kepuasan Terkumpul (CSAT)</span>
               <div class="score-big-num">
                 <span id="resTotalScore">28</span>
                 <span class="max-denom">/ 30</span>
               </div>
-              <span class="score-percentage-tag" id="resPercentageTag">93% Skor Validasi</span>
+              <span class="score-percentage-tag" id="resPercentageTag">93% Indeks Kepuasan CSAT</span>
             </div>
             <div>
               <span class="rating-badge-pill rating-excellent" id="resRatingBadge">
@@ -968,7 +1037,7 @@
 
           <!-- Kotak Ulasan / Analisis Graf -->
           <div class="graph-insight-box" id="resInsightBox">
-            <strong>Analisis Sistem:</strong> Tahniah! Anda memberikan maklum balas positif yang sangat tinggi. Pegawai operasi kami telah menerima maklumat ini dan akan menghubungi anda untuk tindakan lanjut.
+            <strong>Analisis Kepuasan CSAT:</strong> Tahniah! Anda memberikan maklum balas positif yang sangat tinggi. Pegawai operasi kami telah menerima maklumat ini dan akan menghubungi anda untuk tindakan lanjut.
           </div>
 
         </div>
@@ -977,7 +1046,7 @@
 
       <div class="modal-footer" style="flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
         <button type="button" class="btn btn-secondary" id="btnPrintResult">
-          🖨️ Cetak Slip Keputusan
+          🖨️ Cetak Slip Keputusan CSAT
         </button>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
           <button type="button" class="btn btn-outline" id="btnGoToStatus">
@@ -1000,7 +1069,7 @@
         <div style="font-size:0.8rem; margin-top:0.25rem;">No. 25, 27 & 29, Jalan 1/76, Desa Pandan, 55100 Kuala Lumpur. Talian Bantuan: 03-9284 8888</div>
       </div>
       <div style="font-size:0.8rem;">
-        &copy; 2026 Andalusia Travel. Sistem Validasi & Maklumat Jemaah (Vali-Lusia).
+        &copy; 2026 Andalusia Travel. Sistem Maklum Balas & Kepuasan Jemaah (Vali-Lusia CSAT).
       </div>
     </div>
   </footer>

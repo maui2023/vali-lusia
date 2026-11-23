@@ -23,10 +23,10 @@ assert.strictEqual(typeof ValiLusiaApp.validateInputs, 'function', 'validateInpu
 assert.strictEqual(typeof ValiLusiaApp.generateValidationCode, 'function', 'generateValidationCode mesti merupakan fungsi');
 console.log('✓ Ujian 1 Lulus: Modul logik ValiLusiaApp & fungsi-fungsi teras berjaya diimport');
 
-// 2. Uji Penjanaan Kod Rujukan (VAL-######)
+// 2. Uji Penjanaan Kod Rujukan (CSAT-###### atau Format Warisan VAL-######)
 const testCode = ValiLusiaApp.generateValidationCode();
-assert.match(testCode, /^VAL-\d{6}$/, 'Kod rujukan mesti mengikut format regex ^VAL-\\d{6}$');
-console.log(`✓ Ujian 2 Lulus: Penjanaan kod validasi sah: ${testCode}`);
+assert.match(testCode, /^(CSAT|VAL)-\d{6}$/, 'Kod rujukan mesti mengikut format regex ^(CSAT|VAL)-\\d{6}$');
+console.log(`✓ Ujian 2 Lulus: Penjanaan kod CSAT / Validasi sah: ${testCode}`);
 
 // 3. Uji Pemformatan Nombor Telefon Malaysia
 const formatted1 = ValiLusiaApp.formatPhone('0123456789');
@@ -293,6 +293,19 @@ assert.ok(adminReviewJs.includes("document.body.classList.remove('modal-open')")
 assert.ok(adminReviewJs.includes('revBody.scrollTop = 0'), 'admin_review.html mesti reset tatalan');
 console.log('✓ Ujian 16 Lulus: Pengendali modal semakan admin disahkan');
 
+// 17. Uji Ciri-Ciri Tambah Baik CSAT (Konteks Perjalanan, NPS & Penjenamaan Mesra Jemaah)
+assert.ok(indexHtml.includes('id="packageType"'), 'index.html mesti ada dropdown packageType');
+assert.ok(indexHtml.includes('id="mutawwifName"'), 'index.html mesti ada input mutawwifName');
+assert.ok(indexHtml.includes('name="npsRecommendation"'), 'index.html mesti ada soalan Net Promoter Score (NPS)');
+assert.ok(indexHtml.includes('time-estimate-badge'), 'index.html mesti ada petunjuk masa time-estimate-badge');
+assert.ok(indexHtml.includes('id="resTripContext"'), 'index.html modal mesti ada resTripContext');
+assert.ok(indexHtml.includes('id="resNpsBadge"'), 'index.html modal mesti ada resNpsBadge');
+assert.ok(statusHtml.includes('id="item_package"'), 'status.html mesti ada paparan pakej');
+assert.ok(statusHtml.includes('id="item_nps"'), 'status.html mesti ada paparan NPS');
+assert.ok(adminHtml.includes('id="rev_package"'), 'admin_review.html mesti ada rev_package');
+assert.ok(adminHtml.includes('id="rev_nps"'), 'admin_review.html mesti ada rev_nps');
+console.log('✓ Ujian 17 Lulus: Ciri-ciri tambah baik CSAT (Konteks Pakej, Mutawwif & NPS) disahkan 100%');
+
 console.log('\n================================================================');
-console.log('  SEMUA 16 UJIAN AUTOMASI LULUS DENGAN CEMERLANG! (100% SUKSES) ');
+console.log('  SEMUA 17 UJIAN AUTOMASI LULUS DENGAN CEMERLANG! (100% SUKSES) ');
 console.log('================================================================');

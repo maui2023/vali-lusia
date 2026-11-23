@@ -20,10 +20,10 @@ const ValiLusiaApp = {
     return raw;
   },
 
-  // Jana Kod Rujukan Unik (VAL-######)
-  generateValidationCode() {
+  // Jana Kod Rujukan Unik (CSAT-###### atau VAL-######)
+  generateValidationCode(prefix = 'CSAT') {
     const randomNum = Math.floor(100000 + Math.random() * 900000);
-    return `VAL-${randomNum}`;
+    return `${prefix}-${randomNum}`;
   },
 
   // Logik Pengiraan Skor & Penarafan (Sokong 15 Soalan atau Legacy 3 Soalan)
@@ -101,21 +101,21 @@ const ValiLusiaApp = {
 
       let rating = 'MEMUASKAN';
       let badgeClass = 'rating-good';
-      let subtext = 'Tahap Kepuasan Sederhana (Baik)';
-      let insight = 'Terima kasih atas penilaian menyeluruh anda. Rekod kepuasan hotel, makanan, dan ziarah anda telah diterima. Pegawai operasi Andalusia akan menghubungi anda untuk semakan susulan.';
+      let subtext = 'Tahap Kepuasan Baik (Passive)';
+      let insight = 'Terima kasih atas maklum balas anda. Skor anda menunjukkan tahap kepuasan yang memuaskan (Passive). Kami akan terus berusaha mempertingkatkan mutu perkhidmatan.';
       let initialStatus = 'PENDING_REVIEW';
 
       if (percentage >= 80) {
         rating = 'CEMERLANG';
         badgeClass = 'rating-excellent';
-        subtext = 'Tahap Kepuasan Sangat Tinggi (Sangat Positif)';
-        insight = 'Tahniah! Anda memberikan penilaian yang amat cemerlang terhadap hotel, makanan, tempat ziarah, dan khidmat Andalusia. Pegawai operasi kami berterima kasih atas maklum balas bernilai ini.';
+        subtext = 'Jemaah Sangat Berpuas Hati (Promoter)';
+        insight = 'Alhamdulillah! Tahap kepuasan anda berada di tahap Cemerlang (Promoter). Terima kasih atas kepercayaan anda kepada Andalusia Travel & Tours.';
         initialStatus = 'PENDING_REVIEW';
       } else if (percentage < 50) {
         rating = 'PERLU TINDAKAN';
         badgeClass = 'rating-action';
-        subtext = 'Perlu Tindakan Segera Pegawai Operasi';
-        insight = 'Maklum balas anda telah ditandakan untuk semakan keutamaan tinggi berhubung pengalaman hotel/makanan/ziarah. Pengurus khidmat pelanggan Andalusia akan menghubungi anda secara peribadi.';
+        subtext = 'Perhatian Khidmat Pelanggan Segera (Detractor)';
+        insight = 'Maklum balas anda telah ditandakan untuk perhatian segera (Service Recovery). Pasukan pengurusan kualiti Andalusia akan menghubungi anda untuk semakan lanjut.';
         initialStatus = 'ACTION_REQUIRED';
       }
 
@@ -167,20 +167,20 @@ const ValiLusiaApp = {
 
     let rating = 'MEMUASKAN';
     let badgeClass = 'rating-good';
-    let subtext = 'Tahap Kepuasan Sederhana (Baik)';
-    let insight = 'Terima kasih atas penilaian anda. Sistem merekodkan tahap kepuasan yang baik. Pegawai operasi Andalusia akan menghubungi anda.';
+    let subtext = 'Tahap Kepuasan Baik (Passive)';
+    let insight = 'Terima kasih atas penilaian anda. Sistem merekodkan tahap kepuasan yang baik (Passive). Pegawai operasi Andalusia akan menghubungi anda.';
     let initialStatus = 'PENDING_REVIEW';
 
     if (total >= 5) {
       rating = 'CEMERLANG';
       badgeClass = 'rating-excellent';
-      subtext = 'Tahap Kepuasan Sangat Tinggi (Sangat Positif)';
-      insight = 'Tahniah! Anda memberikan maklum balas positif yang sangat tinggi. Pegawai operasi kami telah menerima pendaftaran ini.';
+      subtext = 'Jemaah Sangat Berpuas Hati (Promoter)';
+      insight = 'Tahniah! Anda memberikan maklum balas positif yang sangat tinggi (Promoter). Pegawai operasi kami telah menerima pendaftaran ini.';
       initialStatus = 'PENDING_REVIEW';
     } else if (total <= 2) {
       rating = 'PERLU TINDAKAN';
       badgeClass = 'rating-action';
-      subtext = 'Perlu Tindakan Segera Pegawai Operasi';
+      subtext = 'Perhatian Khidmat Pelanggan Segera (Detractor)';
       insight = 'Maklum balas anda telah ditandakan untuk semakan keutamaan tinggi. Pengurus khidmat pelanggan kami akan menghubungi anda.';
       initialStatus = 'ACTION_REQUIRED';
     }
@@ -650,11 +650,23 @@ if (typeof document !== 'undefined') {
         return;
       }
 
+      // Kumpul Konteks Perjalanan & NPS
+      const packageTypeEl = document.getElementById('packageType');
+      const mutawwifNameEl = document.getElementById('mutawwifName');
+      const npsEl = document.querySelector('input[name="npsRecommendation"]:checked');
+
+      const packageType = packageTypeEl ? packageTypeEl.value : 'Pakej Umrah Ziarah Mesir';
+      const mutawwifName = (mutawwifNameEl ? mutawwifNameEl.value : '').trim();
+      const npsRecommendation = npsEl ? npsEl.value : 'Pasti Syorkan';
+
       // Gabungkan Semua Jawapan
       const allAnswers = {
         cat1: cat1El.value,
         cat2: cat2El.value,
         cat3: cat3El.value,
+        packageType,
+        mutawwifName,
+        npsRecommendation,
         ...step2Data,
         ...step3Data,
         ziarahFeedback: feedbackText
@@ -676,6 +688,9 @@ if (typeof document !== 'undefined') {
         code: validationCode,
         fullName,
         phone,
+        packageType,
+        mutawwifName,
+        npsRecommendation,
         ...allAnswers,
         totalScore: scoreData.total,
         maxScore: scoreData.maxScore,
@@ -685,7 +700,7 @@ if (typeof document !== 'undefined') {
         dimensions: scoreData.dimensions,
         destinations: scoreData.destinations,
         submittedAt,
-        notes: (scoreData.percentage < 50 ? 'Jemaah memberikan penilaian rendah (perhatian pegawai diperlukan).' : 'Pendaftaran diterima bersama skor validasi jemaah.')
+        notes: (scoreData.percentage < 50 ? 'Jemaah memberikan penilaian rendah (tindakan pemulihan khidmat diperlukan).' : 'Maklum balas kepuasan jemaah diterima bersama Indeks CSAT.')
       };
 
       // Simpan Rekod
@@ -704,8 +719,27 @@ if (typeof document !== 'undefined') {
       document.getElementById('resApplicantPhone').textContent = record.phone;
       document.getElementById('resValidationCode').textContent = record.code;
 
+      // Kemaskini Konteks Perjalanan & NPS jika elemen wujud
+      const tripContextEl = document.getElementById('resTripContext');
+      if (tripContextEl) {
+        let ctx = record.packageType || 'Pakej Umrah Andalusia';
+        if (record.mutawwifName) ctx += ` • Mutawwif: ${record.mutawwifName}`;
+        tripContextEl.textContent = ctx;
+        tripContextEl.style.display = 'inline-flex';
+      }
+
+      const npsBadgeEl = document.getElementById('resNpsBadge');
+      if (npsBadgeEl) {
+        if (record.npsRecommendation) {
+          npsBadgeEl.textContent = `🤝 Rekomendasi: ${record.npsRecommendation}`;
+          npsBadgeEl.style.display = 'inline-flex';
+        } else {
+          npsBadgeEl.style.display = 'none';
+        }
+      }
+
       document.getElementById('resTotalScore').textContent = scoreData.total;
-      document.getElementById('resPercentageTag').textContent = `${scoreData.percentage}% Skor Validasi`;
+      document.getElementById('resPercentageTag').textContent = `${scoreData.percentage}% Indeks Kepuasan CSAT`;
 
       const ratingBadge = document.getElementById('resRatingBadge');
       if (ratingBadge) {
@@ -717,7 +751,7 @@ if (typeof document !== 'undefined') {
       if (ratingSubtext) ratingSubtext.textContent = scoreData.subtext;
 
       const insightBox = document.getElementById('resInsightBox');
-      if (insightBox) insightBox.innerHTML = `<strong>Analisis Sistem:</strong> ${scoreData.insight}`;
+      if (insightBox) insightBox.innerHTML = `<strong>Analisis Kepuasan CSAT:</strong> ${scoreData.insight}`;
 
       // Kemaskini Destinasi (Egypt, Madinah, Mekah)
       if (scoreData.destinations) {

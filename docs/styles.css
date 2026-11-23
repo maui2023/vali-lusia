@@ -1864,5 +1864,127 @@ body.modal-open {
   }
 }
 
+/* ==========================================================================
+   Komponen Penilaian Kepuasan Pelanggan (CSAT UX & Context Improvements)
+   ========================================================================== */
+
+/* Lencana Anggaran Masa Pengisian */
+.time-estimate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--primary-border);
+  margin-top: 0.5rem;
+}
+
+/* Konteks Perjalanan Jemaah (Pakej & Mutawwif) */
+.trip-context-box {
+  background: #f8fafc;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+}
+.trip-context-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Soalan NPS (Net Promoter Score) */
+.nps-box {
+  background: #ffffff;
+  border: 1.5px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.nps-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--secondary);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.nps-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.nps-option-label {
+  cursor: pointer;
+  margin: 0;
+  display: block;
+}
+.nps-btn-tile {
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  background: #f8fafc;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 68px;
+}
+.nps-option-label:hover .nps-btn-tile {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+}
+.nps-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.nps-radio-input:checked + .nps-btn-tile {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 2px var(--primary-border);
+}
+.nps-btn-emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.nps-btn-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* Lencana CSAT & Konteks Tambahan */
+.context-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #f1f5f9;
+  color: var(--secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cbd5e1;
+}
+
+
 
 
