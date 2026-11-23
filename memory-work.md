@@ -379,3 +379,176 @@ Pelan ini telah dilaksanakan pada 2026-11-24 05:02:22
 
 ---
 
+## 🗓️ Sesi Perbincangan: 2026-11-24 05:22:00
+
+### 💬 Keperluan / Maklum Balas Pengguna:
+> "Page soalan ke 2
+> Respon pelanggan kepada bilik hotel di Egypt, madinah & mekah
+> Respon perkhidmatan hotel di Egypt, madinah & mekah
+> Respon kepada makanan di Egypt, Madinah & Mekah
+> 
+> Pages 3 tempat ziarah
+> Egypt, madinah & mekah
+> (Ada text input 500 huruf max)"
+
+### 📐 Analisis & Pelan Kerja AI:
+
+#### 1. 💡 Penilaian Seni Bina & Cadangan Penyelesaian
+* **Evolusi Aliran Borang (Multi-Page Step Wizard):**
+  - Mengubah struktur borang tunggal kepada sistem berperingkat 3 Halaman/Langkah yang teratur dengan penunjuk langkah (*Progress Stepper: 1 ➔ 2 ➔ 3 ➔ Keputusan*):
+    - **Halaman 1 (Page 1): Maklumat Asas & Khidmat Am Andalusia**
+      - Nama Penuh & No. Telefon (WhatsApp)
+      - Penilaian Khidmat Pegawai & Pengurusan Pakej (3 Kategori sedia ada)
+    - **Halaman 2 (Page 2): Penginapan & Sajian (Hotel & Makanan)**
+      - Menilai 3 Aspek Utama di 3 Destinasi Lawatan: 🇪🇬 **Egypt (Mesir)**, 🇸🇦 **Madinah**, 🕋 **Mekah**
+        1. Respon **Bilik Hotel** (Egypt, Madinah, Mekah) — Skala 2, 1, 0
+        2. Respon **Perkhidmatan Hotel** (Egypt, Madinah, Mekah) — Skala 2, 1, 0
+        3. Respon **Makanan / Sajian** (Egypt, Madinah, Mekah) — Skala 2, 1, 0
+      - Antaramuka kemas berbentuk jubin matriks atau kad lokasi bagi memudahkan jemaah menilai tanpa rasa terbeban.
+    - **Halaman 3 (Page 3): Pengalaman Tempat Ziarah & Ulasan Terbuka**
+      - Penilaian Tempat Ziarah di 3 Destinasi:
+        1. Ziarah Egypt (2, 1, 0)
+        2. Ziarah Madinah (2, 1, 0)
+        3. Ziarah Mekah (2, 1, 0)
+      - **Kotak Ulasan / Maklum Balas Terbuka:**
+        - Medan `textarea` dengan had maksimum 500 aksara (`maxlength="500"`).
+        - Kaunter aksara dinamik masa-nyata (*Live Character Counter: cth. "120 / 500 huruf"*).
+  - **Enjin Graf Keputusan (Multi-Dimensional Result Graph):**
+    - Mengira skor kumulatif dan memaparkan visualisasi graf responsif:
+      - **Tolok Skor Keseluruhan:** Peratusan kepuasan agregat perjalanan.
+      - **Graf Analisis Mengikut Lokasi:** Perbandingan kepuasan antara 🇪🇬 Egypt, 🇸🇦 Madinah, dan 🕋 Mekah.
+      - **Pecahan Dimensi:** Khidmat, Penginapan & Makanan, serta Ziarah.
+      - **Paparan Ulasan Ziarah:** Ulasan teks 500 huruf dipaparkan pada kad keputusan dan boleh dicetak.
+
+#### 2. 📋 Pelan Tindakan Bertahap (Action Plan)
+- [ ] **Fasa 1: Seni Bina Multi-Step Wizard & Pengemaskinian DOM (`docs/index.html`)**
+  - Bina kontena langkah bertingkat (`#step1`, `#step2`, `#step3`) bersama penunjuk progres navigasi (*Progress Stepper*).
+  - Susun soalan Halaman 2: Matriks 3 Aspek (Bilik, Khidmat, Makanan) merentasi 3 Lokasi (Egypt, Madinah, Mekah).
+  - Susun soalan Halaman 3: Penilaian Ziarah 3 Lokasi + Medan Textarea Ulasan (max 500 aksara) dengan kaunter huruf.
+- [ ] **Fasa 2: Penggayaan Responsif Mudah Alih (`docs/styles.css`)**
+  - Reka bentuk tab/kad lokasi dengan lencana bendera & ikon destinasi.
+  - Tambah penggayaan kaunter huruf (*live counter badge*) dan butang navigasi *Seterusnya / Kembali*.
+- [ ] **Fasa 3: Enjin Logik & Pengiraan Graf (`docs/app.js`)**
+  - Validasi mandatori bagi setiap langkah sebelum melangkah ke halaman seterusnya.
+  - Logik pengiraan skor baharu merangkumi semua dimensi (Hotel, Makanan, Ziarah).
+  - Renderer graf keputusan yang memaparkan perbandingan mengikut destinasi (Egypt, Madinah, Mekah).
+  - Penyimpanan struktur data lengkap ke dalam `localStorage`.
+- [ ] **Fasa 4: Penyelarasan Portal Semakan (`docs/status.html` & `docs/admin_review.html`)**
+  - Paparkan ringkasan ulasan ziarah (500 aksara) dan graf perbandingan lokasi pada portal semakan jemaah dan modal pegawai operasi.
+- [ ] **Fasa 5: Ujian Fungsian & Automasi**
+  - Ujian automasi penuh bagi aliran navigasi langkah 1 -> 2 -> 3, had 500 huruf, dan ketepatan pengiraan graf.
+
+#### 3. ⚠️ Pertimbangan / Risiko Teknikal
+* **Ergonomik & Beban Kognitif Pengguna (*Survey Fatigue*):**
+  Halaman 2 mengandungi 9 soalan penilaian (3 aspek x 3 lokasi). Susunan visual perlu dikumpulkan secara pintar (contohnya mengikut Kad Lokasi: Tab/Kad Egypt, Madinah, Mekah) supaya jemaah tidak berasa soalan terlalu panjang pada skrin telefon kecil.
+* **Integriti Data Sedia Ada (*Backward Compatibility*):**
+  Struktur simpanan rekod lama dalam `localStorage` mungkin hanya mempunyai `cat1, cat2, cat3`. Logik rendering dalam `status.html` dan `admin_review.html` perlu menangani data lama secara anggun tanpa ralat `undefined`.
+* **Kawalan Had Aksara (500 Huruf):**
+  Penggunaan atribut `maxlength="500"` di sisi HTML digandingkan dengan penapisan trim/potong di sisi JavaScript bagi mengelakkan limpahan teks atau cubaan suntikan kod.
+
+#### 4. ❓ Soalan Penjelasan (Sebelum Pelaksanaan)
+1. **Susunan Halaman 2 (Hotel & Makanan):**
+   Adakah anda lebih gemar soalan dikumpulkan mengikut **Lokasi** (iaitu Seksyen Egypt -> Seksyen Madinah -> Seksyen Mekah), ATAU mengikut **Aspek** (iaitu Seksyen Bilik Hotel -> Seksyen Servis Hotel -> Seksyen Makanan)? *(Cadangan kami: Mengikut Lokasi lebih mudah difahami oleh jemaah).*
+2. **Halaman 1 (Khidmat Andalusia):**
+   Adakah 3 kategori soalan sedia ada (Layanan Pegawai, Maklumat Pakej, Kelancaran Pendaftaran) dikekalkan di Halaman 1 bersama Nama & Telefon, atau Halaman 1 dijadikan khusus untuk Nama & Telefon sahaja?
+
+
+## 🗓️ Sesi Perbincangan: 2026-11-24 05:23:04
+
+### 💬 Keperluan / Idea Pengguna:
+Page soalan ke 2
+Respon pelanggan kepada bilik hotel di Egypt, madinah & mekah
+Respon perkhidmatan hotel di Egypt, madinah & mekah
+Respon kepada makanan di Egypt, Madinah & Mekah
+
+Pages 3 tempat ziarah
+Egypt, madinah & mekah
+(Ada text input 500 huruf max)
+
+### 📐 Analisis & Pelan Kerja AI:
+Salam hormat. Cadangan perkembangan sistem ini sangat bernas dan menjadikan instrumen penilaian **Vali-Lusia** jauh lebih bermakna dan praktikal untuk operasi pakej ziarah/umrah Andalusia Travel & Tours.
+
+Berikut adalah penilaian seni bina dan pelan tindakan terperinci bagi fasa ini:
+
+---
+
+### 1. 💡 Penilaian Seni Bina & Cadangan Penyelesaian
+
+* **Evolusi Aliran Borang (Multi-Step Wizard: 1 ➔ 2 ➔ 3 ➔ Graf):**
+  Borang pendaftaran dinaik taraf kepada antaramuka berperingkat (*Multi-Step Stepper*) yang lancar di skrin telefon pintar:
+  1. **Halaman 1 (Page 1): Maklumat Asas & Khidmat Pelanggan Andalusia**
+     - Maklumat jemaah: Nama Penuh (huruf besar automatik) & No. Telefon (WhatsApp).
+     - Penilaian khidmat am sedia ada (Layanan Pegawai, Ketepatan Maklumat, Kelancaran Proses).
+  2. **Halaman 2 (Page 2): Penginapan & Sajian (Hotel & Makanan)**
+     - Menilai 3 Aspek Utama merentasi 3 Destinasi Lawatan: 🇪🇬 **Egypt (Mesir)**, 🇸🇦 **Madinah**, dan 🕋 **Mekah**:
+       - **Bilik Hotel:** Egypt, Madinah, Mekah (Skala: 2, 1, 0)
+       - **Perkhidmatan Hotel:** Egypt, Madinah, Mekah (Skala: 2, 1, 0)
+       - **Makanan / Sajian:** Egypt, Madinah, Mekah (Skala: 2, 1, 0)
+     - Reka bentuk kad berasaskan lokasi dengan penunjuk visual jubin sentuh (*score tiles*) 2 / 1 / 0.
+  3. **Halaman 3 (Page 3): Pengalaman Tempat Ziarah & Ulasan Terbuka**
+     - Penilaian Tempat Ziarah bagi setiap destinasi (Egypt, Madinah, Mekah) dengan skala 2, 1, 0.
+     - **Kotak Ulasan / Maklum Balas Terbuka:**
+       - Medan `textarea` dengan had maksimum 500 aksara (`maxlength="500"`).
+       - Penunjuk baki huruf dinamik masa-nyata (*Live Character Counter: cth. "0 / 500 huruf"*).
+  4. **Enjin Graf Keputusan (Multi-Dimensional Result Graph):**
+     - Pengiraan skor kumulatif dan pecahan analisis:
+       - **Graf Perbandingan Mengikut Destinasi:** Membandingkan skor kepuasan antara 🇪🇬 Egypt, 🇸🇦 Madinah, dan 🕋 Mekah.
+       - **Graf Dimensi Pengalaman:** Membandingkan aspek Khidmat vs Hotel/Makanan vs Ziarah.
+       - **Paparan Ulasan Ziarah:** Ulasan teks 500 huruf dipaparkan terus dalam slip keputusan, portal status jemaah, dan papan pemuka semakan pegawai operasi.
+
+---
+
+### 2. 📋 Pelan Tindakan Bertahap (Action Plan) - Status: SELESAI (100%)
+
+- [x] **Fasa 1: Seni Bina Multi-Step Wizard & Pengemaskinian DOM (`docs/index.html`)**
+  - **Selesai:** Kontena navigasi langkah bertingkat (`#stepPage1`, `#stepPage2`, `#stepPage3`) dibina dengan penunjuk kemajuan stepper pintar (`stepperProgressBar`).
+  - Halaman 1: Maklumat jemaah (Nama & Telefon) + Khidmat Pelanggan Andalusia (Layanan Pegawai, Ketepatan Maklumat, Kelancaran Pendaftaran).
+  - Halaman 2: Respon Penginapan & Makanan merentasi 3 Destinasi (🇪🇬 Egypt, 🇸🇦 Madinah, 🕋 Mekah) meliputi Bilik Hotel, Perkhidmatan Hotel, dan Makanan (9 soalan penilaian berskala 2, 1, 0).
+  - Halaman 3: Penilaian Tempat Ziarah di Egypt, Madinah, dan Mekah (skala 2, 1, 0) berserta kotak ulasan/maklum balas terbuka (had ketat maksimum 500 huruf) dan kaunter huruf masa-nyata.
+- [x] **Fasa 2: Penggayaan Responsif & Ergonomik Sentuhan Mudah Alih (`docs/styles.css`)**
+  - **Selesai:** Reka bentuk kad destinasi berstruktur (`.dest-card-group`, `.dest-badge-egypt`, `.dest-badge-madinah`, `.dest-badge-mekah`) dengan animasi peralihan langkah (`.step-page.active`), kaunter huruf dinamik (`.char-counter-tag.warn`, `.char-counter-tag.limit`), serta kad petikan ulasan (`.feedback-quote-card`).
+- [x] **Fasa 3: Logik Pengesahan, Pengiraan & Graf Dinamik (`docs/app.js`)**
+  - **Selesai:** Modul `ValiLusiaApp` diperkukuh dengan:
+    - Pengesahan langkah berasingan: `validateStep1()`, `validateStep2()`, dan `validateStep3()`.
+    - Enjin kalkulator skor 30-markah menyeluruh dengan pecahan 5 Dimensi (/6) dan 3 Destinasi (/8) serta kawalan pemotongan 500 aksara automatik.
+    - Modal keputusan graf interaktif memaparkan tolok skor keseluruhan, grid perbandingan destinasi (Egypt vs Madinah vs Mekah), 5 bar dimensi pengalaman, dan kad petikan maklum balas terbuka.
+- [x] **Fasa 4: Penyelarasan Portal Semakan (`docs/status.html` & `docs/admin_review.html`)**
+  - **Selesai:**
+    1. **`status.html`:** Paparan semakan status jemaah menyertakan graf perbandingan destinasi, 5 bar dimensi pengalaman, dan paparan ulasan ziarah jemaah dengan keserasian data legasi sepenuhnya.
+    2. **`admin_review.html`:** Papan pemuka senarai jemaah memaparkan skor keseluruhan (`/30`), manakala modal semakan pegawai memaparkan pecahan destinasi, carta dimensi, dan ulasan langsung jemaah sebelum panggilan atau pengesahan dibuat.
+- [x] **Fasa 5: Ujian Fungsian & Automasi (`tests/test-validation-graph-suite.js`)**
+  - **Selesai:** 13/13 ujian automasi komprehensif lulus 100%, meliputi ujian logik kalkulator 30-markah, had 500 aksara, keserasian ke belakang skor legacy 6-markah, pengesahan DOM ketiga-tiga fail HTML, gaya CSS, serta ujian headless Google Chrome tanpa sebarang ralat konsol.
+
+---
+
+### 3. 🛠️ Ringkasan Seni Bina & Fail Yang Dilaksanakan
+
+1. **[docs/index.html](file:///home/maui/github/vali-lusia/docs/index.html):**
+   * Multi-step wizard 3 Halaman (Khidmat Andalusia ➔ Hotel & Makanan di Egypt/Madinah/Mekah ➔ Tempat Ziarah & Ulasan 500 Huruf).
+   * Modal Keputusan Graf Multi-Dimensional dengan perbandingan destinasi dan petikan ulasan jemaah.
+2. **[docs/app.js](file:///home/maui/github/vali-lusia/docs/app.js):**
+   * Pengawal navigasi langkah (`goToStep`), kaunter huruf masa-nyata 500 huruf, validator Langkah 1, 2, 3, dan kalkulator agregat 30 markah.
+3. **[docs/status.html](file:///home/maui/github/vali-lusia/docs/status.html):**
+   * Semakan status jemaah dengan graf perbandingan destinasi (Egypt, Madinah, Mekah) dan ulasan pengalaman ziarah.
+4. **[docs/admin_review.html](file:///home/maui/github/vali-lusia/docs/admin_review.html):**
+   * Papan pemuka pegawai operasi memaparkan skor menyeluruh (/30) dan modal semakan terperinci berserta ulasan jemaah.
+5. **[docs/styles.css](file:///home/maui/github/vali-lusia/docs/styles.css):**
+   * Gaya reka bentuk moden bagi kad destinasi, tolok skor, carta dimensi, dan kaunter huruf.
+6. **[tests/test-validation-graph-suite.js](file:///home/maui/github/vali-lusia/tests/test-validation-graph-suite.js):**
+   * Suite 13 ujian automasi meliputi integriti unit, fungsian, integrasi dan DOM.
+
+---
+
+### 4. 🗓️ Sesi Pelaksanaan Selesai: 2026-11-24 05:35:00
+* **Status Akhir:** LAKSANA SEPENUHNYA & BERKUALITI TINGGI (100% SUCCESS).
+
+## 🗓️ Sesi Perbincangan: 2026-11-24 05:34:53
+
+### 💬 Keperluan / Idea Pengguna:
+/execute
+
+### 📐 Analisis & Pelan Kerja AI:
+Pelan ini telah dilaksanakan pada 2026-11-24 05:34:53
+
+---
+

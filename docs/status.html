@@ -115,7 +115,7 @@
     </div>
 
     <!-- Kotak Carian -->
-    <div class="status-search-card" style="max-width:700px; margin: 0 auto 2rem auto;">
+    <div class="status-search-card" style="max-width:720px; margin: 0 auto 2rem auto;">
       <form id="searchStatusForm">
         <div class="form-group">
           <label for="searchQuery">No. Telefon atau Kod Rujukan <span style="color:var(--danger)">*</span></label>
@@ -141,7 +141,7 @@
     </div>
 
     <!-- Hasil Semakan Status & Graf Validasi -->
-    <div class="form-card" id="statusResultCard" style="max-width:700px; margin: 0 auto;">
+    <div class="form-card" id="statusResultCard" style="max-width:720px; margin: 0 auto;">
       <div class="card-header-bar">
         <div>
           <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Status Semakan Terkini:</span>
@@ -214,28 +214,53 @@
             <div class="score-main-value-wrap">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">JUMLAH MARKAH</span>
               <div class="score-big-num">
-                <span id="statusTotalScore">6</span>
-                <span class="max-denom">/ 6</span>
+                <span id="statusTotalScore">29</span>
+                <span class="max-denom" id="statusMaxDenom">/ 30</span>
               </div>
-              <span class="score-percentage-tag" id="statusPercentageTag">100% Skor Validasi</span>
+              <span class="score-percentage-tag" id="statusPercentageTag">97% Skor Validasi</span>
             </div>
             <div style="text-align:left; max-width:320px;">
               <span style="font-size:0.85rem; font-weight:700; color:var(--secondary);" id="statusRatingTitle">Tahap Kepuasan Sangat Tinggi</span>
               <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.25rem;" id="statusRatingDesc">
-                Jemaah memberikan penilaian penuh bagi semua aspek layanan, maklumat, dan proses pendaftaran.
+                Jemaah memberikan penilaian cemerlang bagi aspek hotel, makanan, tempat ziarah, dan khidmat Andalusia.
               </p>
             </div>
           </div>
 
-          <!-- Carta Palang 3 Kategori -->
+          <!-- ANALISIS KEPUASAN MENGIKUT DESTINASI (EGYPT, MADINAH, MEKAH) -->
+          <div class="dest-comparison-section" id="statusDestComparison" style="margin-top:1rem;">
+            <div style="font-size:0.85rem; font-weight:800; color:var(--secondary); display:flex; justify-content:space-between; align-items:center;">
+              <span>ANALISIS KEPUASAN MENGIKUT DESTINASI</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Maksimum 8 Markah Setiap Destinasi</span>
+            </div>
+            <div class="dest-comparison-grid">
+              <div class="dest-stat-tile">
+                <div class="dest-stat-name"><span>🇪🇬</span> Egypt (Mesir)</div>
+                <div class="dest-stat-score" id="statusDestEgypt">8 / 8</div>
+                <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="statusDestPctEgypt">100% Kepuasan</span>
+              </div>
+              <div class="dest-stat-tile">
+                <div class="dest-stat-name"><span>🇸🇦</span> Madinah</div>
+                <div class="dest-stat-score" id="statusDestMadinah">8 / 8</div>
+                <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="statusDestPctMadinah">100% Kepuasan</span>
+              </div>
+              <div class="dest-stat-tile">
+                <div class="dest-stat-name"><span>🕋</span> Mekah</div>
+                <div class="dest-stat-score" id="statusDestMekah">8 / 8</div>
+                <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="statusDestPctMekah">100% Kepuasan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta Palang 3 Kategori / Dimensi -->
           <div class="chart-bars-wrap" style="margin-top:1rem;">
             <!-- Kategori 1 -->
             <div class="chart-bar-item">
               <div class="chart-item-header">
-                <span class="chart-item-title">
-                  <span style="color:var(--primary); font-weight:800;">1.</span> Layanan & Khidmat Pegawai
+                <span class="chart-item-title" id="statusTitleCat1">
+                  <span style="color:var(--primary); font-weight:800;">1.</span> Khidmat & Pengurusan Andalusia
                 </span>
-                <span class="chart-item-score" id="statusBarScoreCat1">2 / 2 (Terbaik)</span>
+                <span class="chart-item-score" id="statusBarScoreCat1">6 / 6 (Terbaik)</span>
               </div>
               <div class="chart-track">
                 <div class="chart-fill fill-emerald" id="statusBarFillCat1" style="width: 100%;"></div>
@@ -245,10 +270,10 @@
             <!-- Kategori 2 -->
             <div class="chart-bar-item">
               <div class="chart-item-header">
-                <span class="chart-item-title">
-                  <span style="color:var(--gold); font-weight:800;">2.</span> Ketepatan Maklumat & Pakej
+                <span class="chart-item-title" id="statusTitleCat2">
+                  <span style="color:var(--gold); font-weight:800;">2.</span> Bilik Hotel (3 Lokasi)
                 </span>
-                <span class="chart-item-score" id="statusBarScoreCat2">2 / 2 (Terbaik)</span>
+                <span class="chart-item-score" id="statusBarScoreCat2">6 / 6 (Terbaik)</span>
               </div>
               <div class="chart-track">
                 <div class="chart-fill fill-emerald" id="statusBarFillCat2" style="width: 100%;"></div>
@@ -258,15 +283,49 @@
             <!-- Kategori 3 -->
             <div class="chart-bar-item">
               <div class="chart-item-header">
-                <span class="chart-item-title">
-                  <span style="color:var(--primary); font-weight:800;">3.</span> Kemudahan & Kelancaran Proses
+                <span class="chart-item-title" id="statusTitleCat3">
+                  <span style="color:var(--primary); font-weight:800;">3.</span> Perkhidmatan Hotel (3 Lokasi)
                 </span>
-                <span class="chart-item-score" id="statusBarScoreCat3">2 / 2 (Terbaik)</span>
+                <span class="chart-item-score" id="statusBarScoreCat3">6 / 6 (Terbaik)</span>
               </div>
               <div class="chart-track">
                 <div class="chart-fill fill-emerald" id="statusBarFillCat3" style="width: 100%;"></div>
               </div>
             </div>
+
+            <!-- Kategori 4 (Makanan) -->
+            <div class="chart-bar-item" id="statusBarItem4">
+              <div class="chart-item-header">
+                <span class="chart-item-title">
+                  <span style="color:var(--gold); font-weight:800;">4.</span> Makanan & Sajian (3 Lokasi)
+                </span>
+                <span class="chart-item-score" id="statusBarScoreCat4">6 / 6 (Terbaik)</span>
+              </div>
+              <div class="chart-track">
+                <div class="chart-fill fill-emerald" id="statusBarFillCat4" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Kategori 5 (Ziarah) -->
+            <div class="chart-bar-item" id="statusBarItem5">
+              <div class="chart-item-header">
+                <span class="chart-item-title">
+                  <span style="color:var(--primary); font-weight:800;">5.</span> Pengalaman Tempat Ziarah
+                </span>
+                <span class="chart-item-score" id="statusBarScoreCat5">5 / 6 (Memuaskan)</span>
+              </div>
+              <div class="chart-track">
+                <div class="chart-fill fill-gold" id="statusBarFillCat5" style="width: 83%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ULASAN / MAKLUM BALAS ZIARAH JEMAAH -->
+          <div class="feedback-quote-card" id="statusFeedbackCard" style="display:none; margin-top:1.25rem;">
+            <div class="feedback-quote-title">
+              <span>💬</span> Ulasan & Cadangan Jemaah:
+            </div>
+            <div class="feedback-quote-text" id="statusFeedbackText"></div>
           </div>
 
         </div>
@@ -305,7 +364,7 @@
   </footer>
 
   <script>
-    // Rekod Contoh Lalai Bersama Skor 3 Kategori
+    // Rekod Contoh Lalai Bersama Skor Penuh & Maklum Balas Ziarah
     const defaultRecords = [
       {
         code: 'VAL-882194',
@@ -314,8 +373,27 @@
         cat1: 2,
         cat2: 2,
         cat3: 2,
-        totalScore: 6,
-        maxScore: 6,
+        hotel_room_egypt: 2,
+        hotel_service_egypt: 2,
+        food_egypt: 2,
+        hotel_room_madinah: 2,
+        hotel_service_madinah: 2,
+        food_madinah: 2,
+        hotel_room_mekah: 2,
+        hotel_service_mekah: 2,
+        food_mekah: 2,
+        ziarah_egypt: 2,
+        ziarah_madinah: 2,
+        ziarah_mekah: 2,
+        ziarahFeedback: 'Alhamdulillah pengalaman ziarah Mesir, Madinah dan Mekah amat luar biasa. Penginapan hotel berhampiran dan hidangan makanan menepati selera jemaah Malaysia.',
+        dimensions: { service: 6, room: 6, hotelService: 6, food: 6, ziarah: 6 },
+        destinations: {
+          egypt: { score: 8, max: 8, percent: 100 },
+          madinah: { score: 8, max: 8, percent: 100 },
+          mekah: { score: 8, max: 8, percent: 100 }
+        },
+        totalScore: 30,
+        maxScore: 30,
         percentage: 100,
         rating: 'CEMERLANG',
         status: 'VERIFIED',
@@ -329,9 +407,28 @@
         cat1: 2,
         cat2: 1,
         cat3: 2,
-        totalScore: 5,
-        maxScore: 6,
-        percentage: 83,
+        hotel_room_egypt: 2,
+        hotel_service_egypt: 1,
+        food_egypt: 2,
+        hotel_room_madinah: 2,
+        hotel_service_madinah: 2,
+        food_madinah: 2,
+        hotel_room_mekah: 2,
+        hotel_service_mekah: 1,
+        food_mekah: 2,
+        ziarah_egypt: 2,
+        ziarah_madinah: 2,
+        ziarah_mekah: 2,
+        ziarahFeedback: 'Khidmat mutawwif semasa ziarah sangat membimbing dan berilmu. Terima kasih Andalusia!',
+        dimensions: { service: 5, room: 6, hotelService: 4, food: 6, ziarah: 6 },
+        destinations: {
+          egypt: { score: 7, max: 8, percent: 88 },
+          madinah: { score: 8, max: 8, percent: 100 },
+          mekah: { score: 7, max: 8, percent: 88 }
+        },
+        totalScore: 27,
+        maxScore: 30,
+        percentage: 90,
         rating: 'CEMERLANG',
         status: 'PENDING_REVIEW',
         submittedAt: '24/11/2026, 04:00 PM',
@@ -339,34 +436,31 @@
       }
     ];
 
-    function updateCategoryBar(catIndex, score) {
+    function updateCategoryBar(catIndex, score, maxScore = 2) {
       const scoreEl = document.getElementById(`statusBarScoreCat${catIndex}`);
       const fillEl = document.getElementById(`statusBarFillCat${catIndex}`);
       if (!scoreEl || !fillEl) return;
 
-      const s = (score === undefined || score === null) ? 2 : parseInt(score, 10);
-      let text = '2 / 2 (Terbaik)';
-      let fillClass = 'fill-emerald';
-      let width = '100%';
+      const s = (score === undefined || score === null) ? maxScore : parseInt(score, 10);
+      const pct = Math.round((s / maxScore) * 100);
 
-      if (s === 2) {
-        text = '2 / 2 (Terbaik)';
+      let text = `${s} / ${maxScore}`;
+      let fillClass = 'fill-emerald';
+
+      if (pct >= 80) {
+        text += ' (Terbaik)';
         fillClass = 'fill-emerald';
-        width = '100%';
-      } else if (s === 1) {
-        text = '1 / 2 (Memuaskan)';
+      } else if (pct >= 50) {
+        text += ' (Memuaskan)';
         fillClass = 'fill-gold';
-        width = '50%';
       } else {
-        text = '0 / 2 (Tidak Puas Hati)';
+        text += ' (Tidak Puas Hati)';
         fillClass = 'fill-danger';
-        width = '6%';
       }
 
       scoreEl.textContent = text;
-      scoreEl.className = `chart-item-score score-${s}`;
       fillEl.className = `chart-fill ${fillClass}`;
-      fillEl.style.width = width;
+      fillEl.style.width = `${Math.max(6, pct)}%`;
     }
 
     function displayRecord(found) {
@@ -413,23 +507,25 @@
       }
 
       // Paparan Graf Keputusan
+      const maxScore = found.maxScore || (found.totalScore && found.totalScore > 6 ? 30 : 6);
       const totalScore = (found.totalScore !== undefined) ? found.totalScore : (found.cat1 || 2) + (found.cat2 || 2) + (found.cat3 || 2);
-      const percentage = (found.percentage !== undefined) ? found.percentage : Math.round((totalScore / 6) * 100);
-      const rating = found.rating || (totalScore >= 5 ? 'CEMERLANG' : (totalScore <= 2 ? 'PERLU TINDAKAN' : 'MEMUASKAN'));
+      const percentage = (found.percentage !== undefined) ? found.percentage : Math.round((totalScore / maxScore) * 100);
+      const rating = found.rating || (percentage >= 80 ? 'CEMERLANG' : (percentage < 50 ? 'PERLU TINDAKAN' : 'MEMUASKAN'));
 
       document.getElementById('statusTotalScore').textContent = totalScore;
+      document.getElementById('statusMaxDenom').textContent = `/ ${maxScore}`;
       document.getElementById('statusPercentageTag').textContent = `${percentage}% Skor Validasi`;
 
       const ratingBadge = document.getElementById('statusRatingBadge');
       const ratingTitle = document.getElementById('statusRatingTitle');
       const ratingDesc = document.getElementById('statusRatingDesc');
 
-      if (totalScore >= 5) {
+      if (percentage >= 80) {
         ratingBadge.className = 'rating-badge-pill rating-excellent';
         ratingBadge.textContent = `⭐ ${rating}`;
         ratingTitle.textContent = 'Tahap Kepuasan Sangat Tinggi';
-        ratingDesc.textContent = 'Jemaah memberikan penilaian positif terhadap aspek layanan, kejelasan maklumat, dan sistem pendaftaran.';
-      } else if (totalScore <= 2) {
+        ratingDesc.textContent = 'Jemaah memberikan penilaian cemerlang bagi aspek hotel, makanan, tempat ziarah, dan khidmat Andalusia.';
+      } else if (percentage < 50) {
         ratingBadge.className = 'rating-badge-pill rating-action';
         ratingBadge.textContent = `⚠️ ${rating}`;
         ratingTitle.textContent = 'Perlu Tindakan & Penambahbaikan';
@@ -438,12 +534,64 @@
         ratingBadge.className = 'rating-badge-pill rating-good';
         ratingBadge.textContent = `⭐ ${rating}`;
         ratingTitle.textContent = 'Tahap Kepuasan Sederhana (Baik)';
-        ratingDesc.textContent = 'Penilaian berada pada tahap yang memuaskan dan proses pendaftaran berjalan dengan baik.';
+        ratingDesc.textContent = 'Penilaian berada pada tahap yang memuaskan dan proses perjalanan berjalan lancar.';
       }
 
-      updateCategoryBar('1', found.cat1);
-      updateCategoryBar('2', found.cat2);
-      updateCategoryBar('3', found.cat3);
+      // Destinasi Breakdown (Jika Ada)
+      const destSection = document.getElementById('statusDestComparison');
+      if (found.destinations && destSection) {
+        destSection.style.display = 'block';
+        document.getElementById('statusDestEgypt').textContent = `${found.destinations.egypt.score} / ${found.destinations.egypt.max}`;
+        document.getElementById('statusDestPctEgypt').textContent = `${found.destinations.egypt.percent}% Kepuasan`;
+
+        document.getElementById('statusDestMadinah').textContent = `${found.destinations.madinah.score} / ${found.destinations.madinah.max}`;
+        document.getElementById('statusDestPctMadinah').textContent = `${found.destinations.madinah.percent}% Kepuasan`;
+
+        document.getElementById('statusDestMekah').textContent = `${found.destinations.mekah.score} / ${found.destinations.mekah.max}`;
+        document.getElementById('statusDestPctMekah').textContent = `${found.destinations.mekah.percent}% Kepuasan`;
+      } else if (destSection) {
+        destSection.style.display = 'none';
+      }
+
+      // Bars Dimensi
+      const item4 = document.getElementById('statusBarItem4');
+      const item5 = document.getElementById('statusBarItem5');
+
+      if (found.dimensions) {
+        if (item4) item4.style.display = 'block';
+        if (item5) item5.style.display = 'block';
+        document.getElementById('statusTitleCat1').innerHTML = '<span style="color:var(--primary); font-weight:800;">1.</span> Khidmat & Pengurusan Andalusia';
+        document.getElementById('statusTitleCat2').innerHTML = '<span style="color:var(--gold); font-weight:800;">2.</span> Kemudahan Bilik Hotel (3 Lokasi)';
+        document.getElementById('statusTitleCat3').innerHTML = '<span style="color:var(--primary); font-weight:800;">3.</span> Perkhidmatan Hotel (3 Lokasi)';
+
+        updateCategoryBar(1, found.dimensions.service, 6);
+        updateCategoryBar(2, found.dimensions.room, 6);
+        updateCategoryBar(3, found.dimensions.hotelService, 6);
+        updateCategoryBar(4, found.dimensions.food, 6);
+        updateCategoryBar(5, found.dimensions.ziarah, 6);
+      } else {
+        if (item4) item4.style.display = 'none';
+        if (item5) item5.style.display = 'none';
+        document.getElementById('statusTitleCat1').innerHTML = '<span style="color:var(--primary); font-weight:800;">1.</span> Layanan & Khidmat Pegawai';
+        document.getElementById('statusTitleCat2').innerHTML = '<span style="color:var(--gold); font-weight:800;">2.</span> Ketepatan Maklumat & Pakej';
+        document.getElementById('statusTitleCat3').innerHTML = '<span style="color:var(--primary); font-weight:800;">3.</span> Kemudahan & Kelancaran Proses';
+
+        updateCategoryBar(1, found.cat1, 2);
+        updateCategoryBar(2, found.cat2, 2);
+        updateCategoryBar(3, found.cat3, 2);
+      }
+
+      // Maklum Balas Ziarah (500 Huruf)
+      const feedbackCard = document.getElementById('statusFeedbackCard');
+      const feedbackText = document.getElementById('statusFeedbackText');
+      if (feedbackCard && feedbackText) {
+        if (found.ziarahFeedback && found.ziarahFeedback.trim().length > 0) {
+          feedbackText.textContent = `"${found.ziarahFeedback.trim()}"`;
+          feedbackCard.style.display = 'block';
+        } else {
+          feedbackCard.style.display = 'none';
+        }
+      }
     }
 
     function searchRecord(query) {

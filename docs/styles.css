@@ -1444,6 +1444,309 @@ body {
   line-height: 1.45;
 }
 
+/* ==========================================================================
+   Multi-Step Wizard Pages & Navigation (Page 1, 2, 3)
+   ========================================================================== */
+.step-page {
+  display: none;
+}
+
+.step-page.active {
+  display: block;
+  animation: fadeInStep 0.28s ease-in-out;
+}
+
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.75rem;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+.step-indicator-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.step-indicator-tag strong {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   Destination Cards & Aspect Styling (Egypt, Madinah, Mekah)
+   ========================================================================== */
+.dest-card-group {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dest-card-group:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+.dest-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.25rem;
+  background: linear-gradient(to right, #f8fafc, #f1f5f9);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dest-card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dest-flag-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.dest-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.dest-card-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.dest-badge {
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dest-badge-egypt {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.dest-badge-madinah {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.dest-badge-mekah {
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+}
+
+.dest-aspects-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dest-aspect-item {
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 1.15rem;
+}
+
+.dest-aspect-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dest-aspect-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dest-aspect-title span.aspect-icon {
+  font-size: 1.15rem;
+}
+
+/* ==========================================================================
+   Textarea & Live Character Counter (Max 500 Huruf)
+   ========================================================================== */
+.textarea-counter-wrap {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.textarea-feedback {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #ffffff;
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.textarea-feedback:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.char-counter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.char-counter-tag {
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  font-family: monospace;
+}
+
+.char-counter-tag.warn {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.char-counter-tag.limit {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+/* ==========================================================================
+   Destination Comparison Graph & Feedback Display
+   ========================================================================== */
+.dest-comparison-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+.dest-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.dest-stat-tile {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dest-stat-name {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.dest-stat-score {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.dest-stat-score.score-warn {
+  color: var(--gold);
+}
+
+.dest-stat-score.score-danger {
+  color: var(--danger);
+}
+
+.feedback-quote-card {
+  background: #fefce8;
+  border: 1px solid #fef08a;
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  margin-top: 1.25rem;
+}
+
+.feedback-quote-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #854d0e;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.feedback-quote-text {
+  font-size: 0.85rem;
+  color: #713f12;
+  line-height: 1.5;
+  font-style: italic;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .dest-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .dest-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .dest-badge {
+    align-self: flex-start;
+  }
+}
+
 @media (max-width: 540px) {
   .score-options-grid {
     gap: 0.4rem;

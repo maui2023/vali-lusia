@@ -77,7 +77,7 @@
   <main class="main-wrapper">
     <div class="page-intro">
       <h2>Papan Pemuka Semakan & Panggilan Jemaah</h2>
-      <p>Senarai pendaftaran jemaah berserta skor graf validasi 3 kategori untuk tindakan semakan, panggilan WhatsApp, dan pengesahan pegawai.</p>
+      <p>Senarai pendaftaran jemaah berserta skor graf validasi menyeluruh (Hotel, Makanan, Ziarah & Khidmat) untuk tindakan semakan, panggilan WhatsApp, dan pengesahan pegawai.</p>
     </div>
 
     <!-- Kad Statistik -->
@@ -129,7 +129,7 @@
               <th>Kod Rujukan</th>
               <th>Nama Jemaah</th>
               <th>No. Telefon (WhatsApp)</th>
-              <th>Skor Validasi (3 Kategori)</th>
+              <th>Skor Validasi (Menyeluruh)</th>
               <th>Tarikh Pendaftaran</th>
               <th>Status</th>
               <th>Tindakan Pegawai</th>
@@ -145,7 +145,7 @@
 
   <!-- Modal Semakan & Graf Pegawai -->
   <div class="modal-overlay" id="reviewModal">
-    <div class="modal-dialog" style="max-width:620px;">
+    <div class="modal-dialog" style="max-width:680px;">
       <div class="modal-header" style="text-align:left; display:flex; justify-content:space-between; align-items:center;">
         <div>
           <h3 id="rev_title">Semakan Maklumat & Graf Skor</h3>
@@ -188,49 +188,96 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
             <span style="font-size:0.85rem; font-weight:700; color:var(--secondary);">PECAHAN SKOR VALIDASI JEMAAH</span>
             <span class="rating-badge-pill rating-excellent" id="rev_ratingBadge" style="font-size:0.75rem; padding:0.25rem 0.65rem;">
-              ⭐ 6 / 6 (CEMERLANG)
+              ⭐ 30 / 30 (CEMERLANG)
             </span>
           </div>
 
-          <!-- Carta Palang Mini -->
-          <div class="chart-bars-wrap" style="gap:0.75rem; margin-top:0.5rem;">
-            <!-- Kategori 1 -->
+          <!-- Destinasi Mini Grid -->
+          <div class="dest-comparison-section" id="rev_destComparison" style="margin-bottom:0.75rem; padding:0.85rem;">
+            <div style="font-size:0.78rem; font-weight:700; color:var(--secondary); margin-bottom:0.5rem;">KEPUASAN MENGIKUT DESTINASI</div>
+            <div class="dest-comparison-grid" style="grid-template-columns:repeat(3, 1fr); gap:0.5rem;">
+              <div class="dest-stat-tile" style="padding:0.5rem;">
+                <div class="dest-stat-name" style="font-size:0.75rem;">🇪🇬 Egypt</div>
+                <div class="dest-stat-score" id="rev_destEgypt" style="font-size:1rem;">8/8</div>
+              </div>
+              <div class="dest-stat-tile" style="padding:0.5rem;">
+                <div class="dest-stat-name" style="font-size:0.75rem;">🇸🇦 Madinah</div>
+                <div class="dest-stat-score" id="rev_destMadinah" style="font-size:1rem;">8/8</div>
+              </div>
+              <div class="dest-stat-tile" style="padding:0.5rem;">
+                <div class="dest-stat-name" style="font-size:0.75rem;">🕋 Mekah</div>
+                <div class="dest-stat-score" id="rev_destMekah" style="font-size:1rem;">8/8</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta Palang Mini Dimensi -->
+          <div class="chart-bars-wrap" style="gap:0.65rem; margin-top:0.5rem;">
+            <!-- Dimensi 1 -->
             <div class="chart-bar-item">
               <div class="chart-item-header" style="font-size:0.78rem;">
-                <span class="chart-item-title">1. Layanan & Khidmat Pegawai</span>
-                <span class="chart-item-score" id="rev_barScore1">2 / 2</span>
+                <span class="chart-item-title" id="rev_titleDim1">1. Khidmat & Pengurusan Andalusia</span>
+                <span class="chart-item-score" id="rev_barScore1">6 / 6</span>
               </div>
               <div class="chart-track" style="height:8px;">
                 <div class="chart-fill fill-emerald" id="rev_barFill1" style="width: 100%;"></div>
               </div>
             </div>
-            <!-- Kategori 2 -->
+            <!-- Dimensi 2 -->
             <div class="chart-bar-item">
               <div class="chart-item-header" style="font-size:0.78rem;">
-                <span class="chart-item-title">2. Ketepatan Maklumat & Pakej</span>
-                <span class="chart-item-score" id="rev_barScore2">2 / 2</span>
+                <span class="chart-item-title" id="rev_titleDim2">2. Bilik Hotel (3 Lokasi)</span>
+                <span class="chart-item-score" id="rev_barScore2">6 / 6</span>
               </div>
               <div class="chart-track" style="height:8px;">
                 <div class="chart-fill fill-emerald" id="rev_barFill2" style="width: 100%;"></div>
               </div>
             </div>
-            <!-- Kategori 3 -->
+            <!-- Dimensi 3 -->
             <div class="chart-bar-item">
               <div class="chart-item-header" style="font-size:0.78rem;">
-                <span class="chart-item-title">3. Kemudahan & Kelancaran Proses</span>
-                <span class="chart-item-score" id="rev_barScore3">2 / 2</span>
+                <span class="chart-item-title" id="rev_titleDim3">3. Perkhidmatan Hotel (3 Lokasi)</span>
+                <span class="chart-item-score" id="rev_barScore3">6 / 6</span>
               </div>
               <div class="chart-track" style="height:8px;">
                 <div class="chart-fill fill-emerald" id="rev_barFill3" style="width: 100%;"></div>
               </div>
             </div>
+            <!-- Dimensi 4 (Makanan) -->
+            <div class="chart-bar-item" id="rev_barItem4">
+              <div class="chart-item-header" style="font-size:0.78rem;">
+                <span class="chart-item-title">4. Makanan & Sajian (3 Lokasi)</span>
+                <span class="chart-item-score" id="rev_barScore4">6 / 6</span>
+              </div>
+              <div class="chart-track" style="height:8px;">
+                <div class="chart-fill fill-emerald" id="rev_barFill4" style="width: 100%;"></div>
+              </div>
+            </div>
+            <!-- Dimensi 5 (Ziarah) -->
+            <div class="chart-bar-item" id="rev_barItem5">
+              <div class="chart-item-header" style="font-size:0.78rem;">
+                <span class="chart-item-title">5. Pengalaman Tempat Ziarah</span>
+                <span class="chart-item-score" id="rev_barScore5">6 / 6</span>
+              </div>
+              <div class="chart-track" style="height:8px;">
+                <div class="chart-fill fill-emerald" id="rev_barFill5" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ulasan Ziarah Jemaah (500 Huruf) -->
+          <div class="feedback-quote-card" id="rev_feedbackWrap" style="display:none; margin-top:1rem; padding:0.75rem 1rem;">
+            <div class="feedback-quote-title" style="font-size:0.75rem;">
+              <span>💬</span> Ulasan / Cadangan Jemaah (Maksimum 500 Huruf):
+            </div>
+            <div class="feedback-quote-text" id="rev_feedbackText" style="font-size:0.8rem;"></div>
           </div>
         </div>
 
         <!-- Ruangan Catatan Pegawai -->
         <div class="form-group" style="margin-top:1.25rem;">
-          <label for="officerNotes"><strong>Catatan / Nota Pegawai:</strong></label>
-          <textarea id="officerNotes" class="form-control" rows="3" placeholder="Masukkan ulasan selepas menghubungi jemaah (cth: jemaah bersetuju dengan pakej Disember)..."></textarea>
+          <label for="officerNotes"><strong>Catatan / Tindakan Pegawai Operasi:</strong></label>
+          <textarea id="officerNotes" class="form-control" rows="3" placeholder="Masukkan ulasan selepas menghubungi jemaah (cth: jemaah berpuas hati dan mengesahkan kehadiran)..."></textarea>
         </div>
       </div>
 
@@ -270,8 +317,27 @@
         cat1: 2,
         cat2: 2,
         cat3: 2,
-        totalScore: 6,
-        maxScore: 6,
+        hotel_room_egypt: 2,
+        hotel_service_egypt: 2,
+        food_egypt: 2,
+        hotel_room_madinah: 2,
+        hotel_service_madinah: 2,
+        food_madinah: 2,
+        hotel_room_mekah: 2,
+        hotel_service_mekah: 2,
+        food_mekah: 2,
+        ziarah_egypt: 2,
+        ziarah_madinah: 2,
+        ziarah_mekah: 2,
+        ziarahFeedback: 'Alhamdulillah pengalaman ziarah ke Mesir, Madinah dan Mekah sangat memuaskan. Mutawwif sangat membantu.',
+        dimensions: { service: 6, room: 6, hotelService: 6, food: 6, ziarah: 6 },
+        destinations: {
+          egypt: { score: 8, max: 8, percent: 100 },
+          madinah: { score: 8, max: 8, percent: 100 },
+          mekah: { score: 8, max: 8, percent: 100 }
+        },
+        totalScore: 30,
+        maxScore: 30,
         percentage: 100,
         rating: 'CEMERLANG',
         submittedAt: '24/11/2026, 03:50 PM',
@@ -285,9 +351,28 @@
         cat1: 2,
         cat2: 1,
         cat3: 2,
-        totalScore: 5,
-        maxScore: 6,
-        percentage: 83,
+        hotel_room_egypt: 2,
+        hotel_service_egypt: 1,
+        food_egypt: 2,
+        hotel_room_madinah: 2,
+        hotel_service_madinah: 2,
+        food_madinah: 2,
+        hotel_room_mekah: 2,
+        hotel_service_mekah: 1,
+        food_mekah: 2,
+        ziarah_egypt: 2,
+        ziarah_madinah: 2,
+        ziarah_mekah: 2,
+        ziarahFeedback: 'Bilik hotel sangat bersih dan dekat dengan masjid.',
+        dimensions: { service: 5, room: 6, hotelService: 4, food: 6, ziarah: 6 },
+        destinations: {
+          egypt: { score: 7, max: 8, percent: 88 },
+          madinah: { score: 8, max: 8, percent: 100 },
+          mekah: { score: 7, max: 8, percent: 88 }
+        },
+        totalScore: 27,
+        maxScore: 30,
+        percentage: 90,
         rating: 'CEMERLANG',
         submittedAt: '24/11/2026, 04:00 PM',
         status: 'PENDING_REVIEW',
@@ -300,13 +385,32 @@
         cat1: 1,
         cat2: 0,
         cat3: 1,
-        totalScore: 2,
-        maxScore: 6,
-        percentage: 33,
+        hotel_room_egypt: 1,
+        hotel_service_egypt: 0,
+        food_egypt: 1,
+        hotel_room_madinah: 1,
+        hotel_service_madinah: 1,
+        food_madinah: 1,
+        hotel_room_mekah: 1,
+        hotel_service_mekah: 0,
+        food_mekah: 1,
+        ziarah_egypt: 1,
+        ziarah_madinah: 1,
+        ziarah_mekah: 1,
+        ziarahFeedback: 'Mohon tambah baik kepantasan servis bagasi di hotel Mesir dan Mekah.',
+        dimensions: { service: 2, room: 3, hotelService: 1, food: 3, ziarah: 3 },
+        destinations: {
+          egypt: { score: 3, max: 8, percent: 38 },
+          madinah: { score: 4, max: 8, percent: 50 },
+          mekah: { score: 3, max: 8, percent: 38 }
+        },
+        totalScore: 12,
+        maxScore: 30,
+        percentage: 40,
         rating: 'PERLU TINDAKAN',
         submittedAt: '24/11/2026, 04:02 PM',
         status: 'ACTION_REQUIRED',
-        notes: 'Jemaah mengalami kekeliruan tentang pakej promosi.'
+        notes: 'Jemaah memberi maklum balas tentang servis hotel, pegawai perlu hubungi segera.'
       }
     ];
 
@@ -347,12 +451,13 @@
           const cleanPhone = record.phone.replace(/\D/g, '');
           const waPhone = cleanPhone.startsWith('60') ? cleanPhone : (cleanPhone.startsWith('0') ? '60' + cleanPhone.substring(1) : cleanPhone);
 
+          const max = record.maxScore || (record.totalScore && record.totalScore > 6 ? 30 : 6);
           const total = (record.totalScore !== undefined) ? record.totalScore : (record.cat1 || 2) + (record.cat2 || 2) + (record.cat3 || 2);
-          const percent = (record.percentage !== undefined) ? record.percentage : Math.round((total / 6) * 100);
+          const percent = (record.percentage !== undefined) ? record.percentage : Math.round((total / max) * 100);
 
           let pillClass = 'rating-excellent';
-          if (total <= 2) pillClass = 'rating-action';
-          else if (total <= 4) pillClass = 'rating-good';
+          if (percent < 50) pillClass = 'rating-action';
+          else if (percent < 80) pillClass = 'rating-good';
 
           tr.innerHTML = `
             <td><strong style="color:var(--primary); font-family:monospace;">${record.code}</strong></td>
@@ -363,7 +468,7 @@
             </td>
             <td>
               <span class="mini-score-pill ${pillClass}">
-                📊 ${total} / 6 (${percent}%)
+                📊 ${total} / ${max} (${percent}%)
               </span>
             </td>
             <td><span style="font-size:0.8rem; color:var(--text-muted);">${record.submittedAt || '-'}</span></td>
@@ -387,33 +492,30 @@
       document.getElementById('statVerified').textContent = verifiedCount;
     }
 
-    function updateMiniBar(index, score) {
-      const s = (score === undefined || score === null) ? 2 : parseInt(score, 10);
+    function updateMiniBar(index, score, maxScore = 2) {
+      const s = (score === undefined || score === null) ? maxScore : parseInt(score, 10);
       const scoreEl = document.getElementById(`rev_barScore${index}`);
       const fillEl = document.getElementById(`rev_barFill${index}`);
       if (!scoreEl || !fillEl) return;
 
+      const pct = Math.round((s / maxScore) * 100);
       let fillClass = 'fill-emerald';
-      let width = '100%';
-      let text = `${s} / 2 (Terbaik)`;
+      let text = `${s} / ${maxScore}`;
 
-      if (s === 2) {
-        text = '2 / 2 (Terbaik)';
+      if (pct >= 80) {
+        text += ' (Terbaik)';
         fillClass = 'fill-emerald';
-        width = '100%';
-      } else if (s === 1) {
-        text = '1 / 2 (Memuaskan)';
+      } else if (pct >= 50) {
+        text += ' (Memuaskan)';
         fillClass = 'fill-gold';
-        width = '50%';
       } else {
-        text = '0 / 2 (Tidak Puas Hati)';
+        text += ' (Perlu Penambahbaikan)';
         fillClass = 'fill-danger';
-        width = '8%';
       }
 
       scoreEl.textContent = text;
       fillEl.className = `chart-fill ${fillClass}`;
-      fillEl.style.width = width;
+      fillEl.style.width = `${Math.max(6, pct)}%`;
     }
 
     function openReviewModal(code) {
@@ -443,24 +545,73 @@
       }
 
       // Graf Mini Modal
+      const max = record.maxScore || (record.totalScore && record.totalScore > 6 ? 30 : 6);
       const total = (record.totalScore !== undefined) ? record.totalScore : (record.cat1 || 2) + (record.cat2 || 2) + (record.cat3 || 2);
-      const rating = record.rating || (total >= 5 ? 'CEMERLANG' : (total <= 2 ? 'PERLU TINDAKAN' : 'MEMUASKAN'));
+      const percent = (record.percentage !== undefined) ? record.percentage : Math.round((total / max) * 100);
+      const rating = record.rating || (percent >= 80 ? 'CEMERLANG' : (percent < 50 ? 'PERLU TINDAKAN' : 'MEMUASKAN'));
       const badgeEl = document.getElementById('rev_ratingBadge');
 
-      if (total >= 5) {
+      if (percent >= 80) {
         badgeEl.className = 'rating-badge-pill rating-excellent';
-        badgeEl.textContent = `⭐ ${total} / 6 (${rating})`;
-      } else if (total <= 2) {
+        badgeEl.textContent = `⭐ ${total} / ${max} (${rating})`;
+      } else if (percent < 50) {
         badgeEl.className = 'rating-badge-pill rating-action';
-        badgeEl.textContent = `⚠️ ${total} / 6 (${rating})`;
+        badgeEl.textContent = `⚠️ ${total} / ${max} (${rating})`;
       } else {
         badgeEl.className = 'rating-badge-pill rating-good';
-        badgeEl.textContent = `⭐ ${total} / 6 (${rating})`;
+        badgeEl.textContent = `⭐ ${total} / ${max} (${rating})`;
       }
 
-      updateMiniBar(1, record.cat1);
-      updateMiniBar(2, record.cat2);
-      updateMiniBar(3, record.cat3);
+      // Destinasi Mini Grid
+      const destSection = document.getElementById('rev_destComparison');
+      if (record.destinations && destSection) {
+        destSection.style.display = 'block';
+        document.getElementById('rev_destEgypt').textContent = `${record.destinations.egypt.score}/8`;
+        document.getElementById('rev_destMadinah').textContent = `${record.destinations.madinah.score}/8`;
+        document.getElementById('rev_destMekah').textContent = `${record.destinations.mekah.score}/8`;
+      } else if (destSection) {
+        destSection.style.display = 'none';
+      }
+
+      // Dimensi Bars
+      const item4 = document.getElementById('rev_barItem4');
+      const item5 = document.getElementById('rev_barItem5');
+
+      if (record.dimensions) {
+        if (item4) item4.style.display = 'block';
+        if (item5) item5.style.display = 'block';
+        document.getElementById('rev_titleDim1').textContent = '1. Khidmat Andalusia';
+        document.getElementById('rev_titleDim2').textContent = '2. Bilik Hotel (3 Lokasi)';
+        document.getElementById('rev_titleDim3').textContent = '3. Perkhidmatan Hotel (3 Lokasi)';
+
+        updateMiniBar(1, record.dimensions.service, 6);
+        updateMiniBar(2, record.dimensions.room, 6);
+        updateMiniBar(3, record.dimensions.hotelService, 6);
+        updateMiniBar(4, record.dimensions.food, 6);
+        updateMiniBar(5, record.dimensions.ziarah, 6);
+      } else {
+        if (item4) item4.style.display = 'none';
+        if (item5) item5.style.display = 'none';
+        document.getElementById('rev_titleDim1').textContent = '1. Layanan Pegawai';
+        document.getElementById('rev_titleDim2').textContent = '2. Maklumat Pakej';
+        document.getElementById('rev_titleDim3').textContent = '3. Kelancaran Proses';
+
+        updateMiniBar(1, record.cat1, 2);
+        updateMiniBar(2, record.cat2, 2);
+        updateMiniBar(3, record.cat3, 2);
+      }
+
+      // Ulasan / Maklum Balas Terbuka (500 Huruf)
+      const feedbackWrap = document.getElementById('rev_feedbackWrap');
+      const feedbackText = document.getElementById('rev_feedbackText');
+      if (feedbackWrap && feedbackText) {
+        if (record.ziarahFeedback && record.ziarahFeedback.trim().length > 0) {
+          feedbackText.textContent = `"${record.ziarahFeedback.trim()}"`;
+          feedbackWrap.style.display = 'block';
+        } else {
+          feedbackWrap.style.display = 'none';
+        }
+      }
 
       document.getElementById('reviewModal').classList.add('active');
     }

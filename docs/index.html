@@ -31,227 +31,784 @@
     
     <div class="page-intro">
       <h2>Pendaftaran & Validasi Jemaah</h2>
-      <p>Sila lengkapkan maklumat asas anda dan jawab 3 soalan validasi di bawah untuk menjana graf keputusan skor anda secara automatik.</p>
+      <p>Sila lengkapkan maklumat anda dan jawab soalan penilaian merentasi 3 halaman di bawah untuk menjana graf keputusan skor anda secara automatik.</p>
     </div>
 
-    <!-- Form Container (Single Page Minimalist + Validation Questions) -->
-    <div class="form-card" style="max-width: 680px; margin: 0 auto;">
-      <div class="card-header-bar">
-        <h3>Borang Pendaftaran & Validasi Skor</h3>
-        <span class="step-badge" style="background:var(--primary);">Sistem Validasi Pintar</span>
-      </div>
+    <!-- Stepper Navigasi Langkah (1 ➔ 2 ➔ 3) -->
+    <div class="stepper-container" style="max-width: 720px; margin: 0 auto 1.75rem auto;">
+      <ul class="stepper-list">
+        <li class="step-item active" id="stepperStep1">
+          <div class="step-circle" id="circleStep1">1</div>
+          <span class="step-label" id="labelStep1">Khidmat Andalusia</span>
+        </li>
+        <li class="step-item" id="stepperStep2">
+          <div class="step-circle" id="circleStep2">2</div>
+          <span class="step-label" id="labelStep2">Hotel & Makanan</span>
+        </li>
+        <li class="step-item" id="stepperStep3">
+          <div class="step-circle" id="circleStep3">3</div>
+          <span class="step-label" id="labelStep3">Ziarah & Ulasan</span>
+        </li>
+      </ul>
+      <div class="stepper-progress-bar" id="stepperProgressBar" style="width: 0%;"></div>
+    </div>
 
+    <!-- Form Card Container -->
+    <div class="form-card" style="max-width: 720px; margin: 0 auto;">
+      
       <form id="validationForm" novalidate>
-        <div class="form-body">
-
-          <!-- Alert Peringatan Mesra Jemaah -->
-          <div class="alert-box alert-info">
-            <span class="alert-icon">ℹ️</span>
+        
+        <!-- ===================================================================
+             HALAMAN 1: MAKLUMAT ASAS & KHIDMAT ANDALUSIA (PAGE 1)
+             =================================================================== -->
+        <div class="step-page active" id="stepPage1">
+          <div class="card-header-bar">
             <div>
-              <strong>Peringatan:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat dan aktif untuk dihubungi melalui WhatsApp atau panggilan.
+              <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Halaman 1 daripada 3</span>
+              <h3 style="margin-top:2px;">Maklumat Jemaah & Khidmat Pelanggan</h3>
             </div>
+            <span class="step-badge" style="background:var(--primary);">Langkah 1/3</span>
           </div>
 
-          <!-- BAHAGIAN 1: MAKLUMAT ASAS JEMAAH -->
-          <div class="form-grid" style="grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1rem;">
-            
-            <!-- Nama Penuh -->
-            <div class="form-group">
-              <label for="fullName">
-                Nama Penuh <span style="color:var(--danger)">*</span>
-                <span class="label-hint">Huruf besar automatik</span>
-              </label>
-              <div class="input-container">
-                <span class="input-icon">👤</span>
-                <input 
-                  type="text" 
-                  id="fullName" 
-                  name="fullName"
-                  class="form-control" 
-                  placeholder="CONTOH: AHMAD DANIAL BIN ABDUL AZIZ" 
-                  required 
-                  style="text-transform:uppercase;"
-                  autocomplete="name"
-                >
-              </div>
-              <span class="help-text">Nama penuh seperti dalam kad pengenalan atau pasport.</span>
-              <span class="error-text" id="nameError">Sila masukkan nama penuh anda (sekurang-kurangnya 3 huruf).</span>
-            </div>
-
-            <!-- No Telefon WhatsApp -->
-            <div class="form-group">
-              <label for="phoneNumber">
-                No. Telefon (WhatsApp) <span style="color:var(--danger)">*</span>
-              </label>
-              <div class="input-container">
-                <span class="input-icon">📱</span>
-                <input 
-                  type="tel" 
-                  id="phoneNumber" 
-                  name="phoneNumber"
-                  class="form-control" 
-                  placeholder="Contoh: 012-3456789" 
-                  required
-                  autocomplete="tel"
-                >
-              </div>
-              <span class="help-text">Nombor telefon bimbit aktif untuk tujuan panggilan dan WhatsApp.</span>
-              <span class="error-text" id="phoneError">Sila masukkan nombor telefon yang sah (contoh: 012-3456789).</span>
-            </div>
-
-          </div>
-
-          <!-- BAHAGIAN 2: SOALAN VALIDASI 3 KATEGORI -->
-          <div class="validation-questions-section">
-            <div class="section-headline">
-              <span style="font-size:1.35rem;">📊</span>
+          <div class="form-body">
+            <!-- Alert Peringatan Mesra Jemaah -->
+            <div class="alert-box alert-info">
+              <span class="alert-icon">ℹ️</span>
               <div>
-                <h3>Soalan Validasi & Penilaian (3 Kategori)</h3>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-                  Pilih skala penilaian bagi setiap kategori: <strong>Terbaik (2 Markah)</strong>, <strong>Memuaskan (1 Markah)</strong>, atau <strong>Tidak Puas Hati (0 Markah)</strong>.
-                </p>
+                <strong>Peringatan:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat dan aktif untuk dihubungi melalui WhatsApp atau panggilan.
               </div>
             </div>
 
-            <!-- KATEGORI 1: Layanan & Khidmat Pegawai -->
-            <div class="question-category-card" id="cardCat1">
-              <div class="cat-header">
-                <div class="cat-num-badge">1</div>
-                <div class="cat-title-text">
-                  <div class="cat-title">Layanan & Khidmat Pegawai Operasi <span style="color:var(--danger)">*</span></div>
-                  <div class="cat-desc">Bagaimanakah tahap layanan, kesopanan, dan kepantasan respon pegawai perunding Andalusia dalam membantu anda?</div>
+            <!-- BAHAGIAN 1: MAKLUMAT ASAS JEMAAH -->
+            <div class="form-grid" style="grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1rem;">
+              
+              <!-- Nama Penuh -->
+              <div class="form-group">
+                <label for="fullName">
+                  Nama Penuh <span style="color:var(--danger)">*</span>
+                  <span class="label-hint">Huruf besar automatik</span>
+                </label>
+                <div class="input-container">
+                  <span class="input-icon">👤</span>
+                  <input 
+                    type="text" 
+                    id="fullName" 
+                    name="fullName"
+                    class="form-control" 
+                    placeholder="CONTOH: AHMAD DANIAL BIN ABDUL AZIZ" 
+                    required 
+                    style="text-transform:uppercase;"
+                    autocomplete="name"
+                  >
                 </div>
+                <span class="help-text">Nama penuh seperti dalam kad pengenalan atau pasport.</span>
+                <span class="error-text" id="nameError">Sila masukkan nama penuh anda (sekurang-kurangnya 3 huruf).</span>
               </div>
 
-              <div class="score-options-grid">
-                <!-- 2 Markah: Terbaik -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat1" value="2" class="score-radio-input" required>
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⭐⭐ 2</div>
-                    <div class="score-text-label">Terbaik</div>
-                    <div class="score-pts-tag">2 Markah</div>
-                  </div>
+              <!-- No Telefon WhatsApp -->
+              <div class="form-group">
+                <label for="phoneNumber">
+                  No. Telefon (WhatsApp) <span style="color:var(--danger)">*</span>
                 </label>
-                <!-- 1 Markah: Memuaskan -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat1" value="1" class="score-radio-input">
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⭐ 1</div>
-                    <div class="score-text-label">Memuaskan</div>
-                    <div class="score-pts-tag">1 Markah</div>
-                  </div>
-                </label>
-                <!-- 0 Markah: Tidak Puas Hati -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat1" value="0" class="score-radio-input">
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⚠️ 0</div>
-                    <div class="score-text-label">Tidak Puas Hati</div>
-                    <div class="score-pts-tag">0 Markah</div>
-                  </div>
-                </label>
+                <div class="input-container">
+                  <span class="input-icon">📱</span>
+                  <input 
+                    type="tel" 
+                    id="phoneNumber" 
+                    name="phoneNumber"
+                    class="form-control" 
+                    placeholder="Contoh: 012-3456789" 
+                    required
+                    autocomplete="tel"
+                  >
+                </div>
+                <span class="help-text">Nombor telefon bimbit aktif untuk tujuan panggilan dan WhatsApp.</span>
+                <span class="error-text" id="phoneError">Sila masukkan nombor telefon yang sah (contoh: 012-3456789).</span>
               </div>
-              <span class="error-text" id="cat1Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 1.</span>
+
             </div>
 
-            <!-- KATEGORI 2: Ketepatan Maklumat & Panduan Pakej -->
-            <div class="question-category-card" id="cardCat2">
-              <div class="cat-header">
-                <div class="cat-num-badge">2</div>
-                <div class="cat-title-text">
-                  <div class="cat-title">Ketepatan Maklumat & Panduan Pakej <span style="color:var(--danger)">*</span></div>
-                  <div class="cat-desc">Bagaimanakah kejelasan maklumat pakej, jadual penerbangan, hotel Madinah/Makkah, serta syarat visa perjalanan?</div>
+            <!-- SOALAN VALIDASI KHIDMAT AM ANDALUSIA (3 KATEGORI) -->
+            <div class="validation-questions-section" style="margin-top: 1.75rem;">
+              <div class="section-headline">
+                <span style="font-size:1.35rem;">🏢</span>
+                <div>
+                  <h3>Penilaian Khidmat & Pengurusan Andalusia</h3>
+                  <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
+                    Pilih skala penilaian: <strong>Terbaik (2 Markah)</strong>, <strong>Memuaskan (1 Markah)</strong>, atau <strong>Tidak Puas Hati (0 Markah)</strong>.
+                  </p>
                 </div>
               </div>
 
-              <div class="score-options-grid">
-                <!-- 2 Markah: Terbaik -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat2" value="2" class="score-radio-input" required>
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⭐⭐ 2</div>
-                    <div class="score-text-label">Terbaik</div>
-                    <div class="score-pts-tag">2 Markah</div>
+              <!-- KATEGORI 1: Layanan & Khidmat Pegawai -->
+              <div class="question-category-card" id="cardCat1">
+                <div class="cat-header">
+                  <div class="cat-num-badge">1</div>
+                  <div class="cat-title-text">
+                    <div class="cat-title">Layanan & Khidmat Pegawai Operasi <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Bagaimanakah tahap layanan, kesopanan, dan kepantasan respon pegawai perunding Andalusia dalam membantu anda?</div>
                   </div>
-                </label>
-                <!-- 1 Markah: Memuaskan -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat2" value="1" class="score-radio-input">
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⭐ 1</div>
-                    <div class="score-text-label">Memuaskan</div>
-                    <div class="score-pts-tag">1 Markah</div>
-                  </div>
-                </label>
-                <!-- 0 Markah: Tidak Puas Hati -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat2" value="0" class="score-radio-input">
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⚠️ 0</div>
-                    <div class="score-text-label">Tidak Puas Hati</div>
-                    <div class="score-pts-tag">0 Markah</div>
-                  </div>
-                </label>
+                </div>
+
+                <div class="score-options-grid">
+                  <label class="score-option-label">
+                    <input type="radio" name="cat1" value="2" class="score-radio-input" required>
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐⭐ 2</div>
+                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-pts-tag">2 Markah</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="cat1" value="1" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-text-label">Memuaskan</div>
+                      <div class="score-pts-tag">1 Markah</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="cat1" value="0" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⚠️ 0</div>
+                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-pts-tag">0 Markah</div>
+                    </div>
+                  </label>
+                </div>
+                <span class="error-text" id="cat1Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 1.</span>
               </div>
-              <span class="error-text" id="cat2Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 2.</span>
+
+              <!-- KATEGORI 2: Ketepatan Maklumat & Panduan Pakej -->
+              <div class="question-category-card" id="cardCat2">
+                <div class="cat-header">
+                  <div class="cat-num-badge">2</div>
+                  <div class="cat-title-text">
+                    <div class="cat-title">Ketepatan Maklumat & Panduan Pakej <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Bagaimanakah kejelasan maklumat pakej, jadual penerbangan, hotel Madinah/Makkah, serta syarat visa perjalanan?</div>
+                  </div>
+                </div>
+
+                <div class="score-options-grid">
+                  <label class="score-option-label">
+                    <input type="radio" name="cat2" value="2" class="score-radio-input" required>
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐⭐ 2</div>
+                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-pts-tag">2 Markah</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="cat2" value="1" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-text-label">Memuaskan</div>
+                      <div class="score-pts-tag">1 Markah</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="cat2" value="0" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⚠️ 0</div>
+                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-pts-tag">0 Markah</div>
+                    </div>
+                  </label>
+                </div>
+                <span class="error-text" id="cat2Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 2.</span>
+              </div>
+
+              <!-- KATEGORI 3: Kemudahan & Kelancaran Pendaftaran -->
+              <div class="question-category-card" id="cardCat3">
+                <div class="cat-header">
+                  <div class="cat-num-badge">3</div>
+                  <div class="cat-title-text">
+                    <div class="cat-title">Kemudahan & Kelancaran Pendaftaran <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Bagaimanakah tahap kepuasan anda terhadap kemudahan, kepantasan, dan kelancaran proses validasi ini?</div>
+                  </div>
+                </div>
+
+                <div class="score-options-grid">
+                  <label class="score-option-label">
+                    <input type="radio" name="cat3" value="2" class="score-radio-input" required>
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐⭐ 2</div>
+                      <div class="score-text-label">Terbaik</div>
+                      <div class="score-pts-tag">2 Markah</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="cat3" value="1" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-text-label">Memuaskan</div>
+                      <div class="score-pts-tag">1 Markah</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="cat3" value="0" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⚠️ 0</div>
+                      <div class="score-text-label">Tidak Puas Hati</div>
+                      <div class="score-pts-tag">0 Markah</div>
+                    </div>
+                  </label>
+                </div>
+                <span class="error-text" id="cat3Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 3.</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FOOTER BAR PAGE 1 -->
+          <div class="step-nav-bar">
+            <span class="step-indicator-tag">Langkah <strong>1 daripada 3</strong></span>
+            <button type="button" class="btn btn-primary" id="btnNextStep1" style="font-weight:700; padding:0.75rem 1.5rem;">
+              Seterusnya: Hotel & Makanan (Page 2) ➔
+            </button>
+          </div>
+        </div>
+
+
+        <!-- ===================================================================
+             HALAMAN 2: HOTEL & MAKANAN DI EGYPT, MADINAH & MEKAH (PAGE 2)
+             =================================================================== -->
+        <div class="step-page" id="stepPage2">
+          <div class="card-header-bar">
+            <div>
+              <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Halaman 2 daripada 3</span>
+              <h3 style="margin-top:2px;">Respon Hotel & Makanan (Egypt, Madinah & Mekah)</h3>
+            </div>
+            <span class="step-badge" style="background:var(--primary);">Langkah 2/3</span>
+          </div>
+
+          <div class="form-body">
+            <div class="alert-box alert-info">
+              <span class="alert-icon">🏨</span>
+              <div>
+                <strong>Penilaian Penginapan & Sajian:</strong> Sila berikan respon anda bagi <strong>Bilik Hotel</strong>, <strong>Perkhidmatan Hotel</strong>, dan <strong>Makanan</strong> bagi setiap lokasi lawatan anda.
+              </div>
             </div>
 
-            <!-- KATEGORI 3: Kemudahan & Kelancaran Proses Pendaftaran -->
-            <div class="question-category-card" id="cardCat3">
-              <div class="cat-header">
-                <div class="cat-num-badge">3</div>
-                <div class="cat-title-text">
-                  <div class="cat-title">Kemudahan & Kelancaran Pendaftaran <span style="color:var(--danger)">*</span></div>
-                  <div class="cat-desc">Bagaimanakah tahap kepuasan anda terhadap kemudahan, kepantasan, dan kelancaran proses validasi ini?</div>
+            <!-- DESTINASI 1: 🇪🇬 EGYPT (MESIR) -->
+            <div class="dest-card-group" id="cardGroupEgypt">
+              <div class="dest-card-header">
+                <div class="dest-card-header-left">
+                  <span class="dest-flag-icon">🇪🇬</span>
+                  <div>
+                    <div class="dest-card-title">Egypt (Mesir) - Kaherah / Alexandria</div>
+                    <div class="dest-card-subtitle">Penginapan & Sajian Makanan Semasa Lawatan Ziarah Mesir</div>
+                  </div>
                 </div>
+                <span class="dest-badge dest-badge-egypt">Destinasi 1: Egypt</span>
               </div>
 
-              <div class="score-options-grid">
-                <!-- 2 Markah: Terbaik -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat3" value="2" class="score-radio-input" required>
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⭐⭐ 2</div>
-                    <div class="score-text-label">Terbaik</div>
-                    <div class="score-pts-tag">2 Markah</div>
+              <div class="dest-aspects-body">
+                <!-- 1. Bilik Hotel di Egypt -->
+                <div class="dest-aspect-item" id="aspect_hotel_room_egypt">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🛏️</span>
+                    <span>1. Respon kepada Bilik Hotel di Egypt <span style="color:var(--danger)">*</span></span>
                   </div>
-                </label>
-                <!-- 1 Markah: Memuaskan -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat3" value="1" class="score-radio-input">
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⭐ 1</div>
-                    <div class="score-text-label">Memuaskan</div>
-                    <div class="score-pts-tag">1 Markah</div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_egypt" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_egypt" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_egypt" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-                <!-- 0 Markah: Tidak Puas Hati -->
-                <label class="score-option-label">
-                  <input type="radio" name="cat3" value="0" class="score-radio-input">
-                  <div class="score-btn-tile">
-                    <div class="score-num-pill">⚠️ 0</div>
-                    <div class="score-text-label">Tidak Puas Hati</div>
-                    <div class="score-pts-tag">0 Markah</div>
+                  <span class="error-text" id="err_hotel_room_egypt">Sila pilih penilaian bagi bilik hotel di Egypt.</span>
+                </div>
+
+                <!-- 2. Perkhidmatan Hotel di Egypt -->
+                <div class="dest-aspect-item" id="aspect_hotel_service_egypt">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🛎️</span>
+                    <span>2. Respon kepada Perkhidmatan Hotel di Egypt <span style="color:var(--danger)">*</span></span>
                   </div>
-                </label>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_egypt" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_egypt" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_egypt" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_hotel_service_egypt">Sila pilih penilaian bagi perkhidmatan hotel di Egypt.</span>
+                </div>
+
+                <!-- 3. Makanan di Egypt -->
+                <div class="dest-aspect-item" id="aspect_food_egypt">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🍽️</span>
+                    <span>3. Respon kepada Makanan di Egypt <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="food_egypt" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="food_egypt" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="food_egypt" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_food_egypt">Sila pilih penilaian bagi makanan di Egypt.</span>
+                </div>
               </div>
-              <span class="error-text" id="cat3Error" style="margin-top:0.4rem;">Sila pilih salah satu markah bagi Kategori 3.</span>
+            </div>
+
+            <!-- DESTINASI 2: 🇸🇦 MADINAH -->
+            <div class="dest-card-group" id="cardGroupMadinah">
+              <div class="dest-card-header">
+                <div class="dest-card-header-left">
+                  <span class="dest-flag-icon">🇸🇦</span>
+                  <div>
+                    <div class="dest-card-title">Madinah Al-Munawwarah</div>
+                    <div class="dest-card-subtitle">Penginapan & Sajian Berhampiran Masjid Nabawi</div>
+                  </div>
+                </div>
+                <span class="dest-badge dest-badge-madinah">Destinasi 2: Madinah</span>
+              </div>
+
+              <div class="dest-aspects-body">
+                <!-- 1. Bilik Hotel di Madinah -->
+                <div class="dest-aspect-item" id="aspect_hotel_room_madinah">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🛏️</span>
+                    <span>1. Respon kepada Bilik Hotel di Madinah <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_madinah" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_madinah" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_madinah" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_hotel_room_madinah">Sila pilih penilaian bagi bilik hotel di Madinah.</span>
+                </div>
+
+                <!-- 2. Perkhidmatan Hotel di Madinah -->
+                <div class="dest-aspect-item" id="aspect_hotel_service_madinah">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🛎️</span>
+                    <span>2. Respon kepada Perkhidmatan Hotel di Madinah <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_madinah" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_madinah" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_madinah" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_hotel_service_madinah">Sila pilih penilaian bagi perkhidmatan hotel di Madinah.</span>
+                </div>
+
+                <!-- 3. Makanan di Madinah -->
+                <div class="dest-aspect-item" id="aspect_food_madinah">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🍽️</span>
+                    <span>3. Respon kepada Makanan di Madinah <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="food_madinah" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="food_madinah" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="food_madinah" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_food_madinah">Sila pilih penilaian bagi makanan di Madinah.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DESTINASI 3: 🕋 MEKAH -->
+            <div class="dest-card-group" id="cardGroupMekah">
+              <div class="dest-card-header">
+                <div class="dest-card-header-left">
+                  <span class="dest-flag-icon">🕋</span>
+                  <div>
+                    <div class="dest-card-title">Mekah Al-Mukarramah</div>
+                    <div class="dest-card-subtitle">Penginapan & Sajian Berhampiran Masjidil Haram</div>
+                  </div>
+                </div>
+                <span class="dest-badge dest-badge-mekah">Destinasi 3: Mekah</span>
+              </div>
+
+              <div class="dest-aspects-body">
+                <!-- 1. Bilik Hotel di Mekah -->
+                <div class="dest-aspect-item" id="aspect_hotel_room_mekah">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🛏️</span>
+                    <span>1. Respon kepada Bilik Hotel di Mekah <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_mekah" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_mekah" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_room_mekah" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_hotel_room_mekah">Sila pilih penilaian bagi bilik hotel di Mekah.</span>
+                </div>
+
+                <!-- 2. Perkhidmatan Hotel di Mekah -->
+                <div class="dest-aspect-item" id="aspect_hotel_service_mekah">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🛎️</span>
+                    <span>2. Respon kepada Perkhidmatan Hotel di Mekah <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_mekah" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_mekah" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="hotel_service_mekah" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_hotel_service_mekah">Sila pilih penilaian bagi perkhidmatan hotel di Mekah.</span>
+                </div>
+
+                <!-- 3. Makanan di Mekah -->
+                <div class="dest-aspect-item" id="aspect_food_mekah">
+                  <div class="dest-aspect-title">
+                    <span class="aspect-icon">🍽️</span>
+                    <span>3. Respon kepada Makanan di Mekah <span style="color:var(--danger)">*</span></span>
+                  </div>
+                  <div class="score-options-grid">
+                    <label class="score-option-label">
+                      <input type="radio" name="food_mekah" value="2" class="score-radio-input" required>
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐⭐ 2</div>
+                        <div class="score-text-label">Terbaik</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="food_mekah" value="1" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⭐ 1</div>
+                        <div class="score-text-label">Memuaskan</div>
+                      </div>
+                    </label>
+                    <label class="score-option-label">
+                      <input type="radio" name="food_mekah" value="0" class="score-radio-input">
+                      <div class="score-btn-tile">
+                        <div class="score-num-pill">⚠️ 0</div>
+                        <div class="score-text-label">Tidak Puas Hati</div>
+                      </div>
+                    </label>
+                  </div>
+                  <span class="error-text" id="err_food_mekah">Sila pilih penilaian bagi makanan di Mekah.</span>
+                </div>
+              </div>
             </div>
 
           </div>
 
+          <!-- FOOTER BAR PAGE 2 -->
+          <div class="step-nav-bar">
+            <button type="button" class="btn btn-secondary" id="btnPrevStep2" style="padding:0.75rem 1.25rem;">
+              ⬅ Kembali ke Page 1
+            </button>
+            <span class="step-indicator-tag">Langkah <strong>2 daripada 3</strong></span>
+            <button type="button" class="btn btn-primary" id="btnNextStep2" style="font-weight:700; padding:0.75rem 1.5rem;">
+              Seterusnya: Tempat Ziarah (Page 3) ➔
+            </button>
+          </div>
         </div>
 
-        <!-- FOOTER BAR: BUTANG HANTAR & KIRA GRAF -->
-        <div class="card-footer-bar" style="display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:0.8rem; color:var(--text-muted);">
-            Jumlah Markah Maksimum: <strong>6 Markah (100%)</strong>
-          </span>
-          <button type="submit" class="btn btn-primary" id="btnSubmitForm" style="font-weight:700; padding:0.8rem 1.75rem; font-size:1rem;">
-            📊 Hantar & Kira Keputusan Graf ✓
-          </button>
+
+        <!-- ===================================================================
+             HALAMAN 3: TEMPAT ZIARAH & ULASAN TERBUKA (PAGE 3)
+             =================================================================== -->
+        <div class="step-page" id="stepPage3">
+          <div class="card-header-bar">
+            <div>
+              <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Halaman 3 daripada 3</span>
+              <h3 style="margin-top:2px;">Tempat Ziarah & Maklum Balas Terbuka</h3>
+            </div>
+            <span class="step-badge" style="background:var(--primary);">Langkah 3/3</span>
+          </div>
+
+          <div class="form-body">
+            <div class="alert-box alert-info">
+              <span class="alert-icon">🏛️</span>
+              <div>
+                <strong>Penilaian Tempat Ziarah & Cadangan:</strong> Sila berikan respon bagi aktiviti ziarah di Egypt, Madinah, dan Mekah, serta kongsikan cadangan penambahbaikan anda dalam ruangan ulasan (maksimum 500 huruf).
+              </div>
+            </div>
+
+            <!-- PENILAIAN ZIARAH 3 LOKASI -->
+            <div class="validation-questions-section" style="margin-top: 1rem;">
+              
+              <!-- Ziarah Egypt -->
+              <div class="question-category-card" id="card_ziarah_egypt">
+                <div class="cat-header">
+                  <div class="cat-num-badge">🇪🇬</div>
+                  <div class="cat-title-text">
+                    <div class="cat-title">Tempat Ziarah di Egypt (Mesir) <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Piramid Giza, Kubu Salahuddin Al-Ayyubi, Masjid Al-Azhar, Sungai Nil & tempat bersejarah Mesir.</div>
+                  </div>
+                </div>
+                <div class="score-options-grid">
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_egypt" value="2" class="score-radio-input" required>
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐⭐ 2</div>
+                      <div class="score-text-label">Terbaik</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_egypt" value="1" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-text-label">Memuaskan</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_egypt" value="0" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⚠️ 0</div>
+                      <div class="score-text-label">Tidak Puas Hati</div>
+                    </div>
+                  </label>
+                </div>
+                <span class="error-text" id="err_ziarah_egypt">Sila pilih penilaian bagi tempat ziarah di Egypt.</span>
+              </div>
+
+              <!-- Ziarah Madinah -->
+              <div class="question-category-card" id="card_ziarah_madinah">
+                <div class="cat-header">
+                  <div class="cat-num-badge">🇸🇦</div>
+                  <div class="cat-title-text">
+                    <div class="cat-title">Tempat Ziarah di Madinah Al-Munawwarah <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Masjid Nabawi, Raudhah, Masjid Quba, Jabal Uhud, Qiblatain & Ladang Kurma Madinah.</div>
+                  </div>
+                </div>
+                <div class="score-options-grid">
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_madinah" value="2" class="score-radio-input" required>
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐⭐ 2</div>
+                      <div class="score-text-label">Terbaik</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_madinah" value="1" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-text-label">Memuaskan</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_madinah" value="0" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⚠️ 0</div>
+                      <div class="score-text-label">Tidak Puas Hati</div>
+                    </div>
+                  </label>
+                </div>
+                <span class="error-text" id="err_ziarah_madinah">Sila pilih penilaian bagi tempat ziarah di Madinah.</span>
+              </div>
+
+              <!-- Ziarah Mekah -->
+              <div class="question-category-card" id="card_ziarah_mekah">
+                <div class="cat-header">
+                  <div class="cat-num-badge">🕋</div>
+                  <div class="cat-title-text">
+                    <div class="cat-title">Tempat Ziarah di Mekah Al-Mukarramah <span style="color:var(--danger)">*</span></div>
+                    <div class="cat-desc">Masjidil Haram, Jabal Nur (Gua Hira'), Jabal Thur, Jabal Rahmah (Arafah), Muzdalifah & Mina.</div>
+                  </div>
+                </div>
+                <div class="score-options-grid">
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_mekah" value="2" class="score-radio-input" required>
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐⭐ 2</div>
+                      <div class="score-text-label">Terbaik</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_mekah" value="1" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⭐ 1</div>
+                      <div class="score-text-label">Memuaskan</div>
+                    </div>
+                  </label>
+                  <label class="score-option-label">
+                    <input type="radio" name="ziarah_mekah" value="0" class="score-radio-input">
+                    <div class="score-btn-tile">
+                      <div class="score-num-pill">⚠️ 0</div>
+                      <div class="score-text-label">Tidak Puas Hati</div>
+                    </div>
+                  </label>
+                </div>
+                <span class="error-text" id="err_ziarah_mekah">Sila pilih penilaian bagi tempat ziarah di Mekah.</span>
+              </div>
+
+            </div>
+
+            <!-- RUANGAN ULASAN TERBUKA (MAKSIMUM 500 HURUF) -->
+            <div class="form-group" style="margin-top: 1.75rem;">
+              <label for="ziarahFeedback">
+                <strong>Ulasan, Pengalaman Ziarah & Cadangan Penambahbaikan</strong>
+                <span class="label-hint">Pilihan (Maksimum 500 huruf)</span>
+              </label>
+              <div class="textarea-counter-wrap">
+                <textarea 
+                  id="ziarahFeedback" 
+                  name="ziarahFeedback" 
+                  class="textarea-feedback" 
+                  rows="4" 
+                  maxlength="500" 
+                  placeholder="Kongsikan pengalaman ziarah anda, mutawwif pembimbing, pengangkutan, kemudahan hotel, atau sebarang cadangan untuk penambahbaikan perkhidmatan Andalusia Travel..."
+                ></textarea>
+                <div class="char-counter-bar">
+                  <span>Had maksimum: 500 huruf</span>
+                  <span class="char-counter-tag" id="charCounterTag">
+                    <span id="charCount">0</span> / 500 huruf
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FOOTER BAR PAGE 3 -->
+          <div class="step-nav-bar">
+            <button type="button" class="btn btn-secondary" id="btnPrevStep3" style="padding:0.75rem 1.25rem;">
+              ⬅ Kembali ke Page 2
+            </button>
+            <span class="step-indicator-tag">Langkah <strong>3 daripada 3</strong></span>
+            <button type="submit" class="btn btn-primary" id="btnSubmitForm" style="font-weight:700; padding:0.8rem 1.75rem; font-size:1rem;">
+              📊 Hantar & Kira Keputusan Graf ✓
+            </button>
+          </div>
         </div>
+
       </form>
     </div>
 
@@ -259,7 +816,7 @@
 
   <!-- MODAL KEPUTUSAN GRAF VALIDASI (RESULT GRAPH MODAL) -->
   <div class="modal-overlay" id="resultGraphModal">
-    <div class="modal-dialog" style="max-width: 640px;">
+    <div class="modal-dialog" style="max-width: 680px;">
       
       <div class="modal-header">
         <div class="modal-success-icon" style="background:#d1fae5; color:var(--primary); font-size:1.75rem;">📊</div>
@@ -290,75 +847,127 @@
             <div class="score-main-value-wrap">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Jumlah Skor Terkumpul</span>
               <div class="score-big-num">
-                <span id="resTotalScore">5</span>
-                <span class="max-denom">/ 6</span>
+                <span id="resTotalScore">28</span>
+                <span class="max-denom">/ 30</span>
               </div>
-              <span class="score-percentage-tag" id="resPercentageTag">83% Skor Validasi</span>
+              <span class="score-percentage-tag" id="resPercentageTag">93% Skor Validasi</span>
             </div>
             <div>
               <span class="rating-badge-pill rating-excellent" id="resRatingBadge">
                 ⭐ CEMERLANG
               </span>
               <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.4rem;" id="resRatingSubtext">
-                Tahap Kepuasan Tinggi
+                Tahap Kepuasan Sangat Tinggi
               </div>
             </div>
           </div>
 
-          <!-- Carta Palang Mengufuk (3 Kategori Breakdown) -->
+          <!-- GRAF PERBANDINGAN MENGIKUT DESTINASI (EGYPT, MADINAH, MEKAH) -->
+          <div class="dest-comparison-section">
+            <div style="font-size:0.85rem; font-weight:800; color:var(--secondary); display:flex; justify-content:space-between; align-items:center;">
+              <span>ANALISIS KEPUASAN MENGIKUT DESTINASI</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Maksimum 8 Markah Setiap Destinasi</span>
+            </div>
+            <div class="dest-comparison-grid">
+              <!-- Egypt -->
+              <div class="dest-stat-tile">
+                <div class="dest-stat-name"><span>🇪🇬</span> Egypt (Mesir)</div>
+                <div class="dest-stat-score" id="resDestScoreEgypt">8 / 8</div>
+                <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="resDestPercentEgypt">100% Kepuasan</span>
+              </div>
+              <!-- Madinah -->
+              <div class="dest-stat-tile">
+                <div class="dest-stat-name"><span>🇸🇦</span> Madinah</div>
+                <div class="dest-stat-score" id="resDestScoreMadinah">8 / 8</div>
+                <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="resDestPercentMadinah">100% Kepuasan</span>
+              </div>
+              <!-- Mekah -->
+              <div class="dest-stat-tile">
+                <div class="dest-stat-name"><span>🕋</span> Mekah</div>
+                <div class="dest-stat-score" id="resDestScoreMekah">7 / 8</div>
+                <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="resDestPercentMekah">88% Kepuasan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARTA PALANG MENGIKUT 5 DIMENSI -->
           <div>
             <div style="font-size:0.85rem; font-weight:700; color:var(--secondary); margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center;">
-              <span>PECAHAN SKOR MENGIKUT KATEGORI</span>
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Maksimum 2 Markah Setiap Kategori</span>
+              <span>PECAHAN SKOR MENGIKUT DIMENSI PENGALAMAN</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Maksimum 6 Markah Setiap Dimensi</span>
             </div>
 
             <div class="chart-bars-wrap">
-              
-              <!-- Kategori 1 Bar -->
+              <!-- Dimensi 1: Khidmat Andalusia -->
               <div class="chart-bar-item">
                 <div class="chart-item-header">
-                  <span class="chart-item-title">
-                    <span style="color:var(--primary); font-weight:800;">1.</span> Layanan & Khidmat Pegawai
-                  </span>
-                  <span class="chart-item-score" id="barScoreCat1">2 / 2 (Terbaik)</span>
+                  <span class="chart-item-title"><span style="color:var(--primary); font-weight:800;">1.</span> Khidmat & Urusan Andalusia</span>
+                  <span class="chart-item-score" id="barScoreDim1">6 / 6 (Terbaik)</span>
                 </div>
                 <div class="chart-track">
-                  <div class="chart-fill fill-emerald" id="barFillCat1" style="width: 100%;"></div>
+                  <div class="chart-fill fill-emerald" id="barFillDim1" style="width: 100%;"></div>
                 </div>
               </div>
 
-              <!-- Kategori 2 Bar -->
+              <!-- Dimensi 2: Bilik Hotel -->
               <div class="chart-bar-item">
                 <div class="chart-item-header">
-                  <span class="chart-item-title">
-                    <span style="color:var(--gold); font-weight:800;">2.</span> Ketepatan Maklumat & Pakej
-                  </span>
-                  <span class="chart-item-score" id="barScoreCat2">1 / 2 (Memuaskan)</span>
+                  <span class="chart-item-title"><span style="color:var(--gold); font-weight:800;">2.</span> Kemudahan Bilik Hotel (3 Lokasi)</span>
+                  <span class="chart-item-score" id="barScoreDim2">6 / 6 (Terbaik)</span>
                 </div>
                 <div class="chart-track">
-                  <div class="chart-fill fill-gold" id="barFillCat2" style="width: 50%;"></div>
+                  <div class="chart-fill fill-emerald" id="barFillDim2" style="width: 100%;"></div>
                 </div>
               </div>
 
-              <!-- Kategori 3 Bar -->
+              <!-- Dimensi 3: Perkhidmatan Hotel -->
               <div class="chart-bar-item">
                 <div class="chart-item-header">
-                  <span class="chart-item-title">
-                    <span style="color:var(--primary); font-weight:800;">3.</span> Kemudahan & Kelancaran Proses
-                  </span>
-                  <span class="chart-item-score" id="barScoreCat3">2 / 2 (Terbaik)</span>
+                  <span class="chart-item-title"><span style="color:var(--primary); font-weight:800;">3.</span> Perkhidmatan Hotel (3 Lokasi)</span>
+                  <span class="chart-item-score" id="barScoreDim3">5 / 6 (Memuaskan)</span>
                 </div>
                 <div class="chart-track">
-                  <div class="chart-fill fill-emerald" id="barFillCat3" style="width: 100%;"></div>
+                  <div class="chart-fill fill-gold" id="barFillDim3" style="width: 83%;"></div>
                 </div>
               </div>
 
+              <!-- Dimensi 4: Makanan & Sajian -->
+              <div class="chart-bar-item">
+                <div class="chart-item-header">
+                  <span class="chart-item-title"><span style="color:var(--gold); font-weight:800;">4.</span> Makanan & Sajian (3 Lokasi)</span>
+                  <span class="chart-item-score" id="barScoreDim4">6 / 6 (Terbaik)</span>
+                </div>
+                <div class="chart-track">
+                  <div class="chart-fill fill-emerald" id="barFillDim4" style="width: 100%;"></div>
+                </div>
+              </div>
+
+              <!-- Dimensi 5: Tempat Ziarah -->
+              <div class="chart-bar-item">
+                <div class="chart-item-header">
+                  <span class="chart-item-title"><span style="color:var(--primary); font-weight:800;">5.</span> Pengalaman Tempat Ziarah (3 Lokasi)</span>
+                  <span class="chart-item-score" id="barScoreDim5">5 / 6 (Memuaskan)</span>
+                </div>
+                <div class="chart-track">
+                  <div class="chart-fill fill-gold" id="barFillDim5" style="width: 83%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KOTAK ULASAN ZIARAH JEMAAH (500 HURUF) -->
+          <div class="feedback-quote-card" id="resFeedbackWrap" style="display:none;">
+            <div class="feedback-quote-title">
+              <span>💬</span> Ulasan & Maklum Balas Jemaah:
+            </div>
+            <div class="feedback-quote-text" id="resFeedbackText">
+              "Alhamdulillah pengalaman ziarah ke Mesir, Madinah dan Mekah sangat memuaskan..."
             </div>
           </div>
 
           <!-- Kotak Ulasan / Analisis Graf -->
           <div class="graph-insight-box" id="resInsightBox">
-            <strong>Analisis Sistem:</strong> Tahniah! Anda memberikan maklum balas positif yang sangat tinggi. Pegawai operasi kami telah menerima pendaftaran ini dan akan menghubungi anda untuk tindakan lanjut.
+            <strong>Analisis Sistem:</strong> Tahniah! Anda memberikan maklum balas positif yang sangat tinggi. Pegawai operasi kami telah menerima maklumat ini dan akan menghubungi anda untuk tindakan lanjut.
           </div>
 
         </div>
