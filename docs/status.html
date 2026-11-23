@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semakan Status Validasi Dokumen | Andalusia Travel</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .status-search-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+    }
+    .timeline-container {
+      position: relative;
+      padding: 1.5rem 0;
+      margin: 1.5rem 0;
+    }
+    .timeline-track {
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      background: #e2e8f0;
+      z-index: 1;
+    }
+    .timeline-track-fill {
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      height: 4px;
+      background: var(--primary);
+      z-index: 2;
+      transition: width 0.4s ease;
+      width: 66%;
+    }
+    .timeline-nodes {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 3;
+    }
+    .timeline-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+    }
+    .node-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+    .timeline-node.done .node-icon {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+    .timeline-node.current .node-icon {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 0 0 5px var(--primary-light);
+    }
+    .node-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .timeline-node.current .node-title,
+    .timeline-node.done .node-title {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+    .doc-check-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .doc-check-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand">
+        <div class="brand-logo-icon">🕋</div>
+        <div class="brand-text">
+          <h1>ANDALUSIA <span>TRAVEL & TOURS</span></h1>
+          <p>Sistem Validasi & Pengesahan Dokumen Jemaah (Vali-Lusia)</p>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Borang Validasi</a>
+        <a href="status.html" class="nav-link active">Semakan Status</a>
+        <a href="admin_review.html" class="nav-link btn-gold">Portal Pegawai 🔒</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Kandungan -->
+  <main class="main-wrapper">
+    <div class="page-intro">
+      <h2>Semakan Status Validasi & Dokumen</h2>
+      <p>Masukkan No. Kad Pengenalan / Pasport dan Kod Validasi atau No. Tempahan anda untuk menyemak kemajuan proses pengesahan.</p>
+    </div>
+
+    <!-- Kotak Carian -->
+    <div class="status-search-card">
+      <form id="searchStatusForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="searchIc">No. Kad Pengenalan / Pasport <span style="color:var(--danger)">*</span></label>
+            <div class="input-container">
+              <span class="input-icon">🪪</span>
+              <input type="text" id="searchIc" class="form-control" placeholder="Contoh: 880512-14-5521 atau A52918234" value="880512-14-5521" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="searchCode">Kod Validasi / No. Tempahan <span style="color:var(--danger)">*</span></label>
+            <div class="input-container">
+              <span class="input-icon">🔖</span>
+              <input type="text" id="searchCode" class="form-control" placeholder="Contoh: VAL-882194 atau AND-2026-8801" value="VAL-882194" required>
+            </div>
+          </div>
+          <div class="grid-full" style="display:flex; justify-content:flex-end;">
+            <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem;">
+              🔍 Semak Status Sekarang
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Hasil Semakan Status (Default Contoh Paparan) -->
+    <div class="form-card" id="statusResultCard">
+      <div class="card-header-bar">
+        <div>
+          <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Status Terkini:</span>
+          <h3 id="res_status_title" style="margin-top:2px;">Telah Disahkan (Verified) ✓</h3>
+        </div>
+        <span class="admin-badge badge-verified" id="res_status_badge">DISAHKAN</span>
+      </div>
+
+      <div class="form-body">
+        
+        <!-- Timeline Stepper -->
+        <div class="timeline-container">
+          <div class="timeline-track"></div>
+          <div class="timeline-track-fill" id="timelineFill" style="width: 100%;"></div>
+          <div class="timeline-nodes">
+            <div class="timeline-node done">
+              <div class="node-icon">✓</div>
+              <span class="node-title">Borang Diterima</span>
+            </div>
+            <div class="timeline-node done">
+              <div class="node-icon">✓</div>
+              <span class="node-title">Semakan Dokumen</span>
+            </div>
+            <div class="timeline-node done">
+              <div class="node-icon">✓</div>
+              <span class="node-title">Kelulusan Visa & Tiket</span>
+            </div>
+            <div class="timeline-node done">
+              <div class="node-icon">✈️</div>
+              <span class="node-title">Sedia Pelepasan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Butiran Jemaah & Pakej -->
+        <div class="summary-section" style="margin-top:1.5rem;">
+          <div class="summary-title-bar">
+            <span>RINGKASAN MAKLUMAT JEMAAH & PAKEJ</span>
+            <span id="res_code" style="font-family:monospace; color:var(--primary); font-weight:800;">VAL-882194</span>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-item-label">Nama Pemohon:</span>
+              <span class="summary-item-value" id="res_fullName">MUHAMMAD AMIN BIN ABDULLAH</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">No. MyKad:</span>
+              <span class="summary-item-value" id="res_icNumber">880512-14-5521</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">No. Pasport Antarabangsa:</span>
+              <span class="summary-item-value" id="res_passport">A52918234 (Sah hingga 20/11/2028)</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">No. Rujukan Tempahan:</span>
+              <span class="summary-item-value" id="res_bookingRef">AND-2026-8801</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">Pakej Perjalanan:</span>
+              <span class="summary-item-value" id="res_package">Pakej Umrah Cuti Sekolah Disember 2026 (12H 10M)</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">Tarikh Pelepasan:</span>
+              <span class="summary-item-value" id="res_departure">18 Disember 2026 (Saudi Airlines)</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">Cawangan Bertanggungjawab:</span>
+              <span class="summary-item-value" id="res_branch">Ibu Pejabat Desa Pandan, KL</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-item-label">Jenis Bilik Ditempah:</span>
+              <span class="summary-item-value" id="res_room">Bilik Berdua (Double)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Semakan Setiap Dokumen -->
+        <div class="summary-section">
+          <div class="summary-title-bar">
+            <span>STATUS PENGESAHAN DOKUMEN SOKONGAN</span>
+          </div>
+          <div style="background:white;">
+            <div class="doc-check-item">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="font-size:1.25rem;">📄</span>
+                <div>
+                  <div style="font-weight:600; font-size:0.9rem;">Salinan Muka Surat Pasport Antarabangsa</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">passport_amin.jpg (1.45 MB)</div>
+                </div>
+              </div>
+              <span class="admin-badge badge-verified">✓ DITERIMA & SAH</span>
+            </div>
+
+            <div class="doc-check-item">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="font-size:1.25rem;">🪪</span>
+                <div>
+                  <div style="font-weight:600; font-size:0.9rem;">Salinan Kad Pengenalan (MyKad)</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">mykad_amin.pdf (840 KB)</div>
+                </div>
+              </div>
+              <span class="admin-badge badge-verified">✓ DITERIMA & SAH</span>
+            </div>
+
+            <div class="doc-check-item">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="font-size:1.25rem;">🧾</span>
+                <div>
+                  <div style="font-weight:600; font-size:0.9rem;">Resit Pembayaran Pakej</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">resit_bayaran_penuh.pdf (520 KB)</div>
+                </div>
+              </div>
+              <span class="admin-badge badge-verified">✓ BAYARAN PENUH DISAHKAN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nota / Ulasan Pegawai Penyemak -->
+        <div class="alert-box alert-info" style="margin-top:1.5rem;">
+          <span class="alert-icon">👨‍💼</span>
+          <div>
+            <strong>Catatan Pegawai Operasi (Ustaz Farhan Mohd - HQ Desa Pandan):</strong><br>
+            Dokumen jemaah telah lengkap disahkan dan melepasi syarat permohonan visa pelancongan/umrah Arab Saudi. Taklimat pelepasan dan pengedaran beg bagasi jemaah akan diadakan seminggu sebelum tarikh pelepasan.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer-bar">
+        <a href="index.html" class="btn btn-secondary">← Borang Validasi Baharu</a>
+        <button type="button" class="btn btn-gold" onclick="window.print()">
+          🖨️ Cetak Slip Pengesahan Pendaftaran
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-brand">Andalusia Travel & Tours Sdn Bhd</div>
+        <div style="font-size:0.8rem; margin-top:0.25rem;">Talian Bantuan Cawangan & Khidmat Jemaah: 03-9284 8888</div>
+      </div>
+      <div style="font-size:0.8rem;">
+        &copy; 2026 Andalusia Travel. Sistem Validasi Borang Jemaah (Vali-Lusia).
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Logik Carian Dinamik Status Menggunakan LocalStorage
+    document.getElementById('searchStatusForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const codeQuery = document.getElementById('searchCode').value.trim().toUpperCase();
+      const icQuery = document.getElementById('searchIc').value.trim().replace(/\D/g, '');
+
+      const storedList = JSON.parse(localStorage.getItem('vali_lusia_submissions') || '[]');
+      const found = storedList.find(item => 
+        (item.code && item.code.toUpperCase() === codeQuery) || 
+        (item.bookingRef && item.bookingRef.toUpperCase() === codeQuery) ||
+        (item.icNumber && item.icNumber.replace(/\D/g, '') === icQuery)
+      );
+
+      if (found) {
+        document.getElementById('res_code').textContent = found.code;
+        document.getElementById('res_fullName').textContent = found.fullName;
+        document.getElementById('res_icNumber').textContent = found.icNumber;
+        document.getElementById('res_passport').textContent = `${found.passportNumber} (Sah hingga ${found.passportExpiry})`;
+        document.getElementById('res_bookingRef').textContent = found.bookingRef;
+        document.getElementById('res_package').textContent = found.packageName;
+        document.getElementById('res_departure').textContent = found.departureDate;
+        document.getElementById('res_branch').textContent = found.branchName;
+        
+        const badge = document.getElementById('res_status_badge');
+        const title = document.getElementById('res_status_title');
+        const fill = document.getElementById('timelineFill');
+
+        if (found.status === 'VERIFIED') {
+          badge.className = 'admin-badge badge-verified';
+          badge.textContent = 'DISAHKAN';
+          title.textContent = 'Telah Disahkan (Verified) ✓';
+          fill.style.width = '100%';
+        } else {
+          badge.className = 'admin-badge badge-pending';
+          badge.textContent = 'DALAM SEMAKAN';
+          title.textContent = 'Sedang Disemak Oleh Pegawai ⏳';
+          fill.style.width = '50%';
+        }
+
+        alert(`Rekod ditemui untuk ${found.fullName} (${found.code})`);
+      } else {
+        alert("Rekod tidak ditemui dalam simpanan tempatan. Menampilkan contoh rekod lalai (VAL-882194).");
+      }
+    });
+  </script>
+</body>
+</html>
