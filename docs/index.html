@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Borang Validasi Travel & Umrah | Andalusia Travel & Tours</title>
+  <title>Borang Pendaftaran Jemaah | Andalusia Travel & Tours</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,11 +15,11 @@
         <div class="brand-logo-icon">🕋</div>
         <div class="brand-text">
           <h1>ANDALUSIA <span>TRAVEL & TOURS</span></h1>
-          <p>Sistem Validasi & Pengesahan Dokumen Jemaah (Vali-Lusia)</p>
+          <p>Sistem Pendaftaran Maklumat Jemaah (Vali-Lusia)</p>
         </div>
       </a>
       <nav class="header-nav">
-        <a href="index.html" class="nav-link active">Borang Validasi</a>
+        <a href="index.html" class="nav-link active">Borang Maklumat</a>
         <a href="status.html" class="nav-link">Semakan Status</a>
         <a href="admin_review.html" class="nav-link btn-gold">Portal Pegawai 🔒</a>
       </nav>
@@ -30,478 +30,79 @@
   <main class="main-wrapper">
     
     <div class="page-intro">
-      <h2>Pengesahan Maklumat & Dokumen Perjalanan</h2>
-      <p>Sila lengkapkan butiran peribadi, maklumat pasport antarabangsa, dan muat naik dokumen sokongan bagi tujuan permohonan visa dan tiket penerbangan.</p>
+      <h2>Pendaftaran Maklumat Jemaah</h2>
+      <p>Sila masukkan nama penuh dan nombor telefon anda. Pegawai khidmat pelanggan kami akan menghubungi anda untuk tindakan selanjutnya.</p>
     </div>
 
-    <!-- Multi-Step Stepper Header -->
-    <div class="stepper-container">
-      <div class="stepper-progress-bar"></div>
-      <ul class="stepper-list">
-        <li class="step-item active" data-step="1">
-          <div class="step-circle">1</div>
-          <span class="step-label">Maklumat Jemaah</span>
-        </li>
-        <li class="step-item" data-step="2">
-          <div class="step-circle">2</div>
-          <span class="step-label">Pakej & Perjalanan</span>
-        </li>
-        <li class="step-item" data-step="3">
-          <div class="step-circle">3</div>
-          <span class="step-label">Pasport & Dokumen</span>
-        </li>
-        <li class="step-item" data-step="4">
-          <div class="step-circle">4</div>
-          <span class="step-label">Semakan & Hantar</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Form Container -->
-    <div class="form-card">
+    <!-- Form Container (Hanya Nama & No Phone) -->
+    <div class="form-card" style="max-width: 620px; margin: 0 auto;">
       <div class="card-header-bar">
-        <h3 id="stepHeaderTitle">Langkah 1: Maklumat Peribadi & Jemaah</h3>
-        <span class="step-badge" id="stepBadge">Langkah 1 / 4</span>
+        <h3>Borang Maklumat Jemaah</h3>
+        <span class="step-badge" style="background:var(--primary);">Pendaftaran Pantas</span>
       </div>
 
-      <form id="validationForm" novalidate>
+      <form id="simpleForm" novalidate>
         <div class="form-body">
 
-          <!-- ============================================================
-               LANGKAH 1: MAKLUMAT JEMAAH
-               ============================================================ -->
-          <div class="step-content active" data-step="1">
-            <div class="alert-box alert-info">
-              <span class="alert-icon">ℹ️</span>
-              <div>
-                <strong>Peringatan Penting:</strong> Pastikan nama penuh dieja tepat seperti yang tertera dalam pasport antarabangsa atau kad pengenalan rasmi anda untuk mengelakkan kesulitan pengeluaran visa.
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <!-- Nama Penuh -->
-              <div class="form-group grid-full">
-                <label for="fullName">
-                  Nama Penuh (Mengikut Pasport) <span style="color:var(--danger)">*</span>
-                  <span class="label-hint">Huruf besar automatik</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">👤</span>
-                  <input type="text" id="fullName" class="form-control" placeholder="CONTOH: AHMAD DANIAL BIN ABDUL AZIZ" required style="text-transform:uppercase;">
-                </div>
-                <span class="error-text">Sila masukkan nama penuh seperti dalam pasport.</span>
-              </div>
-
-              <!-- No Kad Pengenalan -->
-              <div class="form-group">
-                <label for="icNumber">
-                  No. Kad Pengenalan (MyKad) <span style="color:var(--danger)">*</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🪪</span>
-                  <input type="text" id="icNumber" class="form-control" placeholder="920815-10-6188" maxlength="14" required>
-                </div>
-                <span class="help-text" id="icHint">Format: 12 digit (cth: 920815-10-6188)</span>
-                <span class="error-text">Nombor MyKad tidak sah.</span>
-              </div>
-
-              <!-- Jantina -->
-              <div class="form-group">
-                <label>Jantina <span style="color:var(--danger)">*</span></label>
-                <div style="display:flex; gap:1.5rem; padding:0.75rem 0;">
-                  <label style="font-weight:500; cursor:pointer; display:flex; align-items:center; gap:0.4rem;">
-                    <input type="radio" name="gender" value="LELAKI" checked> Lelaki
-                  </label>
-                  <label style="font-weight:500; cursor:pointer; display:flex; align-items:center; gap:0.4rem;">
-                    <input type="radio" name="gender" value="PEREMPUAN"> Perempuan
-                  </label>
-                </div>
-              </div>
-
-              <!-- Tarikh Lahir -->
-              <div class="form-group">
-                <label for="birthDate">Tarikh Lahir <span style="color:var(--danger)">*</span></label>
-                <div class="input-container">
-                  <span class="input-icon">📅</span>
-                  <input type="date" id="birthDate" class="form-control" required>
-                </div>
-              </div>
-
-              <!-- No Telefon WhatsApp -->
-              <div class="form-group">
-                <label for="phoneNumber">No. Telefon Bimbit (WhatsApp) <span style="color:var(--danger)">*</span></label>
-                <div class="input-container">
-                  <span class="input-icon">📱</span>
-                  <input type="tel" id="phoneNumber" class="form-control" placeholder="012-3456789" required>
-                </div>
-                <span class="error-text">Sila masukkan nombor telefon yang sah.</span>
-              </div>
-
-              <!-- Alamat Emel -->
-              <div class="form-group grid-full">
-                <label for="email">Alamat Emel <span style="color:var(--danger)">*</span></label>
-                <div class="input-container">
-                  <span class="input-icon">✉️</span>
-                  <input type="email" id="email" class="form-control" placeholder="nama@emel.com" required>
-                </div>
-                <span class="help-text">Salinan pengesahan dan notifikasi status visa akan dihantar ke emel ini.</span>
-                <span class="error-text">Sila masukkan format emel yang sah.</span>
-              </div>
-
-              <!-- Maklumat Waris Kecemasan -->
-              <div class="grid-full" style="margin-top:1rem; border-top:1px dashed var(--border-color); padding-top:1rem;">
-                <h4 style="font-size:1rem; color:var(--secondary); margin-bottom:0.75rem;">Maklumat Waris / Kecemasan</h4>
-              </div>
-
-              <div class="form-group">
-                <label for="emergencyName">Nama Waris Terdekat <span style="color:var(--danger)">*</span></label>
-                <input type="text" id="emergencyName" class="form-control" placeholder="Nama pasangan/ibu/bapa/anak" required>
-              </div>
-
-              <div class="form-group">
-                <label for="emergencyPhone">No. Telefon Waris <span style="color:var(--danger)">*</span></label>
-                <input type="tel" id="emergencyPhone" class="form-control" placeholder="019-8765432" required>
-              </div>
-
-              <div class="form-group grid-full">
-                <label for="emergencyRel">Hubungan Waris <span style="color:var(--danger)">*</span></label>
-                <select id="emergencyRel" class="form-control" required>
-                  <option value="">-- Pilih Hubungan --</option>
-                  <option value="Pasangan (Suami/Isteri)">Pasangan (Suami / Isteri)</option>
-                  <option value="Ibu / Bapa">Ibu / Bapa</option>
-                  <option value="Anak">Anak</option>
-                  <option value="Adik-Beradik">Adik-Beradik</option>
-                  <option value="Waris Lain">Waris Lain</option>
-                </select>
-              </div>
+          <div class="alert-box alert-info">
+            <span class="alert-icon">ℹ️</span>
+            <div>
+              <strong>Peringatan:</strong> Sila pastikan nama penuh dan nombor telefon yang diberikan adalah tepat dan aktif untuk dihubungi melalui WhatsApp atau panggilan.
             </div>
           </div>
 
-          <!-- ============================================================
-               LANGKAH 2: PAKEJ & PERJALANAN
-               ============================================================ -->
-          <div class="step-content" data-step="2">
-            <div class="form-grid">
-              <!-- No Rujukan Tempahan -->
-              <div class="form-group">
-                <label for="bookingRef">
-                  No. Rujukan Tempahan (Booking ID) <span style="color:var(--danger)">*</span>
-                  <span class="label-hint">Daripada resit deposit</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🔖</span>
-                  <input type="text" id="bookingRef" class="form-control" value="AND-2026-8801" required>
-                </div>
-                <span class="help-text">Cth: AND-2026-8801</span>
-              </div>
-
-              <!-- Pilihan Cawangan Andalusia -->
-              <div class="form-group">
-                <label for="branchSelect">Cawangan Pendaftaran <span style="color:var(--danger)">*</span></label>
-                <select id="branchSelect" class="form-control" required>
-                  <option value="BR-HQ">Ibu Pejabat Desa Pandan, KL</option>
-                  <option value="BR-SA">Cawangan Shah Alam Seksyen 9</option>
-                  <option value="BR-JB">Cawangan Johor Bahru (Bandar Baru Uda)</option>
-                  <option value="BR-KB">Cawangan Kota Bharu</option>
-                  <option value="BR-PNG">Cawangan Seberang Jaya, Pulau Pinang</option>
-                </select>
-              </div>
-
-              <!-- Pilihan Pakej -->
-              <div class="form-group grid-full">
-                <label for="packageSelect">Pakej Perjalanan / Umrah <span style="color:var(--danger)">*</span></label>
-                <select id="packageSelect" class="form-control" required>
-                  <option value="1" data-departure="2026-12-18">Pakej Umrah Cuti Sekolah Disember 2026 (12H 10M) - Saudi Airlines (SV)</option>
-                  <option value="2" data-departure="2027-01-15">Pakej Umrah Awal Rejab Musim Sejuk (12H 10M) - Malaysia Airlines (MH)</option>
-                  <option value="3" data-departure="2027-03-05">Pakej Umrah Ramadhan Al-Mubarak 1448H - Saudi Airlines (SV)</option>
-                  <option value="4" data-departure="2026-12-22">Pelancongan Grand Turki & Bursa Musim Salji - Turkish Airlines (TK)</option>
-                </select>
-              </div>
-
-              <!-- Tarikh Pelepasan -->
-              <div class="form-group">
-                <label for="departureDate">Tarikh Penerbangan Pelepasan <span style="color:var(--danger)">*</span></label>
-                <div class="input-container">
-                  <span class="input-icon">✈️</span>
-                  <input type="date" id="departureDate" class="form-control" value="2026-12-18" required readonly style="background:#f8fafc;">
-                </div>
-                <span class="help-text">Ditetapkan automatik mengikut pakej yang dipilih.</span>
-              </div>
-
-              <!-- Jenis Bilik Penginapan -->
-              <div class="form-group">
-                <label for="roomTypeSelect">Pilihan Jenis Bilik <span style="color:var(--danger)">*</span></label>
-                <select id="roomTypeSelect" class="form-control" required>
-                  <option value="QUAD">Bilik Berempat (Quad) - Standard</option>
-                  <option value="TRIPLE">Bilik Bertiga (Triple)</option>
-                  <option value="DOUBLE">Bilik Berdua (Double)</option>
-                </select>
-              </div>
-
-              <!-- Keperluan Bantuan Khas -->
-              <div class="form-group grid-full">
-                <label for="specialNeeds">Keperluan Khas / Bantuan Kesihatan (Pilihan)</label>
-                <textarea id="specialNeeds" class="form-control" rows="3" placeholder="Sila nyatakan jika memerlukan kerusi roda (wheelchair) di lapangan terbang, ubat-ubatan khas, atau pendamping warga emas."></textarea>
-              </div>
-            </div>
-          </div>
-
-          <!-- ============================================================
-               LANGKAH 3: PASPORT & DOKUMEN SOKONGAN
-               ============================================================ -->
-          <div class="step-content" data-step="3">
+          <div class="form-grid" style="grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1rem;">
             
-            <div id="passportAlert" class="alert-box alert-warning" style="display:none;">
-              <span class="alert-icon">⚠️</span>
-              <div id="passportAlertText"></div>
-            </div>
-
-            <div class="form-grid">
-              <!-- No Pasport -->
-              <div class="form-group">
-                <label for="passportNumber">
-                  Nombor Pasport Antarabangsa <span style="color:var(--danger)">*</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">🛂</span>
-                  <input type="text" id="passportNumber" class="form-control" placeholder="CONTOH: A52918234" required style="text-transform:uppercase;">
-                </div>
-                <span class="help-text">1 huruf diikuti 8 digit nombor.</span>
-                <span class="error-text">Sila masukkan nombor pasport yang sah.</span>
-              </div>
-
-              <!-- Tarikh Luput Pasport -->
-              <div class="form-group">
-                <label for="passportExpiry">
-                  Tarikh Luput Pasport (Expiry Date) <span style="color:var(--danger)">*</span>
-                </label>
-                <div class="input-container">
-                  <span class="input-icon">📆</span>
-                  <input type="date" id="passportExpiry" class="form-control" required>
-                </div>
-                <span class="help-text">Mestilah sah sekurang-kurangnya 6 bulan dari tarikh penerbangan.</span>
-                <span class="error-text">Tarikh luput pasport tidak sah.</span>
-              </div>
-
-              <!-- Seksyen Muat Naik Dokumen -->
-              <div class="grid-full" style="margin-top:1rem; border-top:1px dashed var(--border-color); padding-top:1rem;">
-                <h4 style="font-size:1rem; color:var(--secondary); margin-bottom:0.25rem;">Muat Naik Dokumen Sokongan</h4>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Format fail dibenarkan: JPG, PNG, PDF (Maksimum 5MB per fail).</p>
-              </div>
-
-              <!-- Muat Naik Pasport -->
-              <div class="form-group">
-                <label>Salinan Pasport (Muka Surat Butiran) <span style="color:var(--danger)">*</span></label>
-                <input type="file" id="fileInput_passport" accept=".jpg,.jpeg,.png,.pdf" style="display:none;">
-                <div class="upload-dropzone" data-file-key="passport">
-                  <div class="upload-icon">📂</div>
-                  <div class="upload-title">Klik atau Seret Fail Pasport ke Sini</div>
-                  <div class="upload-subtitle">Pastikan gambar jelas dan tidak silau</div>
-                </div>
-                <div class="file-preview-card" id="preview_passport">
-                  <div class="file-preview-info">
-                    <span class="file-icon">📄</span>
-                    <div class="file-details">
-                      <div class="file-name">passport.jpg</div>
-                      <div class="file-size">1.2 MB</div>
-                    </div>
-                  </div>
-                  <button type="button" class="btn-remove-file" title="Padam fail">✕</button>
-                </div>
-              </div>
-
-              <!-- Muat Naik Kad Pengenalan -->
-              <div class="form-group">
-                <label>Salinan MyKad (Depan & Belakang) <span style="color:var(--danger)">*</span></label>
-                <input type="file" id="fileInput_mykad" accept=".jpg,.jpeg,.png,.pdf" style="display:none;">
-                <div class="upload-dropzone" data-file-key="mykad">
-                  <div class="upload-icon">🪪</div>
-                  <div class="upload-title">Klik atau Seret Salinan MyKad ke Sini</div>
-                  <div class="upload-subtitle">Format PDF atau gambar imbasan</div>
-                </div>
-                <div class="file-preview-card" id="preview_mykad">
-                  <div class="file-preview-info">
-                    <span class="file-icon">📄</span>
-                    <div class="file-details">
-                      <div class="file-name">mykad.pdf</div>
-                      <div class="file-size">800 KB</div>
-                    </div>
-                  </div>
-                  <button type="button" class="btn-remove-file" title="Padam fail">✕</button>
-                </div>
-              </div>
-
-              <!-- Muat Naik Resit Bayaran -->
-              <div class="form-group">
-                <label>Salinan Resit Bayaran Deposit / Penuh <span style="color:var(--danger)">*</span></label>
-                <input type="file" id="fileInput_receipt" accept=".jpg,.jpeg,.png,.pdf" style="display:none;">
-                <div class="upload-dropzone" data-file-key="receipt">
-                  <div class="upload-icon">🧾</div>
-                  <div class="upload-title">Klik atau Seret Resit Pembayaran</div>
-                  <div class="upload-subtitle">Slip deposit bank atau resit rasmi</div>
-                </div>
-                <div class="file-preview-card" id="preview_receipt">
-                  <div class="file-preview-info">
-                    <span class="file-icon">📄</span>
-                    <div class="file-details">
-                      <div class="file-name">resit.pdf</div>
-                      <div class="file-size">520 KB</div>
-                    </div>
-                  </div>
-                  <button type="button" class="btn-remove-file" title="Padam fail">✕</button>
-                </div>
-              </div>
-
-              <!-- Muat Naik Sijil Kesihatan / Vaksin -->
-              <div class="form-group">
-                <label>Sijil Suntikan Vaksin / Kesihatan (Pilihan)</label>
-                <input type="file" id="fileInput_vaccine" accept=".jpg,.jpeg,.png,.pdf" style="display:none;">
-                <div class="upload-dropzone" data-file-key="vaccine">
-                  <div class="upload-icon">💉</div>
-                  <div class="upload-title">Klik atau Seret Buku / Sijil Vaksin</div>
-                  <div class="upload-subtitle">Suntikan Meningitis ACWY & Influenza</div>
-                </div>
-                <div class="file-preview-card" id="preview_vaccine">
-                  <div class="file-preview-info">
-                    <span class="file-icon">📄</span>
-                    <div class="file-details">
-                      <div class="file-name">vaksin.pdf</div>
-                      <div class="file-size">450 KB</div>
-                    </div>
-                  </div>
-                  <button type="button" class="btn-remove-file" title="Padam fail">✕</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- ============================================================
-               LANGKAH 4: SEMAKAN & PERAKUAN
-               ============================================================ -->
-          <div class="step-content" data-step="4">
-            
-            <div class="summary-section">
-              <div class="summary-title-bar">
-                <span>1. MAKLUMAT JEMAAH</span>
-                <span style="font-size:0.75rem; color:var(--primary); font-weight:700;">DIESAHKAN</span>
-              </div>
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <span class="summary-item-label">Nama Penuh:</span>
-                  <span class="summary-item-value" id="sum_fullName">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">No. MyKad:</span>
-                  <span class="summary-item-value" id="sum_icNumber">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Jantina / Tarikh Lahir:</span>
-                  <span class="summary-item-value"><span id="sum_gender">-</span> • <span id="sum_birthDate">-</span></span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">No. Telefon:</span>
-                  <span class="summary-item-value" id="sum_phone">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Emel:</span>
-                  <span class="summary-item-value" id="sum_email">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Waris Kecemasan:</span>
-                  <span class="summary-item-value" id="sum_emergency">-</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="summary-section">
-              <div class="summary-title-bar">
-                <span>2. PAKEJ & PENERBANGAN</span>
-                <span style="font-size:0.75rem; color:var(--primary); font-weight:700;">DIESAHKAN</span>
-              </div>
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <span class="summary-item-label">No. Rujukan Tempahan:</span>
-                  <span class="summary-item-value" id="sum_bookingRef">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Pakej Perjalanan:</span>
-                  <span class="summary-item-value" id="sum_packageName">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Tarikh Pelepasan:</span>
-                  <span class="summary-item-value" id="sum_departureDate">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Cawangan:</span>
-                  <span class="summary-item-value" id="sum_branchName">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Pilihan Bilik:</span>
-                  <span class="summary-item-value" id="sum_roomType">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Bantuan Khas:</span>
-                  <span class="summary-item-value" id="sum_specialNeeds">-</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="summary-section">
-              <div class="summary-title-bar">
-                <span>3. PASPORT & DOKUMEN</span>
-                <span style="font-size:0.75rem; color:var(--primary); font-weight:700;">DIESAHKAN</span>
-              </div>
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <span class="summary-item-label">No. Pasport:</span>
-                  <span class="summary-item-value" id="sum_passportNumber">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Tarikh Tamat Pasport:</span>
-                  <span class="summary-item-value" id="sum_passportExpiry">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Salinan Pasport:</span>
-                  <span class="summary-item-value" id="sum_docPassport" style="color:var(--primary);">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Salinan MyKad:</span>
-                  <span class="summary-item-value" id="sum_docMykad" style="color:var(--primary);">-</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-label">Resit Bayaran:</span>
-                  <span class="summary-item-value" id="sum_docReceipt" style="color:var(--primary);">-</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Perakuan & Persetujuan PDPA -->
-            <div class="consent-box">
-              <label class="checkbox-label">
-                <input type="checkbox" id="consentCheck" required>
-                <span>
-                  <strong>Perakuan & Persetujuan PDPA 2010:</strong><br>
-                  Saya memperakui bahawa semua maklumat yang diberikan dan dokumen yang dimuat naik adalah benar, sah, dan tepat. Saya memberi kebenaran kepada Andalusia Travel & Tours Sdn Bhd untuk memproses data peribadi saya bagi tujuan pendaftaran pakej, permohonan visa perjalanan, pengeluaran tiket penerbangan, serta urusan penginapan hotel.
-                </span>
+            <!-- Nama Penuh -->
+            <div class="form-group">
+              <label for="fullName">
+                Nama Penuh <span style="color:var(--danger)">*</span>
+                <span class="label-hint">Huruf besar automatik</span>
               </label>
+              <div class="input-container">
+                <span class="input-icon">👤</span>
+                <input 
+                  type="text" 
+                  id="fullName" 
+                  class="form-control" 
+                  placeholder="CONTOH: AHMAD DANIAL BIN ABDUL AZIZ" 
+                  required 
+                  style="text-transform:uppercase;"
+                  autocomplete="name"
+                >
+              </div>
+              <span class="help-text">Nama penuh seperti dalam kad pengenalan atau pasport.</span>
+              <span class="error-text" id="nameError">Sila masukkan nama penuh anda.</span>
+            </div>
+
+            <!-- No Telefon -->
+            <div class="form-group">
+              <label for="phoneNumber">
+                No. Telefon (WhatsApp) <span style="color:var(--danger)">*</span>
+              </label>
+              <div class="input-container">
+                <span class="input-icon">📱</span>
+                <input 
+                  type="tel" 
+                  id="phoneNumber" 
+                  class="form-control" 
+                  placeholder="Contoh: 012-3456789" 
+                  required
+                  autocomplete="tel"
+                >
+              </div>
+              <span class="help-text">Nombor telefon bimbit aktif untuk tujuan panggilan dan WhatsApp.</span>
+              <span class="error-text" id="phoneError">Sila masukkan nombor telefon yang sah (contoh: 012-3456789).</span>
             </div>
 
           </div>
 
         </div>
 
-        <!-- Butang Navigasi Footer -->
-        <div class="card-footer-bar">
-          <button type="button" class="btn btn-secondary" id="btnPrev" style="display:none;">
-            ← Kembali
-          </button>
-          <div style="flex:1;"></div>
-          <button type="button" class="btn btn-primary" id="btnNext">
-            Seterusnya →
-          </button>
-          <button type="submit" class="btn btn-gold" id="btnSubmit" style="display:none;">
-            Hantar Borang Validasi ✓
+        <!-- Butang Hantar -->
+        <div class="card-footer-bar" style="justify-content: flex-end;">
+          <button type="submit" class="btn btn-primary" id="btnSubmit" style="width: 100%; padding: 0.9rem 1.5rem; font-size: 1.05rem; font-weight: 700;">
+            Hantar Maklumat ✓
           </button>
         </div>
       </form>
@@ -514,23 +115,23 @@
     <div class="modal-dialog">
       <div class="modal-header">
         <div class="modal-success-icon">✓</div>
-        <h3>Borang Berjaya Dihantar!</h3>
+        <h3>Maklumat Berjaya Dihantar!</h3>
         <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.25rem;">
-          Maklumat dan dokumen anda telah selamat diterima ke dalam sistem pangkalan data Andalusia.
+          Maklumat anda telah selamat diterima ke dalam sistem pangkalan data Andalusia.
         </p>
       </div>
       <div class="modal-body">
         <p style="font-size:0.875rem; text-align:center; color:var(--text-muted);">
-          Sila simpan Kod Validasi berikut untuk semakan status dan perhubungan pegawai cawangan:
+          Sila simpan Kod Rujukan berikut untuk semakan status dan rekod anda:
         </p>
         <div class="slip-box">
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Kod Rujukan Validasi</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Kod Rujukan Pendaftaran</div>
           <div class="slip-code" id="modalSlipCode">VAL-882194</div>
-          <div style="font-size:0.85rem; font-weight:600; color:var(--secondary); margin-top:0.5rem;" id="modalApplicantName">AHMAD DANIAL BIN ABDUL AZIZ</div>
-          <div style="font-size:0.75rem; color:var(--text-muted);" id="modalBookingRef">Booking: AND-2026-8801</div>
+          <div style="font-size:1rem; font-weight:700; color:var(--secondary); margin-top:0.5rem;" id="modalApplicantName">AHMAD DANIAL BIN ABDUL AZIZ</div>
+          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;" id="modalApplicantPhone">012-3456789</div>
         </div>
         <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.4; text-align:center;">
-          Pegawai operasi cawangan akan menyemak dokumen anda dalam tempoh 1-2 hari bekerja. Anda boleh menyemak status permohonan pada bila-bila masa melalui portal semakan.
+          Pegawai khidmat pelanggan Andalusia akan menghubungi anda melalui nombor telefon di atas dalam tempoh terdekat.
         </p>
       </div>
       <div class="modal-footer">
@@ -548,7 +149,7 @@
         <div style="font-size:0.8rem; margin-top:0.25rem;">No. 25, 27 & 29, Jalan 1/76, Desa Pandan, 55100 Kuala Lumpur. Talian Bantuan: 03-9284 8888</div>
       </div>
       <div style="font-size:0.8rem;">
-        &copy; 2026 Andalusia Travel. Sistem Validasi Borang Jemaah (Vali-Lusia).
+        &copy; 2026 Andalusia Travel. Sistem Maklumat Jemaah (Vali-Lusia).
       </div>
     </div>
   </footer>
