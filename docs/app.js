@@ -731,7 +731,7 @@ if (typeof document !== 'undefined') {
       const npsBadgeEl = document.getElementById('resNpsBadge');
       if (npsBadgeEl) {
         if (record.npsRecommendation) {
-          npsBadgeEl.textContent = `🤝 Rekomendasi: ${record.npsRecommendation}`;
+          npsBadgeEl.textContent = `Rekomendasi: ${record.npsRecommendation}`;
           npsBadgeEl.style.display = 'inline-flex';
         } else {
           npsBadgeEl.style.display = 'none';
@@ -744,7 +744,7 @@ if (typeof document !== 'undefined') {
       const ratingBadge = document.getElementById('resRatingBadge');
       if (ratingBadge) {
         ratingBadge.className = `rating-badge-pill ${scoreData.badgeClass}`;
-        ratingBadge.textContent = `⭐ ${scoreData.rating}`;
+        ratingBadge.textContent = scoreData.rating;
       }
 
       const ratingSubtext = document.getElementById('resRatingSubtext');

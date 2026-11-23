@@ -93,16 +93,18 @@
   <header class="site-header">
     <div class="header-container">
       <a href="index.html" class="brand">
-        <div class="brand-logo-icon">🕋</div>
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10a7 7 0 0 1 14 0v11"/><path d="M9 21v-4a3 3 0 0 1 6 0v4"/><path d="M12 3v3"/></svg>
+        </div>
         <div class="brand-text">
-          <h1>ANDALUSIA <span>TRAVEL & TOURS</span></h1>
+          <h1 style="text-wrap:balance;">ANDALUSIA <span>TRAVEL & TOURS</span></h1>
           <p>Sistem Maklum Balas & Kepuasan Jemaah (Vali-Lusia CSAT)</p>
         </div>
       </a>
       <nav class="header-nav">
         <a href="index.html" class="nav-link">Borang CSAT</a>
         <a href="status.html" class="nav-link active">Semakan Rekod</a>
-        <a href="admin_review.html" class="nav-link btn-gold">Portal Pegawai 🔒</a>
+        <a href="admin_review.html" class="nav-link btn-gold">Portal Pegawai</a>
       </nav>
     </div>
   </header>
@@ -120,7 +122,7 @@
         <div class="form-group">
           <label for="searchQuery">No. Telefon atau Kod Rujukan <span style="color:var(--danger)">*</span></label>
           <div class="input-container">
-            <span class="input-icon">🔍</span>
+            <span class="input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
             <input 
               type="text" 
               id="searchQuery" 
@@ -134,7 +136,7 @@
         </div>
         <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
           <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem; font-weight:700;">
-            🔍 Semak Status Sekarang
+            Semak Status Sekarang
           </button>
         </div>
       </form>
@@ -145,7 +147,7 @@
       <div class="card-header-bar">
         <div>
           <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Status Semakan Terkini:</span>
-          <h3 id="res_status_title" style="margin-top:2px;">Telah Disahkan (Verified) ✓</h3>
+          <h3 id="res_status_title" style="margin-top:2px;">Telah Disahkan (Verified)</h3>
         </div>
         <span class="admin-badge badge-verified" id="res_status_badge">DISAHKAN</span>
       </div>
@@ -158,15 +160,15 @@
           <div class="timeline-track-fill" id="timelineFill" style="width: 100%;"></div>
           <div class="timeline-nodes">
             <div class="timeline-node done">
-              <div class="node-icon">✓</div>
+              <div class="node-icon">1</div>
               <span class="node-title">Maklumat Diterima</span>
             </div>
             <div class="timeline-node done" id="nodeReview">
-              <div class="node-icon">⏳</div>
+              <div class="node-icon">2</div>
               <span class="node-title">Semakan Pegawai</span>
             </div>
             <div class="timeline-node done" id="nodeComplete">
-              <div class="node-icon">📱</div>
+              <div class="node-icon">3</div>
               <span class="node-title">Selesai / Dihubungi</span>
             </div>
           </div>
@@ -211,10 +213,10 @@
           
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
             <div style="display:flex; align-items:center; gap:0.5rem;">
-              <span style="font-size:1.25rem;">📊</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--primary);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
               <h4 style="margin:0; font-size:1rem; font-weight:800; color:var(--secondary);">Indeks Kepuasan & Graf Jemaah (CSAT)</h4>
             </div>
-            <span class="rating-badge-pill rating-excellent" id="statusRatingBadge">⭐ CEMERLANG</span>
+            <span class="rating-badge-pill rating-excellent" id="statusRatingBadge">CEMERLANG</span>
           </div>
 
           <!-- Tolok Skor Ringkas -->
@@ -243,17 +245,17 @@
             </div>
             <div class="dest-comparison-grid">
               <div class="dest-stat-tile">
-                <div class="dest-stat-name"><span>🇪🇬</span> Egypt (Mesir)</div>
+                <div class="dest-stat-name">Egypt (Mesir)</div>
                 <div class="dest-stat-score" id="statusDestEgypt">8 / 8</div>
                 <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="statusDestPctEgypt">100% Kepuasan</span>
               </div>
               <div class="dest-stat-tile">
-                <div class="dest-stat-name"><span>🇸🇦</span> Madinah</div>
+                <div class="dest-stat-name">Madinah</div>
                 <div class="dest-stat-score" id="statusDestMadinah">8 / 8</div>
                 <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="statusDestPctMadinah">100% Kepuasan</span>
               </div>
               <div class="dest-stat-tile">
-                <div class="dest-stat-name"><span>🕋</span> Mekah</div>
+                <div class="dest-stat-name">Mekah</div>
                 <div class="dest-stat-score" id="statusDestMekah">8 / 8</div>
                 <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted);" id="statusDestPctMekah">100% Kepuasan</span>
               </div>
@@ -331,7 +333,7 @@
           <!-- ULASAN / MAKLUM BALAS ZIARAH JEMAAH -->
           <div class="feedback-quote-card" id="statusFeedbackCard" style="display:none; margin-top:1.25rem;">
             <div class="feedback-quote-title">
-              <span>💬</span> Ulasan & Cadangan Jemaah:
+              Ulasan & Cadangan Jemaah:
             </div>
             <div class="feedback-quote-text" id="statusFeedbackText"></div>
           </div>
@@ -340,7 +342,7 @@
 
         <!-- Ulasan Pegawai -->
         <div class="alert-box alert-info" style="margin-top:1.5rem;">
-          <span class="alert-icon">👨‍💼</span>
+          <span class="alert-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
           <div>
             <strong>Catatan Pegawai Khidmat Pelanggan Andalusia:</strong><br>
             <span id="res_notes">Maklumat jemaah telah diterima dengan jayanya. Pegawai kami telah menghubungi anda melalui WhatsApp untuk pengesahan lanjut.</span>
@@ -352,7 +354,7 @@
       <div class="card-footer-bar" style="flex-wrap: wrap; gap: 0.65rem;">
         <a href="index.html" class="btn btn-secondary">← Borang Pendaftaran Baharu</a>
         <button type="button" class="btn btn-primary" onclick="window.print()" style="font-weight:700;">
-          🖨️ Cetak Slip Rekod & Graf
+          Cetak Slip Rekod & Graf
         </button>
       </div>
     </div>
@@ -518,7 +520,7 @@
       if (found.status === 'VERIFIED') {
         badge.className = 'admin-badge badge-verified';
         badge.textContent = 'DISAHKAN';
-        title.textContent = 'Telah Disahkan (Verified) ✓';
+        title.textContent = 'Telah Disahkan (Verified)';
         fill.style.width = '100%';
         nodeReview.className = 'timeline-node done';
         nodeComplete.className = 'timeline-node done';
@@ -527,7 +529,7 @@
       } else if (found.status === 'ACTION_REQUIRED') {
         badge.className = 'admin-badge badge-action';
         badge.textContent = 'PERLU TINDAKAN';
-        title.textContent = 'Perhatian Pegawai Diperlukan ⚠️';
+        title.textContent = 'Perhatian Pegawai Diperlukan';
         fill.style.width = '50%';
         nodeReview.className = 'timeline-node current';
         nodeComplete.className = 'timeline-node';
@@ -536,7 +538,7 @@
       } else {
         badge.className = 'admin-badge badge-pending';
         badge.textContent = 'MENUNGGU SEMAKAN';
-        title.textContent = 'Sedang Disemak Oleh Pegawai ⏳';
+        title.textContent = 'Sedang Disemak Oleh Pegawai';
         fill.style.width = '50%';
         nodeReview.className = 'timeline-node current';
         nodeComplete.className = 'timeline-node';
@@ -560,17 +562,17 @@
 
       if (percentage >= 80) {
         ratingBadge.className = 'rating-badge-pill rating-excellent';
-        ratingBadge.textContent = `⭐ ${rating}`;
+        ratingBadge.textContent = rating;
         ratingTitle.textContent = 'Tahap Kepuasan Sangat Tinggi';
         ratingDesc.textContent = 'Jemaah memberikan penilaian cemerlang bagi aspek hotel, makanan, tempat ziarah, dan khidmat Andalusia.';
       } else if (percentage < 50) {
         ratingBadge.className = 'rating-badge-pill rating-action';
-        ratingBadge.textContent = `⚠️ ${rating}`;
+        ratingBadge.textContent = rating;
         ratingTitle.textContent = 'Perlu Tindakan & Penambahbaikan';
         ratingDesc.textContent = 'Penilaian rendah dikesan. Pasukan pengurusan Andalusia telah dimaklumkan untuk bantuan segera.';
       } else {
         ratingBadge.className = 'rating-badge-pill rating-good';
-        ratingBadge.textContent = `⭐ ${rating}`;
+        ratingBadge.textContent = rating;
         ratingTitle.textContent = 'Tahap Kepuasan Sederhana (Baik)';
         ratingDesc.textContent = 'Penilaian berada pada tahap yang memuaskan dan proses perjalanan berjalan lancar.';
       }

@@ -60,16 +60,18 @@
   <header class="site-header">
     <div class="header-container">
       <a href="index.html" class="brand">
-        <div class="brand-logo-icon">🕋</div>
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10a7 7 0 0 1 14 0v11"/><path d="M9 21v-4a3 3 0 0 1 6 0v4"/><path d="M12 3v3"/></svg>
+        </div>
         <div class="brand-text">
-          <h1>ANDALUSIA <span>PORTAL PEGAWAI</span></h1>
+          <h1 style="text-wrap:balance;">ANDALUSIA <span>PORTAL PEGAWAI</span></h1>
           <p>Pengurusan Maklum Balas & Analisis Kepuasan Jemaah (CSAT)</p>
         </div>
       </a>
       <nav class="header-nav">
         <a href="index.html" class="nav-link">Borang CSAT</a>
         <a href="status.html" class="nav-link">Semakan Rekod</a>
-        <a href="admin_review.html" class="nav-link active btn-gold">Portal Pegawai 🔒</a>
+        <a href="admin_review.html" class="nav-link active btn-gold">Portal Pegawai</a>
       </nav>
     </div>
   </header>
@@ -86,11 +88,11 @@
         <div class="stat-label">Jumlah Maklum Balas</div>
         <div class="stat-value" id="statTotal">128</div>
       </div>
-      <div class="stat-card" style="border-left: 4px solid var(--warning);">
+      <div class="stat-card">
         <div class="stat-label">Perlu Tindakan (Detractor)</div>
         <div class="stat-value" style="color:var(--warning);" id="statPending">14</div>
       </div>
-      <div class="stat-card" style="border-left: 4px solid var(--success);">
+      <div class="stat-card">
         <div class="stat-label">Puas Hati (Promoters)</div>
         <div class="stat-value" style="color:var(--success);" id="statVerified">114</div>
       </div>
@@ -99,7 +101,7 @@
     <!-- Bar Carian & Penapis -->
     <div class="filter-bar">
       <div class="input-container" style="flex:1; min-width:240px;">
-        <span class="input-icon">🔍</span>
+        <span class="input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
         <input type="text" id="filterInput" class="form-control" placeholder="Cari mengikut Nama, No. Telefon, Kod CSAT/VAL atau Pakej...">
       </div>
       <div style="min-width:180px;">
@@ -111,7 +113,7 @@
         </select>
       </div>
       <button type="button" class="btn btn-secondary" onclick="alert('Eksport senarai rekod ke fail CSV berjaya dijana.')">
-        📥 Eksport CSV
+        Eksport CSV
       </button>
     </div>
 
@@ -173,7 +175,7 @@
               <div style="display:flex; align-items:center; gap:0.75rem; margin-top:0.25rem;">
                 <span class="summary-item-value" id="rev_phone" style="font-weight:700; color:var(--primary); font-size:1rem;">012-3456789</span>
                 <a href="#" id="rev_wa_btn" target="_blank" class="btn btn-secondary" style="padding:0.25rem 0.65rem; font-size:0.75rem;">
-                  💬 WhatsApp
+                  WhatsApp
                 </a>
               </div>
             </div>
@@ -197,7 +199,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
             <span style="font-size:0.85rem; font-weight:700; color:var(--secondary);">PECAHAN SKOR VALIDASI JEMAAH</span>
             <span class="rating-badge-pill rating-excellent" id="rev_ratingBadge" style="font-size:0.75rem; padding:0.25rem 0.65rem;">
-              ⭐ 30 / 30 (CEMERLANG)
+              30 / 30 (CEMERLANG)
             </span>
           </div>
 
@@ -206,15 +208,15 @@
             <div style="font-size:0.78rem; font-weight:700; color:var(--secondary); margin-bottom:0.5rem;">KEPUASAN MENGIKUT DESTINASI</div>
             <div class="dest-comparison-grid" style="grid-template-columns:repeat(3, 1fr); gap:0.5rem;">
               <div class="dest-stat-tile" style="padding:0.5rem;">
-                <div class="dest-stat-name" style="font-size:0.75rem;">🇪🇬 Egypt</div>
+                <div class="dest-stat-name" style="font-size:0.75rem;">Egypt</div>
                 <div class="dest-stat-score" id="rev_destEgypt" style="font-size:1rem;">8/8</div>
               </div>
               <div class="dest-stat-tile" style="padding:0.5rem;">
-                <div class="dest-stat-name" style="font-size:0.75rem;">🇸🇦 Madinah</div>
+                <div class="dest-stat-name" style="font-size:0.75rem;">Madinah</div>
                 <div class="dest-stat-score" id="rev_destMadinah" style="font-size:1rem;">8/8</div>
               </div>
               <div class="dest-stat-tile" style="padding:0.5rem;">
-                <div class="dest-stat-name" style="font-size:0.75rem;">🕋 Mekah</div>
+                <div class="dest-stat-name" style="font-size:0.75rem;">Mekah</div>
                 <div class="dest-stat-score" id="rev_destMekah" style="font-size:1rem;">8/8</div>
               </div>
             </div>
@@ -277,7 +279,7 @@
           <!-- Ulasan Ziarah Jemaah (500 Huruf) -->
           <div class="feedback-quote-card" id="rev_feedbackWrap" style="display:none; margin-top:1rem; padding:0.75rem 1rem;">
             <div class="feedback-quote-title" style="font-size:0.75rem;">
-              <span>💬</span> Ulasan / Cadangan Jemaah (Maksimum 500 Huruf):
+              Ulasan / Cadangan Jemaah (Maksimum 500 Huruf):
             </div>
             <div class="feedback-quote-text" id="rev_feedbackText" style="font-size:0.8rem;"></div>
           </div>
@@ -294,10 +296,10 @@
         <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Tutup</button>
         <div style="display:flex; gap:0.5rem;">
           <button type="button" class="btn btn-secondary" style="border-color:var(--warning); color:var(--warning);" onclick="updateRecordStatus('ACTION_REQUIRED')">
-            ⚠️ Perlu Tindakan
+            Perlu Tindakan
           </button>
           <button type="button" class="btn btn-primary" onclick="updateRecordStatus('VERIFIED')">
-            ✓ Sahkan & Selesai
+            Sahkan & Selesai
           </button>
         </div>
       </div>
@@ -483,7 +485,7 @@
             <td><strong>${record.fullName}</strong></td>
             <td>
               <span style="font-weight:600;">${record.phone}</span>
-              <a href="https://wa.me/${waPhone}" target="_blank" style="margin-left:0.5rem; text-decoration:none;" title="WhatsApp Jemaah">💬</a>
+              <a href="https://wa.me/${waPhone}" target="_blank" class="btn btn-secondary" style="margin-left:0.5rem; padding:0.15rem 0.45rem; font-size:0.75rem; text-decoration:none;" title="WhatsApp Jemaah">WA</a>
             </td>
             <td>
               <span style="font-size:0.85rem; font-weight:600;">${record.packageType || 'Pakej Umrah'}</span>
@@ -491,7 +493,7 @@
             </td>
             <td>
               <span class="mini-score-pill ${pillClass}">
-                📊 ${total} / ${max} (${percent}%)
+                ${total} / ${max} (${percent}%)
               </span>
             </td>
             <td><span style="font-size:0.8rem; color:var(--text-muted);">${record.submittedAt || '-'}</span></td>
@@ -502,7 +504,7 @@
             </td>
             <td>
               <button type="button" class="btn btn-primary" style="padding:0.4rem 0.85rem; font-size:0.8rem;" onclick="openReviewModal('${record.code}')">
-                ⚡ Semak & Sahkan
+                Semak & Sahkan
               </button>
             </td>
           `;
@@ -582,13 +584,13 @@
 
       if (percent >= 80) {
         badgeEl.className = 'rating-badge-pill rating-excellent';
-        badgeEl.textContent = `⭐ ${total} / ${max} (${rating})`;
+        badgeEl.textContent = `${total} / ${max} (${rating})`;
       } else if (percent < 50) {
         badgeEl.className = 'rating-badge-pill rating-action';
-        badgeEl.textContent = `⚠️ ${total} / ${max} (${rating})`;
+        badgeEl.textContent = `${total} / ${max} (${rating})`;
       } else {
         badgeEl.className = 'rating-badge-pill rating-good';
-        badgeEl.textContent = `⭐ ${total} / ${max} (${rating})`;
+        badgeEl.textContent = `${total} / ${max} (${rating})`;
       }
 
       // Destinasi Mini Grid
