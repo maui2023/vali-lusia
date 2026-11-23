@@ -681,6 +681,16 @@ body {
   border-color: #94a3b8;
 }
 
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+}
+.btn-outline:hover {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
 .btn-primary {
   background: var(--primary);
   color: white;
@@ -925,10 +935,13 @@ body {
   .card-footer-bar {
     flex-direction: column-reverse;
     gap: 0.75rem;
+    padding: 1rem 1.25rem;
   }
   
   .card-footer-bar .btn {
     width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
   }
   
   .footer-container {
@@ -936,3 +949,195 @@ body {
     text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .site-header {
+    padding: 0.75rem 0.5rem;
+  }
+  .header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .header-nav .nav-link {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .stepper-container {
+    padding: 0.75rem 0.25rem;
+  }
+  .stepper-list::before {
+    top: 15px;
+    left: 20px;
+    right: 20px;
+  }
+  .stepper-progress-bar {
+    top: 15px;
+    left: 20px;
+  }
+  .step-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+    border-width: 2px;
+  }
+  .step-label {
+    font-size: 0.65rem;
+    max-width: 58px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .form-body {
+    padding: 1.25rem 1rem;
+  }
+  .card-header-bar {
+    padding: 1rem;
+  }
+}
+
+/* Passport Status Styles */
+.passport-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.passport-valid {
+  background: var(--success-bg);
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+.passport-warning {
+  background: var(--danger-bg);
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* ==========================================================================
+   PDF Reader Modal & In-Modal Viewer Styles
+   ========================================================================== */
+.modal-dialog-pdf {
+  max-width: 960px;
+  width: 95%;
+  height: 88vh;
+  max-height: 850px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.pdf-modal-header {
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  background: white;
+  gap: 1rem;
+}
+
+.pdf-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.pdf-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.pdf-btn-close {
+  background: #f1f5f9;
+  border: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.pdf-btn-close:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: #fecaca;
+}
+
+.pdf-viewer-container {
+  flex: 1;
+  width: 100%;
+  min-height: 350px;
+  background: #334155;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-viewer-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+  display: block;
+}
+
+.pdf-modal-footer {
+  padding: 0.75rem 1.25rem;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.modal-footer-smart {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .modal-dialog-pdf {
+    width: 98%;
+    height: 94vh;
+    max-height: none;
+  }
+  .pdf-modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem 1rem;
+  }
+  .pdf-modal-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .modal-footer-smart .btn {
+    width: 100%;
+  }
+}
+
+

@@ -209,14 +209,64 @@
 
       </div>
 
-      <div class="card-footer-bar">
+      <div class="card-footer-bar" style="flex-wrap: wrap; gap: 0.65rem;">
         <a href="index.html" class="btn btn-secondary">← Borang Pendaftaran Baharu</a>
-        <button type="button" class="btn btn-gold" onclick="window.print()">
+        <button type="button" class="btn btn-gold" id="btnStatusViewPdf" style="font-weight:700;">
+          👁️ Baca Borang PDF
+        </button>
+        <button type="button" class="btn btn-outline" id="btnStatusDownloadPdf">
+          📥 Muat Turun PDF
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="window.print()">
           🖨️ Cetak Slip Rujukan
         </button>
       </div>
     </div>
   </main>
+
+  <!-- Modal Pembaca Dokumen PDF Rasmi (In-Modal PDF Reader) -->
+  <div class="modal-overlay" id="pdfReaderModal">
+    <div class="modal-dialog modal-dialog-pdf">
+      <div class="pdf-modal-header">
+        <div class="pdf-modal-title-group">
+          <span style="font-size:1.35rem;">📄</span>
+          <div>
+            <h4 id="pdfReaderTitle" style="margin:0; font-size:1rem; color:var(--secondary); font-weight:700;">
+              Pembaca Borang Validasi Jemaah
+            </h4>
+            <span id="pdfReaderCode" style="font-size:0.75rem; color:var(--primary); font-weight:700; font-family:monospace;">
+              VAL-882194
+            </span>
+          </div>
+        </div>
+        <div class="pdf-modal-actions">
+          <button type="button" class="btn btn-outline btn-sm" id="pdfReaderOpenTabBtn" title="Buka dalam Tab Baharu">
+            ↗ Tab Baharu
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="pdfReaderPrintBtn" title="Cetak Dokumen">
+            🖨️ Cetak
+          </button>
+          <button type="button" class="btn btn-gold btn-sm" id="pdfReaderDownloadBtn" title="Muat Turun Fail PDF">
+            📥 Muat Turun
+          </button>
+          <button type="button" class="pdf-btn-close" onclick="PdfService.closeModal()" title="Tutup Paparan">
+            ✕
+          </button>
+        </div>
+      </div>
+      <div class="pdf-viewer-container">
+        <iframe id="pdfReaderIframe" class="pdf-viewer-iframe" title="Pratonton Borang Validasi PDF"></iframe>
+      </div>
+      <div class="pdf-modal-footer">
+        <span style="font-size:0.75rem; color:var(--text-muted);">
+          💡 Petua: Anda boleh membaca dokumen di atas, mencetak terus, atau memuat turun fail PDF ke storan telefon anda.
+        </span>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="PdfService.closeModal()">
+          Tutup Paparan
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -230,6 +280,15 @@
       </div>
     </div>
   </footer>
+
+  <!-- Enjin Penjanaan PDF Ringan (Luar Talian + Sandaran CDN) -->
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script>
+    if (!window.jspdf) {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>');
+    }
+  </script>
+  <script src="pdf-service.js"></script>
 
   <script>
     // Data Contoh Asal
@@ -252,6 +311,32 @@
       }
     ];
 
+    let currentFoundRecord = defaultRecords[0];
+
+    // Butang PDF Action Listeners
+    const btnViewPdf = document.getElementById('btnStatusViewPdf');
+    const btnDownloadPdf = document.getElementById('btnStatusDownloadPdf');
+
+    if (btnViewPdf) {
+      btnViewPdf.addEventListener('click', () => {
+        if (!currentFoundRecord) {
+          alert("Sila buat carian permohonan terlebih dahulu.");
+          return;
+        }
+        PdfService.openModal(currentFoundRecord);
+      });
+    }
+
+    if (btnDownloadPdf) {
+      btnDownloadPdf.addEventListener('click', () => {
+        if (!currentFoundRecord) {
+          alert("Sila buat carian permohonan terlebih dahulu.");
+          return;
+        }
+        PdfService.downloadPdf(currentFoundRecord);
+      });
+    }
+
     document.getElementById('searchStatusForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const query = document.getElementById('searchQuery').value.trim();
@@ -268,6 +353,8 @@
       });
 
       if (found) {
+        currentFoundRecord = found;
+
         document.getElementById('res_code').textContent = found.code;
         document.getElementById('res_fullName').textContent = found.fullName;
         document.getElementById('res_phone').textContent = found.phone;
@@ -301,7 +388,8 @@
           notes.textContent = found.notes || 'Permohonan baru diterima dan akan dihubungi oleh pegawai dalam masa 1-2 hari bekerja.';
         }
 
-        alert(`Rekod ditemui untuk: ${found.fullName} (${found.code})`);
+        // Tunjukkan notifikasi ringkas
+        console.log(`Rekod dimuatkan: ${found.fullName} (${found.code})`);
       } else {
         alert("Rekod tidak ditemui bagi nombor telefon atau kod tersebut. Sila pastikan maklumat dimasukkan dengan tepat.");
       }
