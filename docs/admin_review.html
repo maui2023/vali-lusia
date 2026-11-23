@@ -613,12 +613,36 @@
         }
       }
 
-      document.getElementById('reviewModal').classList.add('active');
+      document.body.classList.add('modal-open');
+      const reviewModal = document.getElementById('reviewModal');
+      reviewModal.classList.add('active');
+      const revBody = reviewModal.querySelector('.modal-body');
+      if (revBody) {
+        revBody.scrollTop = 0;
+      }
     }
 
     function closeReviewModal() {
+      document.body.classList.remove('modal-open');
       document.getElementById('reviewModal').classList.remove('active');
     }
+
+    // Tutup Modal Semakan dengan Klik Backdrop di Luar Dialog
+    const reviewModalEl = document.getElementById('reviewModal');
+    if (reviewModalEl) {
+      reviewModalEl.addEventListener('click', (e) => {
+        if (e.target === reviewModalEl) {
+          closeReviewModal();
+        }
+      });
+    }
+
+    // Tutup Modal Semakan dengan Menekan Kekunci ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && reviewModalEl && reviewModalEl.classList.contains('active')) {
+        closeReviewModal();
+      }
+    });
 
     function updateRecordStatus(newStatus) {
       const notes = document.getElementById('officerNotes').value.trim();

@@ -725,13 +725,19 @@ body {
 }
 
 /* ==========================================================================
-   Modal Dialog
+   Modal Dialog & Mobile Smooth Scroll Architecture
    ========================================================================== */
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -739,7 +745,10 @@ body {
   padding: 1rem;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .modal-overlay.active {
@@ -752,10 +761,16 @@ body {
   border-radius: var(--radius-xl);
   max-width: 580px;
   width: 100%;
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
   transform: translateY(20px);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: auto;
+  position: relative;
 }
 
 .modal-overlay.active .modal-dialog {
@@ -763,34 +778,80 @@ body {
 }
 
 .modal-header {
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   text-align: center;
   background: linear-gradient(to bottom, var(--primary-light), white);
   border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.06);
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+  z-index: 5;
+}
+
+.modal-close-btn:hover {
+  background: rgba(15, 23, 42, 0.12);
+  color: var(--secondary);
 }
 
 .modal-success-icon {
-  width: 64px;
-  height: 64px;
+  width: 54px;
+  height: 54px;
   background: var(--success);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  margin: 0 auto 1rem;
+  font-size: 1.75rem;
+  margin: 0 auto 0.75rem;
   box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
 }
 
 .modal-header h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--secondary);
 }
 
 .modal-body {
   padding: 1.5rem;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Custom scrollbar untuk kemudahan panduan visual tatalan */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .slip-box {
@@ -817,6 +878,8 @@ body {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 /* ==========================================================================
@@ -1733,6 +1796,37 @@ body {
 }
 
 @media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0.5rem;
+    align-items: flex-start;
+  }
+  .modal-dialog {
+    max-height: calc(100vh - 1rem);
+    max-height: calc(100dvh - 1rem);
+    border-radius: var(--radius-lg);
+    margin: 0.5rem auto;
+  }
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+  .modal-header h3 {
+    font-size: 1.15rem;
+  }
+  .modal-body {
+    padding: 1rem 0.85rem;
+  }
+  .modal-footer {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+  }
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .modal-footer > div {
+    width: 100%;
+    flex-direction: column;
+  }
   .dest-comparison-grid {
     grid-template-columns: 1fr;
     gap: 0.5rem;

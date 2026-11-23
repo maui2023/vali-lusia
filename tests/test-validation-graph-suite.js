@@ -268,6 +268,31 @@ assert.ok(stylesCss.includes('.char-counter-bar'), 'styles.css mesti ada .char-c
 assert.ok(stylesCss.includes('.feedback-quote-card'), 'styles.css mesti ada .feedback-quote-card');
 console.log('✓ Ujian 13 Lulus: Integriti gaya CSS bagi 3 Halaman, Destinasi & Kaunter Huruf disahkan');
 
+// 13. Uji Integriti Seni Bina Tatalan Modal Mudah Alih (Mobile Modal Smooth Scroll Architecture)
+assert.ok(stylesCss.includes('body.modal-open'), 'styles.css mesti ada body.modal-open untuk kunci tatalan latar belakang');
+assert.ok(stylesCss.includes('overflow-y: auto'), 'styles.css mesti ada overflow-y: auto untuk modal scroll');
+assert.ok(stylesCss.includes('-webkit-overflow-scrolling: touch'), 'styles.css mesti ada sokongan leretan sentuh iOS');
+assert.ok(stylesCss.includes('max-height: calc(100vh - 2rem)'), 'styles.css mesti ada had ketinggian fleksibel pada modal-dialog');
+assert.ok(stylesCss.includes('max-height: calc(100dvh - 2rem)'), 'styles.css mesti ada sokongan Dynamic Viewport Height (100dvh)');
+assert.ok(stylesCss.includes('.modal-close-btn'), 'styles.css mesti ada butang tutup modal header .modal-close-btn');
+console.log('✓ Ujian 14 Lulus: Seni bina CSS tatalan modal mudah alih (Mobile Smooth Scroll) disahkan 100%');
+
+// 14. Uji Integrasi Butang Tutup Pantas & Pengendali Scroll dalam index.html & app.js
+assert.ok(indexHtml.includes('id="btnDismissModal"'), 'index.html mesti mengandungi butang btnDismissModal');
+const appJs = fs.readFileSync(path.join(__dirname, '../docs/app.js'), 'utf8');
+assert.ok(appJs.includes("document.body.classList.add('modal-open')"), 'app.js mesti menambah modal-open bila buka modal');
+assert.ok(appJs.includes("document.body.classList.remove('modal-open')"), 'app.js mesti membuang modal-open bila tutup modal');
+assert.ok(appJs.includes('modalBody.scrollTop = 0'), 'app.js mesti reset tatalan ke atas bila buka modal');
+assert.ok(appJs.includes('btnDismissModal'), 'app.js mesti mengendalikan btnDismissModal');
+console.log('✓ Ujian 15 Lulus: Pengendali logik JavaScript bagi penguncian tatalan & navigasi modal disahkan');
+
+// 15. Uji Pengendali Modal di admin_review.html
+const adminReviewJs = fs.readFileSync(path.join(__dirname, '../docs/admin_review.html'), 'utf8');
+assert.ok(adminReviewJs.includes("document.body.classList.add('modal-open')"), 'admin_review.html mesti menambah modal-open');
+assert.ok(adminReviewJs.includes("document.body.classList.remove('modal-open')"), 'admin_review.html mesti membuang modal-open');
+assert.ok(adminReviewJs.includes('revBody.scrollTop = 0'), 'admin_review.html mesti reset tatalan');
+console.log('✓ Ujian 16 Lulus: Pengendali modal semakan admin disahkan');
+
 console.log('\n================================================================');
-console.log('  SEMUA 13 UJIAN AUTOMASI LULUS DENGAN CEMERLANG! (100% SUKSES) ');
+console.log('  SEMUA 16 UJIAN AUTOMASI LULUS DENGAN CEMERLANG! (100% SUKSES) ');
 console.log('================================================================');

@@ -364,6 +364,7 @@ if (typeof document !== 'undefined') {
     const btnPrintResult = document.getElementById('btnPrintResult');
     const btnGoToStatus = document.getElementById('btnGoToStatus');
     const btnCloseResultModal = document.getElementById('btnCloseResultModal');
+    const btnDismissModal = document.getElementById('btnDismissModal');
 
     // Fungsi Tukar Halaman (Stepper Wizard)
     function goToStep(step) {
@@ -767,8 +768,23 @@ if (typeof document !== 'undefined') {
         }
       }
 
-      // Buka Modal
+      // Buka Modal & Kunci Tatalan Latar Belakang (Scroll Lock)
+      document.body.classList.add('modal-open');
       resultModal.classList.add('active');
+      const modalBody = resultModal.querySelector('.modal-body');
+      if (modalBody) {
+        modalBody.scrollTop = 0;
+      }
+    }
+
+    function closeModal() {
+      if (!resultModal) return;
+      document.body.classList.remove('modal-open');
+      resultModal.classList.remove('active');
+      form.reset();
+      if (charCountEl) charCountEl.textContent = '0';
+      if (charCounterTag) charCounterTag.classList.remove('warn', 'limit');
+      goToStep(1);
     }
 
     function updateDimensionBar(dimIndex, score, max) {
@@ -809,6 +825,7 @@ if (typeof document !== 'undefined') {
     // Butang Semak di Portal Status
     if (btnGoToStatus) {
       btnGoToStatus.addEventListener('click', () => {
+        document.body.classList.remove('modal-open');
         if (activeRecord && activeRecord.code) {
           window.location.href = `status.html?query=${encodeURIComponent(activeRecord.code)}`;
         } else {
@@ -819,14 +836,27 @@ if (typeof document !== 'undefined') {
 
     // Butang Tutup Modal & Reset
     if (btnCloseResultModal) {
-      btnCloseResultModal.addEventListener('click', () => {
-        resultModal.classList.remove('active');
-        form.reset();
-        if (charCountEl) charCountEl.textContent = '0';
-        if (charCounterTag) charCounterTag.classList.remove('warn', 'limit');
-        goToStep(1);
+      btnCloseResultModal.addEventListener('click', closeModal);
+    }
+    if (btnDismissModal) {
+      btnDismissModal.addEventListener('click', closeModal);
+    }
+
+    // Tutup Modal dengan Klik Backdrop di Luar Dialog
+    if (resultModal) {
+      resultModal.addEventListener('click', (e) => {
+        if (e.target === resultModal) {
+          closeModal();
+        }
       });
     }
+
+    // Tutup Modal dengan Menekan Kekunci ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && resultModal && resultModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
   });
 }
 
