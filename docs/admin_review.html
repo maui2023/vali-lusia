@@ -6,9 +6,10 @@
   <title>Papan Pemuka Analisis Kepuasan Jemaah (CSAT Dashboard) | Andalusia Travel</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Kad Statistik Ringkasan */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
       margin-bottom: 2rem;
     }
@@ -18,20 +19,440 @@
       border-radius: var(--radius-lg);
       padding: 1.25rem;
       box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .stat-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+      gap: 0.5rem;
     }
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      line-height: 1.3;
+    }
+    .stat-icon-pill {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
     .stat-value {
       font-size: 1.85rem;
       font-weight: 800;
       color: var(--secondary);
-      margin-top: 0.25rem;
+      line-height: 1.2;
     }
+    .stat-progress-bar {
+      width: 100%;
+      height: 5px;
+      background: #f1f5f9;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 0.65rem;
+      border: 1px solid #e2e8f0;
+    }
+    .stat-progress-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.4s ease, background-color 0.2s ease;
+    }
+    .stat-subtext-wrap {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .stat-meta-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .tag-emerald {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-border);
+    }
+    .tag-gold {
+      background: var(--gold-light);
+      color: var(--gold-hover);
+      border: 1px solid #fde68a;
+    }
+    .tag-warning {
+      background: var(--warning-bg);
+      color: #92400e;
+      border: 1px solid #fcd34d;
+    }
+    .tag-danger {
+      background: var(--danger-bg);
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+    .tag-slate {
+      background: #f1f5f9;
+      color: var(--secondary);
+      border: 1px solid #cbd5e1;
+    }
+
+    /* Bahagian Visual Analytics */
+    .analytics-section {
+      margin-bottom: 2rem;
+    }
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .analytics-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .analytics-card-wide {
+      grid-column: 1 / -1;
+    }
+    .analytics-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.15rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      gap: 0.75rem;
+    }
+    .analytics-card-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--secondary);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .analytics-card-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+    .analytics-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .analytics-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Carta Donut / Pai */
+    .pie-chart-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 1.25rem;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+    .donut-svg-box {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      flex-shrink: 0;
+    }
+    .donut-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .donut-circle-bg {
+      stroke: #f1f5f9;
+      stroke-width: 22;
+      fill: none;
+    }
+    .donut-segment {
+      fill: none;
+      stroke-width: 22;
+      stroke-linecap: butt;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+      cursor: pointer;
+    }
+    .donut-center-pct {
+      font-size: 1.75rem;
+      font-weight: 800;
+      fill: var(--secondary);
+      font-family: inherit;
+    }
+    .donut-center-lbl {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      fill: var(--text-muted);
+      font-family: inherit;
+      text-transform: uppercase;
+    }
+
+    /* Petunjuk (Legend) Donut */
+    .pie-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+      min-width: 180px;
+    }
+    .legend-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 0.65rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      font-size: 0.76rem;
+    }
+    .legend-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .legend-right {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+    }
+    .legend-count {
+      color: var(--text-muted);
+    }
+    .legend-pct {
+      font-weight: 800;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+    }
+
+    /* Gaya Komponen Taburan Gred & Pakej Jemaah */
+    .grade-distribution-section {
+      margin-bottom: 1.15rem;
+    }
+    .grade-tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+    .grade-tile {
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.65rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .grade-tile-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .grade-tile-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--secondary);
+      line-height: 1.2;
+    }
+    .grade-stacked-track {
+      display: flex;
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+    .grade-stacked-seg {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+
+    .package-distribution-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+    }
+    .pkg-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding: 0.55rem 0.7rem;
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+    }
+    .pkg-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+    .pkg-name {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    .pkg-meta {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+    .pkg-track {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .pkg-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+
+    /* Susun Atur Kad Wide (5 Dimensi & Destinasi) */
+    .wide-analytics-inner {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* Carta Palang 5 Dimensi */
+    .bars-chart-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+    }
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+    .bar-title {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    .bar-score-val {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--secondary);
+      font-family: monospace;
+    }
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background: #f1f5f9;
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .fill-emerald {
+      background: var(--primary);
+    }
+    .fill-gold {
+      background: var(--gold);
+    }
+    .fill-danger {
+      background: var(--danger);
+    }
+
+    /* Ringkasan Destinasi */
+    .dest-panel-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .dest-mini-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .dest-mini-tile {
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dest-mini-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .dest-mini-score-wrap {
+      text-align: right;
+    }
+    .dest-mini-score {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+    .dest-mini-pct {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
     .filter-bar {
       background: white;
       border: 1px solid var(--border-color);
@@ -43,6 +464,16 @@
       margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
+    .table-count-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
     .mini-score-pill {
       display: inline-flex;
       align-items: center;
@@ -51,6 +482,72 @@
       border-radius: 9999px;
       font-size: 0.75rem;
       font-weight: 700;
+    }
+
+    /* Media Queries untuk Skrin Kecil & Mudah Alih */
+    @media (max-width: 960px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .analytics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .analytics-card-wide {
+        grid-column: auto;
+      }
+      .wide-analytics-inner {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+        margin-bottom: 1.25rem;
+      }
+      .stat-card {
+        padding: 0.85rem 0.75rem;
+      }
+      .stat-icon-pill {
+        width: 30px;
+        height: 30px;
+      }
+      .stat-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.02em;
+      }
+      .stat-value {
+        font-size: 1.45rem;
+      }
+      .stat-subtext-wrap {
+        margin-top: 0.35rem;
+      }
+      .stat-meta-tag {
+        font-size: 0.65rem;
+        padding: 0.1rem 0.4rem;
+      }
+      .analytics-card {
+        padding: 1rem;
+      }
+      .pie-chart-wrap {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .donut-svg-box {
+        width: 150px;
+        height: 150px;
+      }
+      .pie-legend {
+        width: 100%;
+        min-width: 100%;
+      }
+      .grade-tiles-grid {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
     }
   </style>
 </head>
@@ -82,19 +579,326 @@
       <p>Senarai maklum balas jemaah berserta Indeks Kepuasan CSAT menyeluruh (Hotel, Makanan, Ziarah & Khidmat) untuk semakan kualiti, panggilan WhatsApp khidmat pelanggan, dan pengesahan pegawai.</p>
     </div>
 
-    <!-- Kad Statistik -->
+    <!-- Kad Statistik Kepuasan & Ringkasan CSAT -->
     <div class="stats-grid">
+      <!-- Kad 1: Jumlah Maklum Balas Jemaah -->
       <div class="stat-card">
-        <div class="stat-label">Jumlah Maklum Balas</div>
-        <div class="stat-value" id="statTotal">128</div>
+        <div class="stat-card-top">
+          <span class="stat-label">Jumlah Maklum Balas</span>
+          <div class="stat-icon-pill" style="color:var(--primary); background:var(--primary-light);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+        </div>
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-progress-bar">
+          <div class="stat-progress-fill" id="statTotalProgress" style="width: 100%; background: var(--primary);"></div>
+        </div>
+        <div class="stat-subtext-wrap">
+          <span class="stat-meta-tag tag-emerald" id="statTotalSub">0 Rekod Jemaah</span>
+          <span class="stat-meta-tag tag-slate" id="statTotalMeta">Semua Rekod</span>
+        </div>
       </div>
+
+      <!-- Kad 2: Purata Indeks Kepuasan CSAT -->
       <div class="stat-card">
-        <div class="stat-label">Perlu Tindakan (Detractor)</div>
-        <div class="stat-value" style="color:var(--warning);" id="statPending">14</div>
+        <div class="stat-card-top">
+          <span class="stat-label">Indeks Kepuasan CSAT</span>
+          <div class="stat-icon-pill" style="color:var(--gold); background:var(--gold-light);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+        <div class="stat-value" style="color:var(--secondary);" id="statAverage">0%</div>
+        <div class="stat-progress-bar">
+          <div class="stat-progress-fill" id="statCsatProgress" style="width: 0%; background: var(--gold);"></div>
+        </div>
+        <div class="stat-subtext-wrap">
+          <span class="stat-meta-tag tag-gold" id="statAverageSub">Purata 0.0 / 30 Markah</span>
+          <span class="stat-meta-tag tag-emerald" id="statCsatGradeTag">Cemerlang</span>
+        </div>
       </div>
+
+      <!-- Kad 3: Selesai Disahkan (Operasi SLA) -->
       <div class="stat-card">
-        <div class="stat-label">Puas Hati (Promoters)</div>
-        <div class="stat-value" style="color:var(--success);" id="statVerified">114</div>
+        <div class="stat-card-top">
+          <span class="stat-label">Selesai Disahkan</span>
+          <div class="stat-icon-pill" style="color:var(--primary); background:var(--primary-light);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+        </div>
+        <div class="stat-value" style="color:var(--primary-dark);" id="statVerified">0</div>
+        <div class="stat-progress-bar">
+          <div class="stat-progress-fill" id="statVerifiedProgress" style="width: 0%; background: var(--primary);"></div>
+        </div>
+        <div class="stat-subtext-wrap">
+          <span class="stat-meta-tag tag-emerald" id="statVerifiedSub">0% Selesai Disemak</span>
+          <span class="stat-meta-tag tag-slate" id="statPendingCountTag">0 Menunggu</span>
+        </div>
+      </div>
+
+      <!-- Kad 4: Tindakan Segera (Detractor & Service Recovery) -->
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <span class="stat-label">Perlu Tindakan (Detractor)</span>
+          <div class="stat-icon-pill" style="color:var(--danger); background:var(--danger-bg);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+        </div>
+        <div class="stat-value" style="color:var(--danger);" id="statPending">0</div>
+        <div class="stat-progress-bar">
+          <div class="stat-progress-fill" id="statActionProgress" style="width: 0%; background: var(--danger);"></div>
+        </div>
+        <div class="stat-subtext-wrap">
+          <span class="stat-meta-tag tag-warning" id="statPendingSub">Tiada Isu Tertunggak</span>
+          <span class="stat-meta-tag tag-danger" id="statActionBadge">Service Recovery</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bahagian Analisis Visual & Graf (CSAT Analytics Dashboard) -->
+    <div class="analytics-section">
+      <div class="analytics-grid">
+
+        <!-- Card 1: Pie / Donut Chart - Pecahan Sentimen CSAT & NPS -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div>
+              <h3 class="analytics-card-title">Pecahan Sentimen & NPS Jemaah</h3>
+              <p class="analytics-card-subtitle">Pengagihan maklum balas mengikut kategori Indeks CSAT</p>
+            </div>
+            <div class="analytics-badge-group">
+              <span class="analytics-badge tag-slate" id="chartNpsScoreBadge">
+                NPS: +0
+              </span>
+              <span class="analytics-badge" id="chartSentimentBadge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="chartSentimentHealthText">Sentimen Baik</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="pie-chart-wrap">
+            <!-- SVG Donut Chart (Piawaian Web Tanpa Skrip Luar) -->
+            <div class="donut-svg-box">
+              <svg class="donut-svg" viewBox="0 0 200 200" aria-label="Carta Pai Pecahan Sentimen CSAT">
+                <!-- Lingkaran latar belakang -->
+                <circle class="donut-circle-bg" cx="100" cy="100" r="64" />
+                <!-- Segmen Donut Dinamik -->
+                <circle id="donutSegmentPromoter" class="donut-segment" cx="100" cy="100" r="64" stroke="var(--primary)" stroke-dasharray="0 402.12" stroke-dashoffset="0" />
+                <circle id="donutSegmentPassive" class="donut-segment" cx="100" cy="100" r="64" stroke="var(--gold)" stroke-dasharray="0 402.12" stroke-dashoffset="0" />
+                <circle id="donutSegmentDetractor" class="donut-segment" cx="100" cy="100" r="64" stroke="var(--danger)" stroke-dasharray="0 402.12" stroke-dashoffset="0" />
+                <!-- Teks Pusat Donut -->
+                <text x="100" y="96" text-anchor="middle" class="donut-center-pct" id="donutCenterPct">0%</text>
+                <text x="100" y="116" text-anchor="middle" class="donut-center-lbl">INDEKS CSAT</text>
+              </svg>
+            </div>
+
+            <!-- Petunjuk Warna & Perangkaan (Legend) -->
+            <div class="pie-legend">
+              <div class="legend-row">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background:var(--primary);"></span>
+                  <span>Promoter (Puas Hati)</span>
+                </div>
+                <div class="legend-right">
+                  <span class="legend-count" id="legendPromoterCount">0 Jemaah</span>
+                  <span class="legend-pct tag-emerald" id="legendPromoterPct">0%</span>
+                </div>
+              </div>
+
+              <div class="legend-row">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background:var(--gold);"></span>
+                  <span>Passive / Neutral</span>
+                </div>
+                <div class="legend-right">
+                  <span class="legend-count" id="legendPassiveCount">0 Jemaah</span>
+                  <span class="legend-pct tag-gold" id="legendPassivePct">0%</span>
+                </div>
+              </div>
+
+              <div class="legend-row">
+                <div class="legend-left">
+                  <span class="legend-dot" style="background:var(--danger);"></span>
+                  <span>Detractor (Tindakan)</span>
+                </div>
+                <div class="legend-right">
+                  <span class="legend-count" id="legendDetractorCount">0 Jemaah</span>
+                  <span class="legend-pct tag-danger" id="legendDetractorPct">0%</span>
+                </div>
+              </div>
+
+              <div style="font-size:0.72rem; color:var(--text-muted); padding:0.25rem 0.25rem 0; display:flex; justify-content:space-between;">
+                <span id="legendReviewPendingNotice">0 menunggu semakan</span>
+                <span id="legendVerifiedNotice" style="font-weight:700; color:var(--primary);">0 disahkan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Carta Taburan Skor Gred & Prestasi Pakej Jemaah (New Visual Chart) -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div>
+              <h3 class="analytics-card-title">Taburan Gred & Prestasi Pakej</h3>
+              <p class="analytics-card-subtitle">Nisbah kualiti maklum balas & perbandingan mengikut pakej</p>
+            </div>
+            <span class="analytics-badge" style="background:var(--gold-light); color:var(--gold-hover); border-color:#fde68a;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <span>Taburan Pakej</span>
+            </span>
+          </div>
+
+          <!-- Bahagian Taburan Gred Jemaah -->
+          <div class="grade-distribution-section">
+            <div class="grade-tiles-grid">
+              <div class="grade-tile">
+                <span class="grade-tile-label">Cemerlang (80-100%)</span>
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span class="grade-tile-num" id="distExcellentCount" style="color:var(--primary);">0</span>
+                  <span class="stat-meta-tag tag-emerald" id="distExcellentPct">0%</span>
+                </div>
+              </div>
+              <div class="grade-tile">
+                <span class="grade-tile-label">Memuaskan (50-79%)</span>
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span class="grade-tile-num" id="distGoodCount" style="color:var(--gold-hover);">0</span>
+                  <span class="stat-meta-tag tag-gold" id="distGoodPct">0%</span>
+                </div>
+              </div>
+              <div class="grade-tile">
+                <span class="grade-tile-label">Perlu Tindakan (&lt;50%)</span>
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span class="grade-tile-num" id="distActionCount" style="color:var(--danger);">0</span>
+                  <span class="stat-meta-tag tag-danger" id="distActionPct">0%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stacked Proportion Bar -->
+            <div class="grade-stacked-track" aria-label="Visual Taburan Gred">
+              <div class="grade-stacked-seg" id="distSegExcellent" style="width: 0%; background: var(--primary);"></div>
+              <div class="grade-stacked-seg" id="distSegGood" style="width: 0%; background: var(--gold);"></div>
+              <div class="grade-stacked-seg" id="distSegAction" style="width: 0%; background: var(--danger);"></div>
+            </div>
+          </div>
+
+          <!-- Senarai Prestasi Mengikut Pakej Jemaah -->
+          <div style="font-size:0.75rem; font-weight:700; color:var(--secondary); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.4rem;">
+            Kepuasan Mengikut Pakej Jemaah:
+          </div>
+          <div class="package-distribution-wrap" id="packageDistributionList">
+            <!-- Pakej diisi secara dinamik melalui JS -->
+          </div>
+        </div>
+
+        <!-- Card 3: Graf Purata 5 Dimensi Servis & Destinasi (Wide Card) -->
+        <div class="analytics-card analytics-card-wide">
+          <div class="analytics-card-header">
+            <div>
+              <h3 class="analytics-card-title">Graf Analisis Purata 5 Dimensi Servis & Destinasi</h3>
+              <p class="analytics-card-subtitle">Purata skor jemaah mengikut aspek teras (Skor / 6.0) dan perbandingan prestasi 3 lokasi ziarah</p>
+            </div>
+            <span class="analytics-badge" style="background:var(--primary-light); color:var(--primary-dark); border-color:var(--primary-border);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>Matriks Operasi Kualiti</span>
+            </span>
+          </div>
+
+          <div class="wide-analytics-inner">
+            <!-- Kolum Kiri: Carta Palang 5 Dimensi -->
+            <div class="bars-chart-wrap">
+              <div style="font-size:0.75rem; font-weight:700; color:var(--secondary); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.25rem;">
+                5 Aspek Teras Pengalaman Jemaah:
+              </div>
+
+              <!-- Dim 1: Khidmat Andalusia -->
+              <div class="bar-item">
+                <div class="bar-header">
+                  <span class="bar-title">1. Khidmat Pegawai & Andalusia</span>
+                  <span class="bar-score-val" id="dimScore1">0.0 / 6.0 (0%)</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill fill-emerald" id="dimFill1" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Dim 2: Kebersihan Bilik Hotel -->
+              <div class="bar-item">
+                <div class="bar-header">
+                  <span class="bar-title">2. Kebersihan Bilik Hotel (3 Lokasi)</span>
+                  <span class="bar-score-val" id="dimScore2">0.0 / 6.0 (0%)</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill fill-emerald" id="dimFill2" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Dim 3: Layanan Staf & Perkhidmatan Hotel -->
+              <div class="bar-item">
+                <div class="bar-header">
+                  <span class="bar-title">3. Perkhidmatan & Staf Hotel</span>
+                  <span class="bar-score-val" id="dimScore3">0.0 / 6.0 (0%)</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill fill-gold" id="dimFill3" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Dim 4: Makanan & Sajian -->
+              <div class="bar-item">
+                <div class="bar-header">
+                  <span class="bar-title">4. Makanan & Sajian Hotel</span>
+                  <span class="bar-score-val" id="dimScore4">0.0 / 6.0 (0%)</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill fill-emerald" id="dimFill4" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Dim 5: Bimbingan & Tempat Ziarah -->
+              <div class="bar-item">
+                <div class="bar-header">
+                  <span class="bar-title">5. Pengalaman Tempat Ziarah & Mutawwif</span>
+                  <span class="bar-score-val" id="dimScore5">0.0 / 6.0 (0%)</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill fill-emerald" id="dimFill5" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kolum Kanan: Ringkasan Destinasi -->
+            <div class="dest-panel-wrap">
+              <div style="font-size:0.75rem; font-weight:700; color:var(--secondary); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.25rem;">
+                Kepuasan Merentasi 3 Destinasi:
+              </div>
+              <div class="dest-mini-summary">
+                <div class="dest-mini-tile">
+                  <span class="dest-mini-name">Mesir (Egypt)</span>
+                  <div class="dest-mini-score-wrap">
+                    <div class="dest-mini-score" id="destSummaryEgypt">0.0 / 8</div>
+                    <div class="dest-mini-pct" id="destSummaryEgyptPct">0%</div>
+                  </div>
+                </div>
+                <div class="dest-mini-tile">
+                  <span class="dest-mini-name">Madinah Munawwarah</span>
+                  <div class="dest-mini-score-wrap">
+                    <div class="dest-mini-score" id="destSummaryMadinah">0.0 / 8</div>
+                    <div class="dest-mini-pct" id="destSummaryMadinahPct">0%</div>
+                  </div>
+                </div>
+                <div class="dest-mini-tile">
+                  <span class="dest-mini-name">Mekah Mukarramah</span>
+                  <div class="dest-mini-score-wrap">
+                    <div class="dest-mini-score" id="destSummaryMekah">0.0 / 8</div>
+                    <div class="dest-mini-pct" id="destSummaryMekahPct">0%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -112,6 +916,7 @@
           <option value="ACTION_REQUIRED">Perlu Tindakan</option>
         </select>
       </div>
+      <span class="table-count-badge" id="tableFilterCountBadge">Memaparkan: 0 / 0 rekod</span>
       <button type="button" class="btn btn-secondary" onclick="alert('Eksport senarai rekod ke fail CSV berjaya dijana.')">
         Eksport CSV
       </button>
@@ -443,22 +1248,498 @@
       return [...local, ...filteredSeed];
     }
 
+    function computeGlobalMetrics(records) {
+      if (!records || records.length === 0) {
+        return {
+          totalCount: 0,
+          verifiedCount: 0,
+          pendingCount: 0,
+          actionCount: 0,
+          promoterCount: 0,
+          passiveCount: 0,
+          detractorCount: 0,
+          promoterPct: 0,
+          passivePct: 0,
+          detractorPct: 0,
+          npsScore: 0,
+          avgCsatPct: 0,
+          avgScoreOutOf30: '0.0',
+          csatGrade: 'Cemerlang',
+          gradeDist: {
+            excellentCount: 0,
+            goodCount: 0,
+            actionCount: 0,
+            excellentPct: 0,
+            goodPct: 0,
+            actionPct: 0
+          },
+          packages: [],
+          dimensions: [
+            { id: 1, score: 0, pct: 0 },
+            { id: 2, score: 0, pct: 0 },
+            { id: 3, score: 0, pct: 0 },
+            { id: 4, score: 0, pct: 0 },
+            { id: 5, score: 0, pct: 0 }
+          ],
+          destinations: {
+            egypt: { score: 0, pct: 0 },
+            madinah: { score: 0, pct: 0 },
+            mekah: { score: 0, pct: 0 }
+          }
+        };
+      }
+
+      const totalCount = records.length;
+      let verifiedCount = 0;
+      let pendingCount = 0;
+      let actionCount = 0;
+
+      let promoterCount = 0;
+      let passiveCount = 0;
+      let detractorCount = 0;
+
+      let excellentGradeCount = 0;
+      let goodGradeCount = 0;
+      let actionGradeCount = 0;
+
+      let sumPercentage = 0;
+      let sumTotalScore = 0;
+
+      // Dimensi sum
+      let sumDimService = 0;
+      let sumDimRoom = 0;
+      let sumDimHotelService = 0;
+      let sumDimFood = 0;
+      let sumDimZiarah = 0;
+      let dimCount = 0;
+
+      // Destinasi sum
+      let sumDestEgypt = 0;
+      let sumDestMadinah = 0;
+      let sumDestMekah = 0;
+      let destCount = 0;
+
+      // Pakej Map
+      const packageMap = new Map();
+
+      records.forEach(r => {
+        const max = r.maxScore || (r.totalScore && r.totalScore > 6 ? 30 : 6);
+        const total = (r.totalScore !== undefined) ? r.totalScore : ((r.cat1 || 2) + (r.cat2 || 2) + (r.cat3 || 2));
+        const pct = (r.percentage !== undefined) ? r.percentage : Math.round((total / max) * 100);
+
+        sumPercentage += pct;
+        sumTotalScore += total;
+
+        // Metrik Status Operasi
+        if (r.status === 'VERIFIED') {
+          verifiedCount++;
+        } else if (r.status === 'ACTION_REQUIRED') {
+          actionCount++;
+          pendingCount++;
+        } else {
+          pendingCount++;
+        }
+
+        // Klasifikasi NPS / Sentimen
+        const isDetractor = (pct < 50) || (r.status === 'ACTION_REQUIRED') || (r.rating === 'PERLU TINDAKAN') || (r.npsRecommendation && r.npsRecommendation.includes('Detractor'));
+        const isPromoter = !isDetractor && ((pct >= 80) || (r.rating === 'CEMERLANG') || (r.npsRecommendation && r.npsRecommendation.includes('Promoter')));
+
+        if (isPromoter) {
+          promoterCount++;
+        } else if (isDetractor) {
+          detractorCount++;
+          if (r.status !== 'ACTION_REQUIRED') {
+            actionCount++;
+          }
+        } else {
+          passiveCount++;
+        }
+
+        // Taburan Gred Skor
+        if (pct >= 80) {
+          excellentGradeCount++;
+        } else if (pct >= 50) {
+          goodGradeCount++;
+        } else {
+          actionGradeCount++;
+        }
+
+        // Pakej Agregasi
+        const pkgName = r.packageType ? r.packageType.trim() : 'Pakej Umrah Standard';
+        if (!packageMap.has(pkgName)) {
+          packageMap.set(pkgName, { name: pkgName, count: 0, sumPct: 0 });
+        }
+        const pkgEntry = packageMap.get(pkgName);
+        pkgEntry.count++;
+        pkgEntry.sumPct += pct;
+
+        // Dimensi
+        if (r.dimensions) {
+          sumDimService += (r.dimensions.service !== undefined ? r.dimensions.service : 6);
+          sumDimRoom += (r.dimensions.room !== undefined ? r.dimensions.room : 6);
+          sumDimHotelService += (r.dimensions.hotelService !== undefined ? r.dimensions.hotelService : 6);
+          sumDimFood += (r.dimensions.food !== undefined ? r.dimensions.food : 6);
+          sumDimZiarah += (r.dimensions.ziarah !== undefined ? r.dimensions.ziarah : 6);
+          dimCount++;
+        } else {
+          sumDimService += ((r.cat1 || 2) / 2) * 6;
+          sumDimRoom += ((r.cat2 || 2) / 2) * 6;
+          sumDimHotelService += ((r.cat2 || 2) / 2) * 6;
+          sumDimFood += ((r.cat3 || 2) / 2) * 6;
+          sumDimZiarah += ((r.cat3 || 2) / 2) * 6;
+          dimCount++;
+        }
+
+        // Destinasi
+        if (r.destinations) {
+          sumDestEgypt += (r.destinations.egypt ? r.destinations.egypt.score : 8);
+          sumDestMadinah += (r.destinations.madinah ? r.destinations.madinah.score : 8);
+          sumDestMekah += (r.destinations.mekah ? r.destinations.mekah.score : 8);
+          destCount++;
+        } else {
+          sumDestEgypt += 7;
+          sumDestMadinah += 8;
+          sumDestMekah += 7;
+          destCount++;
+        }
+      });
+
+      const avgCsatPct = Math.round(sumPercentage / totalCount);
+      const avgScoreOutOf30 = (sumTotalScore / totalCount).toFixed(1);
+
+      let csatGrade = 'Cemerlang';
+      if (avgCsatPct < 50) csatGrade = 'Perlu Tindakan';
+      else if (avgCsatPct < 80) csatGrade = 'Memuaskan';
+
+      const promoterPct = Math.round((promoterCount / totalCount) * 100);
+      const detractorPct = Math.round((detractorCount / totalCount) * 100);
+      const passivePct = Math.max(0, 100 - promoterPct - detractorPct);
+      const npsScore = promoterPct - detractorPct;
+
+      const excellentPct = Math.round((excellentGradeCount / totalCount) * 100);
+      const actionPct = Math.round((actionGradeCount / totalCount) * 100);
+      const goodPct = Math.max(0, 100 - excellentPct - actionPct);
+
+      const packages = Array.from(packageMap.values()).map(p => ({
+        name: p.name,
+        count: p.count,
+        avgPct: Math.round(p.sumPct / p.count)
+      })).sort((a, b) => b.count - a.count);
+
+      const dims = [
+        { id: 1, score: (dimCount > 0 ? sumDimService / dimCount : 6), pct: Math.round(((sumDimService / (dimCount || 1)) / 6.0) * 100) },
+        { id: 2, score: (dimCount > 0 ? sumDimRoom / dimCount : 6), pct: Math.round(((sumDimRoom / (dimCount || 1)) / 6.0) * 100) },
+        { id: 3, score: (dimCount > 0 ? sumDimHotelService / dimCount : 6), pct: Math.round(((sumDimHotelService / (dimCount || 1)) / 6.0) * 100) },
+        { id: 4, score: (dimCount > 0 ? sumDimFood / dimCount : 6), pct: Math.round(((sumDimFood / (dimCount || 1)) / 6.0) * 100) },
+        { id: 5, score: (dimCount > 0 ? sumDimZiarah / dimCount : 6), pct: Math.round(((sumDimZiarah / (dimCount || 1)) / 6.0) * 100) }
+      ];
+
+      const avgEgypt = destCount > 0 ? sumDestEgypt / destCount : 8;
+      const avgMadinah = destCount > 0 ? sumDestMadinah / destCount : 8;
+      const avgMekah = destCount > 0 ? sumDestMekah / destCount : 8;
+
+      return {
+        totalCount,
+        verifiedCount,
+        pendingCount,
+        actionCount,
+        promoterCount,
+        passiveCount,
+        detractorCount,
+        promoterPct,
+        passivePct,
+        detractorPct,
+        npsScore,
+        avgCsatPct,
+        avgScoreOutOf30,
+        csatGrade,
+        gradeDist: {
+          excellentCount: excellentGradeCount,
+          goodCount: goodGradeCount,
+          actionCount: actionGradeCount,
+          excellentPct,
+          goodPct,
+          actionPct
+        },
+        packages,
+        dimensions: dims,
+        destinations: {
+          egypt: { score: avgEgypt, pct: Math.round((avgEgypt / 8) * 100) },
+          madinah: { score: avgMadinah, pct: Math.round((avgMadinah / 8) * 100) },
+          mekah: { score: avgMekah, pct: Math.round((avgMekah / 8) * 100) }
+        }
+      };
+    }
+
+    function updateKPIStats(metrics) {
+      // Kad 1: Jumlah Maklum Balas
+      const statTotalEl = document.getElementById('statTotal');
+      if (statTotalEl) statTotalEl.textContent = metrics.totalCount;
+      const statTotalSub = document.getElementById('statTotalSub');
+      if (statTotalSub) statTotalSub.textContent = `${metrics.totalCount} Rekod Jemaah`;
+      const statTotalMeta = document.getElementById('statTotalMeta');
+      if (statTotalMeta) statTotalMeta.textContent = `${metrics.verifiedCount} Disahkan • ${metrics.pendingCount} Menunggu`;
+      const statTotalProgress = document.getElementById('statTotalProgress');
+      if (statTotalProgress) statTotalProgress.style.width = '100%';
+
+      // Kad 2: Purata Indeks Kepuasan CSAT
+      const statAvgEl = document.getElementById('statAverage');
+      if (statAvgEl) statAvgEl.textContent = `${metrics.avgCsatPct}%`;
+      const statAvgSub = document.getElementById('statAverageSub');
+      if (statAvgSub) statAvgSub.textContent = `Purata ${metrics.avgScoreOutOf30} / 30 Markah`;
+      const statCsatProgress = document.getElementById('statCsatProgress');
+      if (statCsatProgress) {
+        statCsatProgress.style.width = `${metrics.avgCsatPct}%`;
+        statCsatProgress.style.background = metrics.avgCsatPct >= 80 ? 'var(--primary)' : (metrics.avgCsatPct >= 50 ? 'var(--gold)' : 'var(--danger)');
+      }
+      const statCsatGradeTag = document.getElementById('statCsatGradeTag');
+      if (statCsatGradeTag) {
+        statCsatGradeTag.textContent = metrics.csatGrade;
+        statCsatGradeTag.className = 'stat-meta-tag ' + (metrics.avgCsatPct >= 80 ? 'tag-emerald' : (metrics.avgCsatPct >= 50 ? 'tag-gold' : 'tag-danger'));
+      }
+
+      // Kad 3: Selesai Disahkan (Operational SLA)
+      const statVerifiedEl = document.getElementById('statVerified');
+      if (statVerifiedEl) statVerifiedEl.textContent = metrics.verifiedCount;
+      const verifiedPct = metrics.totalCount > 0 ? Math.round((metrics.verifiedCount / metrics.totalCount) * 100) : 0;
+      const statVerifiedSub = document.getElementById('statVerifiedSub');
+      if (statVerifiedSub) statVerifiedSub.textContent = `${verifiedPct}% Selesai Disemak`;
+      const statPendingCountTag = document.getElementById('statPendingCountTag');
+      if (statPendingCountTag) statPendingCountTag.textContent = `${metrics.pendingCount} Menunggu`;
+      const statVerifiedProgress = document.getElementById('statVerifiedProgress');
+      if (statVerifiedProgress) statVerifiedProgress.style.width = `${verifiedPct}%`;
+
+      // Kad 4: Tindakan Segera (Detractor & Service Recovery)
+      const statPendingEl = document.getElementById('statPending');
+      if (statPendingEl) statPendingEl.textContent = metrics.actionCount;
+      const statPendingSub = document.getElementById('statPendingSub');
+      if (statPendingSub) {
+        statPendingSub.textContent = metrics.actionCount > 0 ? `${metrics.actionCount} Kes Perlu Tindakan` : 'Tiada Aduan Tertunggak';
+      }
+      const actionRatio = metrics.totalCount > 0 ? Math.min(100, Math.round((metrics.actionCount / metrics.totalCount) * 100)) : 0;
+      const statActionProgress = document.getElementById('statActionProgress');
+      if (statActionProgress) statActionProgress.style.width = `${actionRatio}%`;
+      const statActionBadge = document.getElementById('statActionBadge');
+      if (statActionBadge) {
+        statActionBadge.textContent = metrics.actionCount > 0 ? 'Tindakan Segera' : 'Selesai Pulih';
+        statActionBadge.className = 'stat-meta-tag ' + (metrics.actionCount > 0 ? 'tag-danger' : 'tag-emerald');
+      }
+    }
+
+    function updateDonutChart(metrics) {
+      const circumference = 2 * Math.PI * 64; // ~402.1238
+
+      const strokePromoter = (metrics.promoterPct / 100) * circumference;
+      const strokePassive = (metrics.passivePct / 100) * circumference;
+      const strokeDetractor = (metrics.detractorPct / 100) * circumference;
+
+      const segPromoter = document.getElementById('donutSegmentPromoter');
+      const segPassive = document.getElementById('donutSegmentPassive');
+      const segDetractor = document.getElementById('donutSegmentDetractor');
+
+      if (segPromoter && segPassive && segDetractor) {
+        segPromoter.setAttribute('stroke-dasharray', `${strokePromoter} ${circumference}`);
+        segPromoter.setAttribute('stroke-dashoffset', '0');
+
+        segPassive.setAttribute('stroke-dasharray', `${strokePassive} ${circumference}`);
+        segPassive.setAttribute('stroke-dashoffset', `-${strokePromoter}`);
+
+        segDetractor.setAttribute('stroke-dasharray', `${strokeDetractor} ${circumference}`);
+        segDetractor.setAttribute('stroke-dashoffset', `-${strokePromoter + strokePassive}`);
+      }
+
+      const centerPct = document.getElementById('donutCenterPct');
+      if (centerPct) centerPct.textContent = `${metrics.avgCsatPct}%`;
+
+      // Lencana NPS Net Score
+      const npsBadge = document.getElementById('chartNpsScoreBadge');
+      if (npsBadge) {
+        const sign = metrics.npsScore > 0 ? '+' : '';
+        npsBadge.textContent = `NPS: ${sign}${metrics.npsScore}`;
+        if (metrics.npsScore >= 50) {
+          npsBadge.className = 'analytics-badge tag-emerald';
+        } else if (metrics.npsScore >= 0) {
+          npsBadge.className = 'analytics-badge tag-gold';
+        } else {
+          npsBadge.className = 'analytics-badge tag-danger';
+        }
+      }
+
+      // Lencana Kesihatan Sentimen
+      const healthText = document.getElementById('chartSentimentHealthText');
+      const healthBadge = document.getElementById('chartSentimentBadge');
+      if (healthText && healthBadge) {
+        if (metrics.avgCsatPct >= 80) {
+          healthText.textContent = 'Sentimen Cemerlang';
+          healthBadge.style.background = 'var(--primary-light)';
+          healthBadge.style.color = 'var(--primary-dark)';
+          healthBadge.style.borderColor = 'var(--primary-border)';
+        } else if (metrics.avgCsatPct >= 50) {
+          healthText.textContent = 'Sentimen Memuaskan';
+          healthBadge.style.background = 'var(--gold-light)';
+          healthBadge.style.color = 'var(--gold-hover)';
+          healthBadge.style.borderColor = '#fde68a';
+        } else {
+          healthText.textContent = 'Perhatian Diperlukan';
+          healthBadge.style.background = 'var(--danger-bg)';
+          healthBadge.style.color = '#b91c1c';
+          healthBadge.style.borderColor = '#fecaca';
+        }
+      }
+
+      // Legend Numbers
+      const legPromoterCount = document.getElementById('legendPromoterCount');
+      if (legPromoterCount) legPromoterCount.textContent = `${metrics.promoterCount} Jemaah`;
+      const legPromoterPct = document.getElementById('legendPromoterPct');
+      if (legPromoterPct) legPromoterPct.textContent = `${metrics.promoterPct}%`;
+
+      const legPassiveCount = document.getElementById('legendPassiveCount');
+      if (legPassiveCount) legPassiveCount.textContent = `${metrics.passiveCount} Jemaah`;
+      const legPassivePct = document.getElementById('legendPassivePct');
+      if (legPassivePct) legPassivePct.textContent = `${metrics.passivePct}%`;
+
+      const legDetractorCount = document.getElementById('legendDetractorCount');
+      if (legDetractorCount) legDetractorCount.textContent = `${metrics.detractorCount} Jemaah`;
+      const legDetractorPct = document.getElementById('legendDetractorPct');
+      if (legDetractorPct) legDetractorPct.textContent = `${metrics.detractorPct}%`;
+
+      const noticeUnverified = document.getElementById('legendReviewPendingNotice');
+      if (noticeUnverified) noticeUnverified.textContent = `${metrics.pendingCount} belum disahkan`;
+      const noticeVerified = document.getElementById('legendVerifiedNotice');
+      if (noticeVerified) noticeVerified.textContent = `${metrics.verifiedCount} disahkan`;
+    }
+
+    function updatePackageAndGradeVisuals(metrics) {
+      // 1. Taburan Gred Skor
+      const distExcellentCount = document.getElementById('distExcellentCount');
+      if (distExcellentCount) distExcellentCount.textContent = metrics.gradeDist.excellentCount;
+      const distExcellentPct = document.getElementById('distExcellentPct');
+      if (distExcellentPct) distExcellentPct.textContent = `${metrics.gradeDist.excellentPct}%`;
+      const distSegExcellent = document.getElementById('distSegExcellent');
+      if (distSegExcellent) distSegExcellent.style.width = `${metrics.gradeDist.excellentPct}%`;
+
+      const distGoodCount = document.getElementById('distGoodCount');
+      if (distGoodCount) distGoodCount.textContent = metrics.gradeDist.goodCount;
+      const distGoodPct = document.getElementById('distGoodPct');
+      if (distGoodPct) distGoodPct.textContent = `${metrics.gradeDist.goodPct}%`;
+      const distSegGood = document.getElementById('distSegGood');
+      if (distSegGood) distSegGood.style.width = `${metrics.gradeDist.goodPct}%`;
+
+      const distActionCount = document.getElementById('distActionCount');
+      if (distActionCount) distActionCount.textContent = metrics.gradeDist.actionCount;
+      const distActionPct = document.getElementById('distActionPct');
+      if (distActionPct) distActionPct.textContent = `${metrics.gradeDist.actionPct}%`;
+      const distSegAction = document.getElementById('distSegAction');
+      if (distSegAction) distSegAction.style.width = `${metrics.gradeDist.actionPct}%`;
+
+      // 2. Senarai Prestasi Pakej Jemaah
+      const pkgListEl = document.getElementById('packageDistributionList');
+      if (pkgListEl) {
+        if (!metrics.packages || metrics.packages.length === 0) {
+          pkgListEl.innerHTML = `<div style="font-size:0.78rem; color:var(--text-muted); padding:0.5rem 0;">Tiada data pakej tersedia.</div>`;
+        } else {
+          pkgListEl.innerHTML = metrics.packages.map(pkg => {
+            let fillClass = 'fill-emerald';
+            let tagClass = 'tag-emerald';
+            if (pkg.avgPct < 50) {
+              fillClass = 'fill-danger';
+              tagClass = 'tag-danger';
+            } else if (pkg.avgPct < 80) {
+              fillClass = 'fill-gold';
+              tagClass = 'tag-gold';
+            }
+            return `
+              <div class="pkg-item">
+                <div class="pkg-header">
+                  <span class="pkg-name">${pkg.name}</span>
+                  <div style="display:flex; align-items:center; gap:0.4rem;">
+                    <span class="pkg-meta">${pkg.count} Jemaah</span>
+                    <span class="stat-meta-tag ${tagClass}">${pkg.avgPct}% CSAT</span>
+                  </div>
+                </div>
+                <div class="pkg-track">
+                  <div class="pkg-fill ${fillClass}" style="width: ${Math.max(6, pkg.avgPct)}%;"></div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    function updateDimensionVisuals(metrics) {
+      // 1. Kemaskini Graf 5 Dimensi
+      if (metrics.dimensions && metrics.dimensions.length > 0) {
+        metrics.dimensions.forEach(d => {
+          const scoreEl = document.getElementById(`dimScore${d.id}`);
+          const fillEl = document.getElementById(`dimFill${d.id}`);
+          if (scoreEl && fillEl) {
+            scoreEl.textContent = `${d.score.toFixed(1)} / 6.0 (${d.pct}%)`;
+            fillEl.style.width = `${Math.max(6, d.pct)}%`;
+
+            if (d.pct >= 80) {
+              fillEl.className = 'bar-fill fill-emerald';
+            } else if (d.pct >= 50) {
+              fillEl.className = 'bar-fill fill-gold';
+            } else {
+              fillEl.className = 'bar-fill fill-danger';
+            }
+          }
+        });
+      }
+
+      // 2. Kemaskini Destinasi Summary
+      if (metrics.destinations) {
+        const dest = metrics.destinations;
+        const elEgypt = document.getElementById('destSummaryEgypt');
+        const elEgyptPct = document.getElementById('destSummaryEgyptPct');
+        if (elEgypt && elEgyptPct) {
+          elEgypt.textContent = `${dest.egypt.score.toFixed(1)} / 8`;
+          elEgyptPct.textContent = `${dest.egypt.pct}% Kepuasan`;
+        }
+
+        const elMadinah = document.getElementById('destSummaryMadinah');
+        const elMadinahPct = document.getElementById('destSummaryMadinahPct');
+        if (elMadinah && elMadinahPct) {
+          elMadinah.textContent = `${dest.madinah.score.toFixed(1)} / 8`;
+          elMadinahPct.textContent = `${dest.madinah.pct}% Kepuasan`;
+        }
+
+        const elMekah = document.getElementById('destSummaryMekah');
+        const elMekahPct = document.getElementById('destSummaryMekahPct');
+        if (elMekah && elMekahPct) {
+          elMekah.textContent = `${dest.mekah.score.toFixed(1)} / 8`;
+          elMekahPct.textContent = `${dest.mekah.pct}% Kepuasan`;
+        }
+      }
+    }
+
+    function updateAnalyticsVisuals(records) {
+      if (!records) return;
+      const metrics = computeGlobalMetrics(records);
+      updateKPIStats(metrics);
+      updateDonutChart(metrics);
+      updatePackageAndGradeVisuals(metrics);
+      updateDimensionVisuals(metrics);
+    }
+
     function renderTable() {
       const allRecords = getCombinedRecords();
       const filterText = document.getElementById('filterInput').value.toLowerCase();
       const statusFilter = document.getElementById('statusFilter').value;
       const tbody = document.getElementById('tableBody');
 
-      let totalCount = allRecords.length;
-      let pendingCount = 0;
-      let verifiedCount = 0;
+      // Kemaskini Metrik Global ke Kad Ringkasan & Visual Analytics Dashboard
+      const metrics = computeGlobalMetrics(allRecords);
+      updateKPIStats(metrics);
+      updateDonutChart(metrics);
+      updatePackageAndGradeVisuals(metrics);
+      updateDimensionVisuals(metrics);
 
       tbody.innerHTML = '';
+      let displayedCount = 0;
 
       allRecords.forEach(record => {
-        if (record.status === 'VERIFIED') verifiedCount++;
-        else pendingCount++;
-
         const matchesText = 
           record.fullName.toLowerCase().includes(filterText) ||
           record.phone.includes(filterText) ||
@@ -468,6 +1749,7 @@
         const matchesStatus = (statusFilter === 'ALL') || (record.status === statusFilter);
 
         if (matchesText && matchesStatus) {
+          displayedCount++;
           const tr = document.createElement('tr');
           const cleanPhone = record.phone.replace(/\D/g, '');
           const waPhone = cleanPhone.startsWith('60') ? cleanPhone : (cleanPhone.startsWith('0') ? '60' + cleanPhone.substring(1) : cleanPhone);
@@ -512,9 +1794,11 @@
         }
       });
 
-      document.getElementById('statTotal').textContent = totalCount;
-      document.getElementById('statPending').textContent = pendingCount;
-      document.getElementById('statVerified').textContent = verifiedCount;
+      // Kemaskini Lencana Paparan Rekod Jadual
+      const countBadge = document.getElementById('tableFilterCountBadge');
+      if (countBadge) {
+        countBadge.textContent = `Memaparkan: ${displayedCount} / ${allRecords.length} rekod`;
+      }
     }
 
     function updateMiniBar(index, score, maxScore = 2) {
