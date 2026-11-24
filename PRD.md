@@ -1,10 +1,10 @@
-# Product Requirement Document (PRD): Sistem Maklumat Jemaah (Vali-Lusia)
+# Product Requirement Document (PRD): Sistem Maklumat Jemaah
 
 ---
 
 ## 1. Ringkasan Eksekutif & Objektif Projek
 
-* **Nama Sistem:** Vali-Lusia (Sistem Pendaftaran Maklumat Jemaah Andalusia)
+* **Nama Sistem:** Sistem Pendaftaran Maklumat Jemaah Andalusia
 * **Versi:** 2.0.0 (Simplified Streamlined Edition)
 * **Status Dokumen:** Sedia untuk Pembangunan (*Ready for Implementation*)
 * **Tarikh:** November 2026

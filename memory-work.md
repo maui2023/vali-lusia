@@ -18,7 +18,7 @@ Berikut adalah penilaian menyeluruh, cadangan seni bina, dan pelan tindakan tera
 
 #### A. Analisis Masalah Semasa (Kad Jumlah & Visual Dashboard)
 1. **Pertembungan Semantik & Nilai Statik Kad:**
-   - Dalam fail [docs/admin_review.html](file:///home/maui/github/vali-lusia/docs/admin_review.html), terdapat ketidakkonsistenan antara ID elemen (`statVerified`, `statPending`) dengan label paparan (*Promoter* vs *Detractor*).
+   - Dalam fail [docs/admin_review.html](docs/admin_review.html), terdapat ketidakkonsistenan antara ID elemen (`statVerified`, `statPending`) dengan label paparan (*Promoter* vs *Detractor*).
    - Nilai permulaan HTML di-kod keras (*hardcoded*: `128`, `86%`, `114`, `14`) yang menyebabkan lonjakan angka secara mendadak sebaik sahaja data dinamik dari `seedRecords` / `localStorage` dimuatkan.
    - Kad statistik belum membezakan dengan jelas antara **Metrik Operasi** (Status semakan pegawai) dan **Metrik Kualiti Servis** (Indeks Kepuasan CSAT).
 
@@ -36,7 +36,7 @@ Berikut adalah penilaian menyeluruh, cadangan seni bina, dan pelan tindakan tera
 * **Peningkatan Komponen Visual (Graf & Pie Chart):**
   - **Enhanced SVG Donut/Pie Chart:** Carta pai pecahan sentimen (*Promoter*, *Passive*, *Detractor*) dengan kalkulasi nisbah lilitan (*circumference stroke-dasharray*) yang tepat, teks fokus di tengah, dan peratusan interaktif.
   - **Graf Palang Taburan Skor / Pakej (Distribution Bar Chart):** Menambah carta palang mendatar atau histogram taburan markah (Skor Cemerlang 80–100%, Sederhana 50–79%, Kritikal <50%) serta analisis mengikut jenis pakej jemaah.
-  - **Pematuhan Piawaian Andalusia & Anti-Webslop ([docs/DESIGN.md](file:///home/maui/github/vali-lusia/docs/DESIGN.md)):**
+  - **Pematuhan Piawaian Andalusia & Anti-Webslop ([docs/DESIGN.md](docs/DESIGN.md)):**
     - Dibina 100% menggunakan SVG natif & CSS moden tanpa sebarang perpustakaan berat luaran (menjamin *offline-first*, kelajuan pantas, dan sifar isu CDN).
     - Palet korporat rasmi: Emerald `#047857`, Sand Gold `#b45309`, Slate `#0f172a`, dan Alert `#dc2626`.
     - Bebas `transition: all`, bebas *glassmorphism*, dan menggunakan ikon SVG semantik.

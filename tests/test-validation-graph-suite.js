@@ -1,5 +1,5 @@
 /**
- * Vali-Lusia: Suite Ujian Automasi Komprehensif
+ * Suite Ujian Automasi Komprehensif
  * Sistem Validasi Berperingkat (Page 1: Khidmat, Page 2: Hotel & Makanan, Page 3: Ziarah & Ulasan 500 Huruf)
  * & Enjin Graf Keputusan Multi-Dimensional
  */
@@ -9,7 +9,7 @@ const path = require('path');
 const assert = require('assert');
 
 console.log('================================================================');
-console.log('  MEMULAKAN SUITE UJIAN AUTOMASI VALI-LUSIA (3 PAGES & GRAF)    ');
+console.log('  MEMULAKAN SUITE UJIAN AUTOMASI (3 PAGES & GRAF)               ');
 console.log('================================================================\n');
 
 // 1. Muat Modul ValiLusiaApp

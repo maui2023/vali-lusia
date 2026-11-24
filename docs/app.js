@@ -1,5 +1,5 @@
 /**
- * Vali-Lusia: Logik Frontend, Penilaian 3 Halaman & Enjin Graf Keputusan (Multi-Dimensional)
+ * Logik Frontend, Penilaian 3 Halaman & Enjin Graf Keputusan (Multi-Dimensional)
  * Andalusia Travel & Tours Sdn Bhd
  */
 

@@ -1,5 +1,5 @@
 /**
- * Vali-Lusia: Ujian Integrasi Tatalan Modal Mudah Alih (Headless Chrome)
+ * Ujian Integrasi Tatalan Modal Mudah Alih (Headless Chrome)
  * Mengesahkan pembaikan isu "Pages ni tak boleh scroll stuck" pada peranti telefon pintar.
  */
 

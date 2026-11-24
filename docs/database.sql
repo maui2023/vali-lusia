@@ -1,6 +1,6 @@
 -- ==============================================================================
 -- Pangkalan Data: vali_lusia_db
--- Sistem Pendaftaran Maklumat Jemaah Andalusia (Vali-Lusia)
+-- Sistem Pendaftaran Maklumat Jemaah Andalusia
 -- Disediakan untuk: MariaDB 11.x / MySQL 8.x + PHP 8.5
 -- Karakter Enkod: utf8mb4 | Kolasi: utf8mb4_unicode_ci
 -- ==============================================================================

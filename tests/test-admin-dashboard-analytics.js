@@ -1,5 +1,5 @@
 /**
- * Vali-Lusia: Suite Ujian Automasi Papan Pemuka Admin & Visual Analytics
+ * Suite Ujian Automasi Papan Pemuka Admin & Visual Analytics
  * Mengesahkan pembaikan kad statistik ringkasan, carta donut SVG, taburan gred,
  * dan carta pecahan pakej jemaah tanpa kebergantungan luar.
  */

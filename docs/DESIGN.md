@@ -1,6 +1,6 @@
-# DESIGN.md — Vali-Lusia CSAT (Andalusia Travel & Tours)
+# DESIGN.md — CSAT (Andalusia Travel & Tours)
 
-> Living design brief for Vali-Lusia Customer Satisfaction & Experience System.
+> Living design brief for Customer Satisfaction & Experience System.
 > Built following antiwebslop principles: crafted, tactile, respectful of brand reality, mobile-first responsive.
 
 ## 1. Product truth

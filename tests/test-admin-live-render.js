@@ -1,5 +1,5 @@
 /**
- * Vali-Lusia: Ujian Integrasi Pelayar Headless Chrome bagi Admin Dashboard Live Render
+ * Ujian Integrasi Pelayar Headless Chrome bagi Admin Dashboard Live Render
  * Mengesahkan pengiraan dinamik kad statistik, carta donut SVG, taburan pakej,
  * dan penapisan carian secara langsung dalam DOM pelayar.
  */

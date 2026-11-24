@@ -1,5 +1,5 @@
 /**
- * Vali-Lusia: Test Suite Antiwebslop & Mobile Responsive Compliance
+ * Test Suite Antiwebslop & Mobile Responsive Compliance
  * Mengesahkan penyingkiran AI slop, integriti tema korporat Andalusia,
  * dan piawaian mudah alih responsif (antiwebslop.cesaroeduardo.com).
  */
